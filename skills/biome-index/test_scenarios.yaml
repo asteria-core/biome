@@ -1,0 +1,29 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+skill: "biome-index"
+description: "Behavioral evaluation scenario suite for BIOME Indexer standalone skill."
+
+scenarios:
+  - scenario_id: "biome_indexer_standalone_generation"
+    description: "Verifies /biome-index generates .biome/project_index.json from spec."
+    eval_type: "deterministic"
+    system_prompt:
+      skill_file: "skills/biome-index/SKILL.md"
+    turns:
+      - user_input: "Run /biome-index docs/designs/auth.md"
+        assertions:
+          - type: "required_pattern"
+            pattern: "(project_index\\.json|target_mutation_plan|tech_stack)"
+            message: "BIOME Indexer must produce or reference project_index.json."

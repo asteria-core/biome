@@ -1,0 +1,41 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+skill: "biome"
+description: "Behavioral evaluation scenario suite for unified autonomous BIOME skill."
+
+scenarios:
+  - scenario_id: "biome_end_to_end_flow"
+    description: "Verifies /biome orchestrates Elephant, Critic Swarm, Indexer, and Beaver build sequentially."
+    eval_type: "deterministic"
+    system_prompt:
+      skill_file: "skills/biome/SKILL.md"
+    turns:
+      - user_input: "Run biome on: Add rate limiting to authentication endpoints."
+        assertions:
+          - type: "required_pattern"
+            pattern: "(Phase A|Phase B|Phase C|Phase D|Phase E|Phase F|receipt)"
+            message: "BIOME skill must orchestrate all phases from spec to build receipt."
+
+  - scenario_id: "biome_subcommand_routing"
+    description: "Verifies /biome routes explicit sub-commands to modular skills."
+    eval_type: "deterministic"
+    system_prompt:
+      skill_file: "skills/biome/SKILL.md"
+    turns:
+      - user_input: "Run /biome review docs/designs/auth.md"
+        assertions:
+          - type: "required_pattern"
+            pattern: "(review|Goldfish|critic|stage)"
+            message: "Sub-command review must delegate to review workflow."

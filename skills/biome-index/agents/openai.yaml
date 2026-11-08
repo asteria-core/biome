@@ -1,0 +1,6 @@
+interface:
+  display_name: "BIOME Indexer"
+  short_description: "Deterministic repository structural indexing"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#1B6EF3"
