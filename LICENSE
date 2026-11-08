@@ -1,3 +1,196 @@
+BIOME PERPETUAL SOURCE-AVAILABLE LICENSE
+Version 1.0 (Enterprise-Hardened Edition)
+
+Copyright (c) 2026 Asteria Studio. All Rights Reserved.
+Upstream Base Portions Copyright (c) Google LLC, licensed under the Apache License, Version 2.0.
+
+IMPORTANT — READ CAREFULLY: THIS LICENSE AGREEMENT ("LICENSE" OR "AGREEMENT") IS A 
+LEGALLY BINDING CONTRACT BETWEEN YOU (EITHER AN INDIVIDUAL OR A SINGLE LEGAL ENTITY, 
+COLLECTIVELY "YOU" OR "LICENSEE") AND ASTERIA STUDIO ("LICENSOR"). BY ACCESSING, 
+DOWNLOADING, CLONING, FORKING, COMPILING, EXECUTING, MODIFYING, OR OTHERWISE USING 
+THE BIOME SOFTWARE SYSTEM, ITS AGENT ARCHITECTURES, PROMPTS, OR DOCUMENTATION, YOU 
+AGREE TO BE BOUND BY ALL TERMS OF THIS LICENSE. IF YOU DO NOT AGREE TO THESE TERMS, 
+YOU ARE GRANTED NO RIGHTS WHATSOEVER AND MUST IMMEDIATELY CEASE ALL USE AND DESTROY 
+ALL COPIES IN YOUR POSSESSION.
+
+================================================================================
+SECTION 1. DEFINITIONS
+================================================================================
+
+1.1 "Software" means the BIOME autonomous multi-agent software engineering ecosystem, 
+including without limitation: (a) all source code, object code, scripts, and build 
+configurations; (b) all system prompts, meta-prompts, persona instructions, and context 
+management rules (including the Elephant, Goldfish, Beaver, and Woodpecker agent 
+definitions); (c) the Structure, Sequence, and Organization ("SSO"), ephemeral agent 
+spawning workflows, context-compaction pipelines, and verification state-machines; and 
+(d) all accompanying documentation, schemas, and templates authored by Asteria Studio.
+
+1.2 "Derivative Work" means any work, product, model, system, or adaptation that is 
+based upon, derived from, or incorporates all or any portion of the Software, whether 
+in literal or non-literal form. This explicitly includes, without limitation: forks, 
+translations into other programming or natural languages, semantic paraphrasing of 
+agent prompts, architectural clones replicating the Software's SSO, API wrappers, 
+containerized distributions, plugins, extensions, or clean-room re-implementations 
+conducted by individuals who have accessed the Software.
+
+1.3 "Commercial Hosting or Competitive Exploitation" means any activity in which the 
+Software or any Derivative Work is used, directly or indirectly, to:
+  (a) offer a hosted, cloud-based, Software-as-a-Service (SaaS), Platform-as-a-Service 
+      (PaaS), Agent-as-a-Service (AaaS), or managed service accessible by any Third Party;
+  (b) provide commercial API endpoints, remote execution environments, or automated 
+      code-generation pipelines to Third Parties;
+  (c) bundle, embed, or tie the Software with any paid, subscription-based, ad-supported, 
+      token-metered, or compute-metered product, IDE, platform, or developer tool (even 
+      if the Software component itself is nominally offered at zero cost);
+  (d) operate as an internal execution engine for an agency, consultancy, software house, 
+      or outsourcing provider to deliver paid software development, auditing, or 
+      engineering services to Third-Party clients; or
+  (e) sell, lease, sublicense, rent, or commercially distribute the Software or any 
+      Derivative Work as a standalone or integrated commercial product.
+
+1.4 "Third Party" means any individual, corporation, partnership, organization, or 
+legal entity other than You, including Your customers, clients, external users, 
+unrelated contractors, and separate corporate Affiliates or subsidiaries utilizing 
+the Software as a shared service.
+
+================================================================================
+SECTION 2. LIMITED GRANT OF RIGHTS (NON-COMMERCIAL & INDIVIDUAL USE)
+================================================================================
+
+Subject to Your continuous and strict compliance with all terms and conditions of this 
+License, Asteria Studio hereby grants You a revocable, non-exclusive, non-transferable, 
+non-sublicensable, worldwide, royalty-free license solely to:
+  (a) view, download, clone, and inspect the Software;
+  (b) modify the Software and create Derivative Works solely for Your own personal, 
+      educational, academic research, or strictly internal non-commercial development; and
+  (c) execute the Software locally or on Your private, non-shared infrastructure to 
+      build Your own standalone end-user applications (provided such applications do 
+      not expose or re-offer the functionality of the Software itself).
+
+All rights not expressly granted to You in this Section 2 are strictly and perpetually 
+reserved by Asteria Studio. No implied licenses are granted by estoppel, exhaustion, 
+or otherwise.
+
+================================================================================
+SECTION 3. PERPETUAL COMMERCIAL, CLOUD & AI TRAINING RESTRICTIONS
+================================================================================
+
+3.1 Prohibition on Commercial Hosting & Competitive Exploitation:
+You SHALL NOT engage in any Commercial Hosting or Competitive Exploitation of the 
+Software or any Derivative Work without first obtaining a separate, written, and 
+fully executed commercial license agreement from Asteria Studio. This restriction is 
+perpetual, irrevocable by passage of time, and does not convert to an open-source 
+license at any future date.
+
+3.2 Anti-Circumvention & Derivative Work Parity:
+You SHALL NOT circumvent, bypass, or evade the restrictions in Section 3.1 through 
+technical, structural, or legal artifice. Modifying code, adding new features, 
+rewriting prompts, changing agent names, wrapping the Software behind a proxy, 
+splitting execution across client-server boundaries, or offering the Software free 
+of charge while monetizing adjacent compute, storage, tokens, support, or platform 
+access DOES NOT exempt You from the requirement to obtain a commercial license.
+
+3.3 Prohibition on AI Model Training, Distillation & Synthetic Data Harvesting:
+You SHALL NOT use the Software, its prompts, its orchestration logic, or any outputs, 
+reasoning traces, intermediate artifacts, or code generated by the Software to train, 
+fine-tune, distill, align, benchmark, or evaluate any machine learning model, large 
+language model (LLM), or autonomous agent system that is intended for commercial 
+distribution, commercial API access, or competitive deployment against Asteria Studio.
+
+================================================================================
+SECTION 4. ATTRIBUTION, PROVENANCE & UPSTREAM COMPLIANCE
+================================================================================
+
+4.1 Mandatory Attribution Retention:
+You must retain, unmodified and in full visibility, in all copies and Derivative Works 
+of the Software: (a) this entire License file; (b) all copyright, trademark, and 
+attribution notices crediting Asteria Studio; and (c) all upstream attribution notices 
+crediting Google LLC as required by the Apache License, Version 2.0.
+
+4.2 Apache 2.0 Section 4 Compliance Notice:
+Pursuant to Section 4 of the Apache License, Version 2.0, Asteria Studio provides 
+notice that the BIOME ecosystem constitutes a substantially modified and extended 
+derivative work incorporating proprietary architectural additions, multi-agent 
+orchestration pipelines, and prompt systems authored by Asteria Studio. While unmodified 
+upstream portions originally authored by Google LLC remain subject to the Apache 
+License 2.0, the BIOME compilation, modifications, and Asteria Studio's proprietary 
+contributions as a whole are governed exclusively by this BIOME Perpetual 
+Source-Available License.
+
+4.3 No Endorsement or Trademark License:
+This License does not grant You any rights to use the names, logos, trade dress, or 
+trademarks of "Asteria", "Asteria Studio", "Asteria Core", or "BIOME" for marketing, 
+endorsement, or commercial branding without prior written permission.
+
+================================================================================
+SECTION 5. PATENT DEFENSE & AUTOMATIC TERMINATION
+================================================================================
+
+5.1 Patent Retaliation & Defensive Termination:
+No patent license is granted hereunder for any commercial or competitive use. If You 
+(or any of Your Affiliates) institute patent litigation or any other legal or 
+administrative proceeding (including a cross-claim, counterclaim, or declaratory 
+judgment action) against Asteria Studio, its founders, contributors, or any licensee 
+alleging that the Software constitutes direct or contributory patent or intellectual 
+property infringement, then all rights granted to You under this License shall 
+terminate automatically and retroactively as of the date such proceeding is filed.
+
+5.2 Termination Upon Breach & Injunctive Relief:
+Any breach by You of Section 2, Section 3, or Section 4 of this License shall result 
+in the immediate and automatic termination of Your license rights without requirement 
+of prior notice. You acknowledge and agree that any unauthorized Commercial Hosting or 
+Competitive Exploitation will cause irreparable harm to Asteria Studio for which 
+monetary damages alone would be inadequate, and Asteria Studio shall be entitled to 
+seek immediate injunctive and equitable relief in any court of competent jurisdiction, 
+without the necessity of posting a bond, in addition to full disgorgement of profits, 
+statutory damages, and recovery of reasonable attorneys' fees.
+
+================================================================================
+SECTION 6. DISCLAIMER OF WARRANTIES & LIMITATION OF LIABILITY
+================================================================================
+
+6.1 "AS IS" Warranty Disclaimer:
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND, 
+EXPRESS, IMPLIED, OR STATUTORY, INCLUDING WITHOUT LIMITATION ANY WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, QUIET ENJOYMENT, ACCURACY, 
+OR NON-INFRINGEMENT. YOU ASSUME ALL RISK ASSOCIATED WITH THE QUALITY, PERFORMANCE, 
+AND EXECUTION OF THE SOFTWARE.
+
+6.2 Limitation of Liability:
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL ASTERIA STUDIO, 
+ITS FOUNDERS, AUTHORS, OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE, OR CONSEQUENTIAL DAMAGES (INCLUDING WITHOUT 
+LIMITATION LOSS OF PROFITS, LOSS OF DATA, BUSINESS INTERRUPTION, OR SYSTEM FAILURE) 
+ARISING OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THIS LICENSE, EVEN IF ADVISED 
+OF THE POSSIBILITY OF SUCH DAMAGES.
+
+================================================================================
+SECTION 7. SEVERABILITY, REFORMATION & SURVIVAL
+================================================================================
+
+7.1 Severability & Blue-Pencil Reformation:
+If any provision or clause of this License is held to be invalid, illegal, or 
+unenforceable by a court of competent jurisdiction, such provision shall not void the 
+entire License; instead, the court is expressly authorized and requested to reform 
+("blue-pencil") and enforce such provision to the maximum extent permissible by law 
+to effectuate the original protective intent of Asteria Studio, and all remaining 
+provisions of this License shall remain in full force and effect.
+
+7.2 No Waiver:
+The failure or delay of Asteria Studio to exercise or enforce any right or provision 
+of this License shall not constitute a waiver of such right or provision.
+
+7.3 Survival:
+Sections 1, 3, 4, 5, 6, and 7 shall survive any termination or expiration of this 
+License perpetually.
+
+
+================================================================================
+UPSTREAM BASE PORTIONS LICENSE (APACHE LICENSE, VERSION 2.0)
+================================================================================
+
+The upstream base portions originally authored by Google LLC are licensed under
+the Apache License, Version 2.0 (the "Apache License"):
 
                                  Apache License
                            Version 2.0, January 2004
@@ -175,28 +368,3 @@
       of your accepting any such warranty or additional liability.
 
    END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright [yyyy] [name of copyright owner]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.

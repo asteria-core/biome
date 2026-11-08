@@ -22,7 +22,7 @@ build = runpy.run_path(str(ROOT / "scripts/pack_plugin.py"))["build"]
 def source(tmp_path: Path) -> Path:
   root = tmp_path / "source"
   root.mkdir()
-  for name in ("plugin.json", "LICENSE", "README.md", "TESTING.md",
+  for name in ("plugin.json", "LICENSE", "LICENSE-APACHE", "README.md", "TESTING.md",
                "CONTRIBUTING.md", "AI_POLICY.md"):
     shutil.copyfile(ROOT / name, root / name)
   (root / ".github").mkdir()

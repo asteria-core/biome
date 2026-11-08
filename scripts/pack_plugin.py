@@ -10,7 +10,7 @@ import tempfile
 import zipfile
 
 SHARED = (
-    "plugin.json", "LICENSE", "README.md",
+    "plugin.json", "LICENSE", "LICENSE-APACHE", "README.md",
     "skills/*/SKILL.md", "skills/*/agents/openai.yaml",
     "skills/*/assets/*.svg", "skills/*/assets/*.png", "skills/*/references/*.md",
     "skills/*/references/*.json", "agents/*.md", "resources/*.md",
@@ -30,7 +30,7 @@ SKILLS = (
     "biome-resolve", "biome-review", "biome-review-loop", "biome-woodpecker",
 )
 REQUIRED_SHARED = (
-    "plugin.json", "LICENSE", "README.md", "assets/icon.svg",
+    "plugin.json", "LICENSE", "LICENSE-APACHE", "README.md", "assets/icon.svg",
     "docs/index.md", "docs/getting_started.md", "docs/harnesses.md",
     "docs/claude.md", "docs/codex.md", "docs/faq.md", "docs/privacy.md",
     "resources/README.md", "resources/execution_instructions.md",
