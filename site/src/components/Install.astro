@@ -21,12 +21,12 @@ const cliPaths = [
       { label: 'Claude Code', href: 'https://code.claude.com' },
       { label: 'Claude Cowork', href: 'https://claude.ai/plugins' },
     ],
-    text: git clone .git && \\\nclaude plugin install ./biome,
+    text: `git clone ${repo}.git && \\\nclaude plugin install ./biome`,
     copyLabel: 'Copy Claude command',
   },
   {
     links: [{ label: 'Codex', href: 'https://openai.com/codex' }],
-    text: git clone .git && \\\ncodex plugin add ./biome,
+    text: `git clone ${repo}.git && \\\ncodex plugin add ./biome`,
     copyLabel: 'Copy Codex command',
   },
 ];
