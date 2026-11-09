@@ -105,24 +105,16 @@ follows the EGM Spec-Driven Development process:
 *   **Formatting**: Format markdown files cleanly using standard formatters
     (e.g., Prettier or markdownlint).
 
-## Contributor License Agreement (CLA)
+## Contributor Terms
 
-Contributions to this project must be accompanied by a
-[Contributor License Agreement](https://cla.developers.google.com/about) (CLA).
-You (or your employer) retain the copyright to your contribution; this simply
-gives us permission to use and redistribute your contributions as part of the
-project.
-
-If you or your current employer have already signed the Google CLA (even if it
-was for a different project), you probably don't need to do it again.
-
-Visit <https://cla.developers.google.com/> to see your current agreements or to
-sign a new one.
+By submitting a pull request to this repository, you certify that:
+1. You have the right to submit the contribution under the project's licenses.
+2. The contribution was created by you in whole or in part, or based upon previous open-source work with proper attribution.
+3. You agree to license your contribution under the repository's dual licensing structure.
 
 ## Community Guidelines
 
 See our [accessibility statement](ACCESSIBILITY.md) for goals, current limits,
 and how to report accessibility barriers.
 
-This project follows
-[Google's Open Source Community Guidelines](https://opensource.google/conduct/).
+This project is maintained by Asteria Core. Contributors are expected to uphold respectful, professional collaboration.
