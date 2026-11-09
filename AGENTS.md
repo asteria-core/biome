@@ -1,6 +1,6 @@
-# Agent Guidelines for Elephant-Goldfish Model (EGM)
+# Agent Guidelines for BIOME Ecosystem
 
-You are assisting development in the EGM repository.
+You are assisting development in the BIOME repository.
 
 ## Contribution Boundaries
 
@@ -27,4 +27,4 @@ You are assisting development in the EGM repository.
   skips the template, so copy it from the file. The human author ticks the Accountability box.
 * **Clear Change Summary**: In every pull request, explicitly list all key changes
   made and why. For feature proposals, define clear in-scope Goals and out-of-scope
-  Non-Goals in the checked-in EGM design document (`docs/designs/<name>.md`).
+  Non-Goals in the checked-in BIOME design document (`docs/designs/<name>.md`).

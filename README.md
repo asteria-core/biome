@@ -38,30 +38,35 @@ For the **Antigravity App** and **Antigravity for IDEs** (Visual Studio Code ext
 
 ### Claude Code
 
-Clone directly from GitHub and install locally:
+Install directly from GitHub via Claude Code CLI:
 
-```sh
-git clone https://github.com/asteria-core/biome.git
-claude plugin install ./biome
-```
+`sh
+claude plugin marketplace add asteria-core/biome
+claude plugin install biome@biome
+`
+
+Or inside an active Claude Code session:
+
+`	ext
+/plugin install biome --marketplace asteria-core/biome
+`
 
 ### Codex CLI
 
-Clone directly from GitHub and add:
+Install directly from GitHub via Codex CLI:
 
-```sh
-git clone https://github.com/asteria-core/biome.git
-codex plugin add ./biome
-```
+`sh
+codex plugin marketplace add asteria-core/biome
+codex plugin add biome@biome
+`
 
 ### Cursor & Windsurf
 
-Clone directly and load rules:
+Install directly into your workspace:
 
-```sh
-git clone https://github.com/asteria-core/biome.git
-cp -r biome/.cursor-plugin/rules/* .cursor/rules/
-```
+`sh
+npx skills add asteria-core/biome --agent cursor
+`
 
 Start a new session after installation. For other harnesses, see the [setup guide](docs/harnesses.md).
 

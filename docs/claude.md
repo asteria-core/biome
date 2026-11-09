@@ -11,11 +11,11 @@ must not be treated as verified Goldfish isolation environments.
 ## Invocation and resources
 
 ```sh
-git clone https://github.com/asteria-core/biome.git
-claude plugin install ./biome
+claude plugin marketplace add asteria-core/biome
+claude plugin install biome@biome
 ```
 
-Enable the installed plugin with `claude plugin enable egm@egm`.
+Enable the installed plugin with `claude plugin enable biome@biome`.
 Start messages with `/egm:biome-brainstorm`, `/egm:biome-draft`, or `/egm:biome-review`.
 Skills retain `disable-model-invocation: true`: their absence from automatic
 skill discovery is expected. The `Skill` tool refuses these skills, so to run

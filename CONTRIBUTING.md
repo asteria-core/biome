@@ -1,4 +1,4 @@
-# Contributing to the Elephant-Goldfish Model (EGM) Plugin
+# Contributing to the BIOME Autonomous Engineering Ecosystem
 
 We welcome contributions! We all benefit when new ideas, skills, and reviewer
 perspectives are shared across the open-source community.
@@ -27,7 +27,7 @@ For usage questions, use [Discussions Q&A](https://github.com/asteria-core/biome
 
 ## Design Principles
 
-These general principles guide development of the EGM framework:
+These general principles guide development of the BIOME framework:
 
 *   **Humans Own the Outcomes**: AI is an exploration and review partner, but
     human engineers remain responsible for all design decisions and code.
@@ -65,7 +65,7 @@ PRs exceeding these limits without an approved design doc receive an advisory la
 ### Track 2: Feature / Architectural Change (Two-Stage Alignment)
 Any new skill, persona, or change exceeding `100` non-test
 lines (or touching `>= 3` core files in `skills/` or `agents/`)
-follows the EGM Spec-Driven Development process:
+follows the BIOME Spec-Driven Development process:
 
 1.  **Reach Out & Align (`design-ready`)**:
     Before investing in a large implementation or full specification, open a

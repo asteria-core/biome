@@ -14,11 +14,11 @@ text.
 | Antigravity App | Run `/plugin` or see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
 | Antigravity for IDEs | Run `/plugin` or see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
 | Antigravity IDE (standalone) | Not supported; see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
-| Claude Code | git clone https://github.com/asteria-core/biome.git && claude plugin install ./biome |
+| Claude Code | `claude plugin marketplace add asteria-core/biome && claude plugin install biome@biome` |
 | Claude Cowork | Upload ZIP archive via Customize > Plugins > Add plugin > Upload plugin |
-| Codex CLI | git clone https://github.com/asteria-core/biome.git && codex plugin add ./biome |
+| Codex CLI | `codex plugin marketplace add asteria-core/biome && codex plugin add biome@biome` |
 | ChatGPT workspace import | Admin > Plugins > Add > Import repo URL https://github.com/asteria-core/biome; cloud review limits still apply |
-| omp | git clone https://github.com/asteria-core/biome.git && omp plugin install ./biome |
+| omp | `omp plugin marketplace add asteria-core/biome && omp plugin install biome@biome` |
 | Muse | git clone https://github.com/asteria-core/biome.git && muse plugins install ./biome --scope user && muse plugins approve biome |
 
 Install the whole plugin. Skill-only installers that copy `skills/` alone

@@ -12,8 +12,8 @@ For the desktop app, package and install the plugin archive directly (see [local
 For Codex CLI, install the whole plugin, including its personas and standards:
 
 ```sh
-git clone https://github.com/asteria-core/biome.git
-codex plugin add ./biome
+codex plugin marketplace add asteria-core/biome
+codex plugin add biome@biome
 ```
 
 Start a fresh session after installation. Select the installed `egm` skill
