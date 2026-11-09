@@ -90,4 +90,4 @@ jobs:
           cd release
           sha256sum -c SHA256SUMS
           test "$(gh api "repos/$GH_REPO/commits/$RELEASE_TAG" --jq .sha)" = "$SOURCE_COMMIT"
-          gh release create "$RELEASE_TAG" --verify-tag --draft --title "EGM $RELEASE_TAG" --notes-file RELEASE_NOTES.md ./*.zip SHA256SUMS
+          gh release create "$RELEASE_TAG" --verify-tag --draft --title "BIOME $RELEASE_TAG" --notes-file RELEASE_NOTES.md ./*.zip SHA256SUMS

@@ -48,7 +48,7 @@ def test_prepare_exact_archives(release: dict, tmp_path: Path) -> None:
     assert len(sums) == 2
     for line in sums:
         digest, name = line.split("  ")
-        assert name in {f"egm-claude-{version}.zip", f"egm-openai-{version}.zip"}
+        assert name in {f"biome-claude-{version}.zip", f"biome-openai-{version}.zip"}
         archive = destination / name
         assert hashlib.sha256(archive.read_bytes()).hexdigest() == digest
         with zipfile.ZipFile(archive) as bundle:
@@ -100,6 +100,6 @@ def test_prepare_cleans_partial_output_after_build_failure(
     monkeypatch.setitem(prepare.__globals__, "build", original_build)
     release["prepare"](ROOT, f"v{version}", destination, "a" * 40)
 
-    assert (destination / f"egm-claude-{version}.zip").is_file()
-    assert (destination / f"egm-openai-{version}.zip").is_file()
+    assert (destination / f"biome-claude-{version}.zip").is_file()
+    assert (destination / f"biome-openai-{version}.zip").is_file()
     assert (destination / "SHA256SUMS").is_file()

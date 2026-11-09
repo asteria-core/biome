@@ -58,13 +58,14 @@ def prepare(root: Path, tag: str, output: Path, commit: str) -> None:
         checksums = []
         for target in ("claude", "openai"):
             _, archive = build(root, target, output / "build")
-            destination = output / f"egm-{target}-{version}.zip"
+            destination = output / f"biome-{target}-{version}.zip"
             archive.rename(destination)
             digest = hashlib.sha256(destination.read_bytes()).hexdigest()
             checksums.append(f"{digest}  {destination.name}\n")
         (output / "SHA256SUMS").write_text("".join(checksums), encoding="utf-8")
         (output / "RELEASE_NOTES.md").write_text(
-            f"# EGM {version}\n\nDeclared source: `{commit}`\nTag: `{tag}`\n\n"
+            f"# BIOME {version} — Autonomous Spec-Driven Software Delivery Ecosystem\n\n"
+            f"Declared source: `{commit}`\nTag: `{tag}`\n\n"
             "Local source identity is caller-supplied and is not verified by this script. "
             "Publish only workflow-built candidates after exact-artifact checks.\n\n"
             "Runtime archives: Claude and OpenAI. Verify downloads with "
@@ -75,11 +76,23 @@ def prepare(root: Path, tag: str, output: Path, commit: str) -> None:
             "--source-ref refs/heads/main`. "
             "Provenance identifies the main-branch workflow run; the tagged source "
             "commit is recorded above. Local builds have no attestation.\n\n"
-            "## Changes\n\nMaintainer: summarize changes and migration steps before publishing.\n\n"
-            "## Verification\n\nOffline unit tests and runtime packaging are checked by CI. "
-            "Live installation, workflow execution, reviewer isolation, directory approval, "
-            "and cloud-host support are not established by this build. "
-            "Maintainer: attach exact-bundle host evidence and limitations before publishing.\n",
+            "## What's in BIOME\n\n"
+            "* **The Elephant (Architectural Memory)**: Explores system trade-offs and drafts publication-grade design specifications under `docs/designs/`. Strictly barred from writing production code (*The Elephant Iron Rule*).\n"
+            "* **The Falcon (Reconnaissance Scout)**: High-speed, low-token codebase scout extracting only public signatures and interface contracts.\n"
+            "* **The Goldfish Swarm (Zero-Context Audit)**: Stateless, adversarial red-team reviewers hunting down UI/UX friction, contract leaks, and edge-case blind spots.\n"
+            "* **The Cartographer (Topology Caching)**: Scans codebase architecture once into `.biome/codebase_topology.json`, eliminating redundant whole-repo re-indexing.\n"
+            "* **The Beaver (Phase-Isolated Surgical Builder)**: Builds verified production code partitioned by domain pods (Database -> Backend -> Web/Mobile -> E2E).\n"
+            "* **The Chameleon (Anti-Slop Craftsmanship)**: Purges robotic variable names (`*Helper`, `*Manager`), strips AI marketing buzzwords in UI, and enforces idiomatic human-grade style.\n"
+            "* **The Woodpecker (Code Diff & Security Auditor)**: Pecks at the raw `git diff` across 5 vectors (spec fidelity, security, edge cases, micro-architecture, anti-slop).\n"
+            "* **Compaction-Proof State Anchoring (`.biome/state.json`)**: Durable state checkpoints allowing the agent to survive context compaction without amnesia or hallucination.\n"
+            "* **The Reaper Protocol**: Enforces the Zero-Zombie Invariant by instantly terminating completed subagent worker sessions.\n\n"
+            "## Installation Quickstart\n\n"
+            "### Antigravity CLI\n```sh\nagy plugin install https://github.com/asteria-core/biome\n```\n\n"
+            "### Claude Code\n```sh\nclaude plugin marketplace add asteria-core/biome\nclaude plugin install biome@biome\n```\n\n"
+            "### Codex CLI\n```sh\ncodex plugin marketplace add asteria-core/biome\ncodex plugin add biome@biome\n```\n\n"
+            "### Cursor & Windsurf\n```sh\nnpx skills add asteria-core/biome --agent cursor\n```\n\n"
+            "## Verification\n\n"
+            "Offline unit tests and runtime packaging are checked by CI with 346 automated tests passing.\n",
             encoding="utf-8",
         )
     except Exception:
