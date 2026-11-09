@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/asteria-core/biome"><img src="docs/assets/readme-header.svg" width="480" height="116" alt="BIOME Ecosystem"></a>
+  <a href="https://github.com/asteria-core/biome"><img src="docs/assets/readme-header.svg" width="480" height="126" alt="BIOME Ecosystem"></a>
 </p>
 
 <p align="center"><strong>BIOME: Design with an elephant. Review with a goldfish. Build with a beaver. Inspect with a woodpecker. Clean with the reaper.</strong></p>
@@ -26,7 +26,7 @@
 
 ## Install
 
-Choose your coding agent. Install the complete plugin so its skills and agents can run seamlessly across all environments.
+Choose your coding agent. Install the complete plugin so its skills and agents can run seamlessly across all environments directly from GitHub:
 
 ### Antigravity CLI
 
@@ -38,19 +38,32 @@ For the **Antigravity App** and **Antigravity for IDEs** (Visual Studio Code ext
 
 ### Claude Code
 
+Clone directly from GitHub and install locally:
+
 ```sh
-claude plugin marketplace add asteria-core/biome
-claude plugin install biome@biome
+git clone https://github.com/asteria-core/biome.git
+claude plugin install ./biome
 ```
 
 ### Codex CLI
 
+Clone directly from GitHub and add:
+
 ```sh
-codex plugin marketplace add asteria-core/biome
-codex plugin add biome@biome
+git clone https://github.com/asteria-core/biome.git
+codex plugin add ./biome
 ```
 
-Start a new session after installation. For **Claude Cowork** and **ChatGPT Work**, see the [setup guide](docs/harnesses.md).
+### Cursor & Windsurf
+
+Clone directly and load rules:
+
+```sh
+git clone https://github.com/asteria-core/biome.git
+cp -r biome/.cursor-plugin/rules/* .cursor/rules/
+```
+
+Start a new session after installation. For other harnesses, see the [setup guide](docs/harnesses.md).
 
 ---
 

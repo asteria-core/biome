@@ -7,13 +7,13 @@ SPDX-License-Identifier: Apache-2.0
 
 ## Install and locate the plugin
 
-For the desktop app, install the [published EGM plugin](https://chatgpt.com/plugins/plugins_6aeb90f47ec88191a3c107e01d3eb357). This listing is desktop-only.
+For the desktop app, package and install the plugin archive directly (see [local testing](#test-a-local-package)).
 
 For Codex CLI, install the whole plugin, including its personas and standards:
 
 ```sh
-codex plugin marketplace add asteria-core/biome
-codex plugin add egm@egm
+git clone https://github.com/asteria-core/biome.git
+codex plugin add ./biome
 ```
 
 Start a fresh session after installation. Select the installed `egm` skill
@@ -100,7 +100,7 @@ the plugin alone does not establish end-to-end workflow support.
 
 ## ChatGPT
 
-Install the [published EGM plugin](https://chatgpt.com/plugins/plugins_6aeb90f47ec88191a3c107e01d3eb357) in the ChatGPT desktop app. This listing is desktop-only; it does not establish support for cloud Work sessions.
+For the ChatGPT desktop app, install the plugin archive directly. Cloud Work sessions require direct environment support.
 
 ### Test a local package
 

@@ -1,70 +1,36 @@
-# Accessibility
+# Accessibility Statement
 
-We want people with disabilities to be able to use and contribute to the
-Elephant-Goldfish Model (EGM). Accessibility reports and contributions are
-welcome.
+We want everyone, including people with disabilities, to be able to use and contribute to the **BIOME** multi-agent software engineering ecosystem. Accessibility reports and contributions are warmly welcomed.
 
-## Scope and goals
+## Scope and Goals
 
-This statement covers the repository's documentation, shared skill content,
-and the [EGM website](https://github.com/asteria-core/biome).
+This statement covers the repository's documentation, shared agent skills, prompt architectures, and the official [BIOME documentation](https://github.com/asteria-core/biome).
 
-Our goal for the website is the Web Content Accessibility Guidelines
-[WCAG 2.2 Level AA](https://www.w3.org/TR/WCAG22/).
-This is a target, not a claim of verified conformance.
+Our goal for web documentation is the Web Content Accessibility Guidelines [WCAG 2.2 Level AA](https://www.w3.org/TR/WCAG22/).
 
-Priorities include keyboard access, visible focus, readable text, sufficient
-contrast, clear headings and links, text alternatives, and reduced motion.
-For documentation and generated reports, prefer plain language and text that
-does not depend on color or a diagram alone to convey meaning.
+Priorities include keyboard navigability, clear focus indicators, readable typography, high-contrast ratios, semantic heading hierarchies, descriptive link targets, text alternatives for diagrams and icons, and reduced-motion preferences. For documentation and generated reports, we mandate plain language and accessible formatting that does not rely on color or diagrams alone to convey meaning.
 
-## Environments and current limits
+## Environments and Current Limits
 
-EGM provides Markdown skills and documentation. Its interactive experience
-runs inside a coding agent or host application. See the
-[harness guide](docs/harnesses.md) for installation and verification limits.
-Host support does not establish accessibility support.
+BIOME delivers multi-agent engineering workflows, prompt definitions, and Markdown skill specifications. The interactive experience runs inside a coding assistant or host application (such as Antigravity, Claude Code, Cursor, Codex CLI, or GitHub Copilot). See the [harness guide](docs/harnesses.md) for environment details and verification limits.
 
-The website includes a skip link, keyboard focus styles, and reduced-motion
-styles. These features do not establish that every page is accessible.
-This statement does not certify any browser, screen reader, terminal, or
-host application combination. A comprehensive accessibility audit and
-assistive-technology test matrix have not been established for this statement.
+Known operational limits include:
+- Host applications manage their own chat, terminal, and user interfaces; BIOME cannot override native UI/UX barriers in third-party harnesses.
+- Model-generated specifications and execution receipts should always be paired with structured Markdown tables and accessible text summaries. Human review remains essential.
+- Automated test suites verify deterministic invariants, but do not replace user testing with screen readers or assistive technologies.
 
-Known limits include:
+All documentation is stored as plain Markdown, allowing full access through text editors, terminals, and screen readers without requiring a rendered web browser.
 
-- Host applications control their own chat, terminal, and plugin interfaces.
-  EGM cannot correct every barrier in those interfaces.
-- Model-generated documents may contain unclear text, complex tables, or
-  diagrams without adequate text explanations. Human review is still needed.
-- Automated unit and build checks do not establish keyboard usability,
-  screen reader support, or WCAG conformance.
+## Report an Accessibility Barrier
 
-The source documentation can be read as Markdown when a rendered view is
-difficult to use. You can also ask your coding agent for a plain-text report
-or a text explanation of a diagram. These options may help, but do not
-replace fixing the underlying barrier.
+If you encounter an accessibility barrier in BIOME:
+1. Open an issue using the [Bug Report Template](https://github.com/asteria-core/biome/issues/new?template=bug_report.md).
+2. Clearly identify the report with the `accessibility` label.
+3. Describe the affected document, agent skill, or command.
+4. Specify the assistive technology, terminal/browser, and operating system used.
 
-## Report an accessibility barrier
+Reports do not need to cite formal WCAG criteria or include a proposed patch—we appreciate any feedback that helps us remove barriers.
 
-Use the [bug report template](https://github.com/asteria-core/biome/issues/new?template=bug_report.md)
-and identify the report as an accessibility issue. Include what you can:
+## Contributing Accessibility Improvements
 
-- The page, document, skill, or task affected.
-- What you expected and what prevented you from completing the task.
-- Steps to reproduce, including keyboard actions when relevant.
-- Browser or host, operating system, and assistive technology versions.
-- Whether a workaround exists and whether the barrier blocks a core task.
-
-Screenshots and recordings are optional. Do not include credentials, private
-project content, or medical information. Reports do not need to name a WCAG
-criterion or include a proposed fix.
-
-## Contribute accessibility improvements
-
-Follow the [contributing guide](CONTRIBUTING.md). Describe the barrier and
-record the checks performed. For website changes, check keyboard navigation,
-focus visibility, zoom and reflow, and affected screen reader behavior when
-possible. State any checks that could not be performed. Use automated checks
-alongside manual testing, and provide text alternatives for meaningful images
-and diagrams.
+Follow our [Contributing Guide](CONTRIBUTING.md). When proposing accessibility improvements, describe the barrier addressed and document any manual or automated checks performed (e.g., keyboard tab traversal, color contrast checks, or screen reader tests).

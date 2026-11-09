@@ -11,8 +11,8 @@ must not be treated as verified Goldfish isolation environments.
 ## Invocation and resources
 
 ```sh
-claude plugin marketplace add asteria-core/biome
-claude plugin install egm@egm
+git clone https://github.com/asteria-core/biome.git
+claude plugin install ./biome
 ```
 
 Enable the installed plugin with `claude plugin enable egm@egm`.

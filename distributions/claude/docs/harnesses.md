@@ -8,18 +8,18 @@ text.
 
 | Harness | Install |
 | --- | --- |
-| ChatGPT desktop | Install the [published EGM plugin](https://chatgpt.com/plugins/plugins_6aeb90f47ec88191a3c107e01d3eb357) (desktop-only listing); see [packaging](codex.md#test-a-local-package) for personal testing |
-| Codex desktop | Install the [published EGM plugin](https://chatgpt.com/plugins/plugins_6aeb90f47ec88191a3c107e01d3eb357) (desktop-only listing) |
+| ChatGPT desktop | Package and upload plugin archive (see [packaging](codex.md#test-a-local-package)) |
+| Codex desktop | Package and upload plugin archive (see [packaging](codex.md#test-a-local-package)) |
 | Antigravity CLI | `agy plugin install https://github.com/asteria-core/biome` |
 | Antigravity App | Run `/plugin` or see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
 | Antigravity for IDEs | Run `/plugin` or see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
 | Antigravity IDE (standalone) | Not supported; see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
-| Claude Code | `claude plugin marketplace add asteria-core/biome && claude plugin install egm@egm` |
-| Claude Cowork | Install from claude.ai/plugins or the Cowork plugin panel via marketplace `asteria-core/biome` |
-| Codex CLI | `codex plugin marketplace add asteria-core/biome && codex plugin add egm@egm` |
-| ChatGPT workspace import | Admin > Plugins > Add > Import marketplace, repo URL `https://github.com/asteria-core/biome`, path `.agents/plugins`; cloud review limits still apply |
-| omp | `omp plugin marketplace add asteria-core/biome && omp plugin install egm@egm` |
-| Muse | `git clone https://github.com/asteria-core/biome.git && muse plugins install ./elephant-goldfish-model --scope user && muse plugins approve egm` |
+| Claude Code | git clone https://github.com/asteria-core/biome.git && claude plugin install ./biome |
+| Claude Cowork | Upload ZIP archive via Customize > Plugins > Add plugin > Upload plugin |
+| Codex CLI | git clone https://github.com/asteria-core/biome.git && codex plugin add ./biome |
+| ChatGPT workspace import | Admin > Plugins > Add > Import repo URL https://github.com/asteria-core/biome; cloud review limits still apply |
+| omp | git clone https://github.com/asteria-core/biome.git && omp plugin install ./biome |
+| Muse | git clone https://github.com/asteria-core/biome.git && muse plugins install ./biome --scope user && muse plugins approve biome |
 
 Install the whole plugin. Skill-only installers that copy `skills/` alone
 break EGM, because the skills read `agents/` and
@@ -71,8 +71,8 @@ while `agents/` contains reviewer personas. All hosts share the same `skills/`,
 | Claude Cowork | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | `skills/` (default) | Subagents run inside Cowork; hooks n/a |
 | Codex | `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json` | `skills` path | Not shipped; general-purpose subagent reads the persona file |
 | ChatGPT | `plugin.json`, `.codex-plugin/plugin.json`; `.agents/plugins/marketplace.json` for workspace import | `skills` path | Detect native tools in the current session; general-purpose agent reads the persona |
-| omp | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` (Claude-compatible fallback) | `skills/` (default) | Personas from `agents/`/`.claude-plugin/agents/` register as native `task` agents |
-| Muse | `.claude-plugin/plugin.json` (Claude-compatible fallback) | `skills/` (default) | 10 adapters import as agents; tool projections unsupported |
+| omp | git clone https://github.com/asteria-core/biome.git && omp plugin install ./biome |
+| Muse | git clone https://github.com/asteria-core/biome.git && muse plugins install ./biome --scope user && muse plugins approve biome |
 
 Persona prompts live in `agents/`, the directory Antigravity
 scans for subagents. Each persona has `name` and `description` frontmatter, so
@@ -97,8 +97,8 @@ phrase to its own tool:
 | Claude Cowork | Cowork subagents | Yes | Subagents run inside Cowork |
 | Codex | Native spawn/wait tools; inspect the available schema | No | Detect at runtime; direct dispatch fallback |
 | ChatGPT | Native spawn/wait tools when exposed by the current Work session | No | Detect at runtime; direct dispatch fallback |
-| omp | `task` tool | Yes | Yes |
-| Muse | Native subagents; inspect the available schema | Named spawn rejected in 1.4.14; general-purpose fallback verified | Detect at runtime; direct dispatch fallback |
+| omp | git clone https://github.com/asteria-core/biome.git && omp plugin install ./biome |
+| Muse | git clone https://github.com/asteria-core/biome.git && muse plugins install ./biome --scope user && muse plugins approve biome |
 
 Where a harness has no named persona, the skill spawns a general-purpose
 subagent and tells it to read `agents/<file>.md` first. If a harness cannot
