@@ -2,7 +2,7 @@
   <a href="https://github.com/asteria-core/biome"><img src="docs/assets/readme-header.svg" width="480" height="126" alt="BIOME Ecosystem"></a>
 </p>
 
-<p align="center"><strong>BIOME: Design with an elephant. Review with a goldfish. Build with a beaver. Inspect with a woodpecker. Clean with the reaper.</strong></p>
+<p align="center"><strong>BIOME: Design with an elephant. Scout with a falcon. Review with a goldfish. Map with a cartographer. Build with a beaver. Blend with a chameleon. Inspect with a woodpecker. Clean with the reaper.</strong></p>
 
 <p align="center">
   <a href="#install">Install</a> &ensp;·&ensp;
@@ -13,13 +13,16 @@
 
 <br>
 
-**BIOME** is an autonomous, production-grade software delivery ecosystem for AI coding assistants.
+**BIOME** is an autonomous, production-grade software delivery ecosystem for AI coding assistants. Derived from Google's Elephant-Goldfish Model (EGM) and evolved into a multi-agent engineering platform:
 
-* **Elephant** holds your project context, explores architectural options, and drafts specifications. *(Strictly prohibited from writing production source code — The Elephant Iron Rule)*.
-* **Goldfish** reviewers and indexers examine the draft with fresh, zero-context eyes to expose gaps and produce a deterministic execution index (`.biome/project_index.json`).
-* **Beaver** executes surgical, phase-isolated code modifications with latest modern dependencies and minimal line counts without inheriting conversational transcripts.
-* **Woodpecker** audits the raw code diff and security vulnerabilities line-by-line before final commit.
-* **The Reaper Protocol** terminates and purges completed workers immediately to prevent zombie states.
+* **The Elephant** holds deep architectural memory, explores trade-offs, and drafts specifications. *(Strictly barred from writing production code — The Elephant Iron Rule)*.
+* **The Falcon** performs high-speed, low-token reconnaissance of codebase types and signatures so the Elephant never bloats its context.
+* **The Goldfish** reviewer swarm red-teams the specification with zero conversation bias.
+* **The Cartographer** maps codebase topology and caches dependencies in `.biome/codebase_topology.json`.
+* **The Beaver** builds phase-isolated code modifications partitioned across domain pods (Database, Backend, Web, Mobile) with human-grade craftsmanship.
+* **The Chameleon** eliminates robotic AI naming, marketing buzzwords in UI, and chatty comments.
+* **The Woodpecker** audits the raw git diff line-by-line across 5 pecking vectors before commit.
+* **The Reaper Protocol** terminates and purges completed workers immediately to enforce the Zero-Zombie Invariant.
 * **You** make the architectural trade-offs, approve specifications, and review execution receipts.
 
 ---
@@ -40,33 +43,33 @@ For the **Antigravity App** and **Antigravity for IDEs** (Visual Studio Code ext
 
 Install directly from GitHub via Claude Code CLI:
 
-`sh
+```sh
 claude plugin marketplace add asteria-core/biome
 claude plugin install biome@biome
-`
+```
 
 Or inside an active Claude Code session:
 
-`	ext
+```text
 /plugin install biome --marketplace asteria-core/biome
-`
+```
 
 ### Codex CLI
 
 Install directly from GitHub via Codex CLI:
 
-`sh
+```sh
 codex plugin marketplace add asteria-core/biome
 codex plugin add biome@biome
-`
+```
 
 ### Cursor & Windsurf
 
 Install directly into your workspace:
 
-`sh
+```sh
 npx skills add asteria-core/biome --agent cursor
-`
+```
 
 Start a new session after installation. For other harnesses, see the [setup guide](docs/harnesses.md).
 
@@ -82,15 +85,16 @@ Open your project in your coding agent and run the unified autonomous command `/
 /biome Add webhook delivery with retry backoff to this project.
 ```
 
-`/biome` orchestrates the complete 8-phase flow automatically:
-1. **Concept Exploration & Brainstorming**: Explores problem, clarifies edge cases, and drafts `concepts_brief.md`.
-2. **Elephant Spec Drafting**: The Elephant drafts publication-grade specification under `docs/designs/` (*strictly zero production code*).
-3. **Hardened Critic & Goldfish Swarm**: Parallel zero-context audit with `agents/critic.md` attacking UI/UX friction and contracts.
-4. **Auto-Resolve Gate**: Closes trivial findings, settles critical trade-offs with user, and marks spec `APPROVED`.
-5. **Deterministic Indexing**: Generates `.biome/project_index.json` with exact `target_mutation_plan`.
-6. **Beaver Ephemeral Build**: Verifies latest dependencies, enforces modular micro-architecture, executes isolated code mutations, and runs local tests.
-7. **Woodpecker Code Diff Audit**: Pecks at the raw `git diff` for security vulnerabilities, spec fidelity, and edge-case bugs before commit.
-8. **The Reaper Teardown**: Destroys completed worker sessions to ensure unpolluted fresh starts.
+`/biome` orchestrates the complete flow automatically:
+1. **State Anchor**: Initializes `.biome/state.json` to survive context compaction.
+2. **Concept Exploration & Falcon Reconnaissance**: Explores requirements and probes existing interfaces without code dumps.
+3. **Elephant Spec Drafting**: The Elephant drafts publication-grade specification under `docs/designs/` (*strictly zero production code*).
+4. **Hardened Critic & Goldfish Swarm**: Parallel zero-context audit with `agents/critic.md` attacking UI/UX friction and contracts.
+5. **Auto-Resolve Gate**: Closes trivial findings, settles critical trade-offs with user, and marks spec `APPROVED`.
+6. **Decoupled Cartography & Indexing**: Reuses `.biome/codebase_topology.json` and emits `.biome/project_index.json` partitioned by domain pods.
+7. **Beaver Ephemeral Build**: Executes domain-partitioned mutations (DB -> Backend -> Web/Mobile) with anti-slop human-grade craft.
+8. **Woodpecker Code Diff Audit**: Pecks at the raw `git diff` across 5 vectors (spec fidelity, security, edge cases, micro-architecture, anti-slop).
+9. **The Reaper Teardown**: Destroys completed worker sessions to ensure unpolluted fresh starts.
 
 ---
 
@@ -144,7 +148,7 @@ Negotiate and apply fixes, resolve trade-offs, and secure formal `APPROVED` stat
 /biome-index docs/designs/<feature>.md
 ```
 
-The Indexer scans codebase topology and dependencies to emit `.biome/project_index.json`.
+The Indexer checks topology cache and emits `.biome/project_index.json` with domain-partitioned mutation plans.
 
 <img src="skills/biome-build/assets/icon.svg" width="20" height="20" alt=""> **Build with Beaver**
 
@@ -166,23 +170,29 @@ See the [workflow guide](docs/getting_started.md) for the full process.
 
 ---
 
-## The Four Animals of BIOME
+## The Animals of BIOME
 
 <table>
   <thead><tr><th align="left">Animal</th><th align="left">Context Mode</th><th align="left">Responsibility</th></tr></thead>
   <tbody>
-    <tr valign="top"><td><strong>🐘 The Elephant</strong></td><td>Project context & conversational memory</td><td>Explore the problem, draft specifications, and verify build receipts. <em>Strictly prohibited from writing or editing source code.</em></td></tr>
-    <tr valign="top"><td><strong>🐠 The Goldfish</strong></td><td>Zero-context stateless inspection</td><td>Stress-test assumptions with fresh eyes and emit the deterministic project index (<code>.biome/project_index.json</code>).</td></tr>
-    <tr valign="top"><td><strong>🦫 The Beaver</strong></td><td>Isolated ephemeral builder</td><td>Execute surgical code mutations, check latest dependencies, enforce micro-architecture, and run local test suites.</td></tr>
-    <tr valign="top"><td><strong>🪵 The Woodpecker</strong></td><td>Zero-context code diff inspector</td><td>Peck relentlessly at the raw git diff for security vulnerabilities, spec fidelity, and pathological failure modes.</td></tr>
+    <tr valign="top"><td><strong>🐘 The Elephant</strong></td><td>Project context & conversational memory</td><td>Explore the problem, draft specifications, and coordinate delivery. <em>Strictly prohibited from writing or editing source code.</em></td></tr>
+    <tr valign="top"><td><strong>🦅 The Falcon</strong></td><td>Rapid reconnaissance scout</td><td>Probe codebase entrypoints, signatures, and schemas without polluting the Elephant's context.</td></tr>
+    <tr valign="top"><td><strong>🐠 The Goldfish</strong></td><td>Zero-context stateless inspection</td><td>Stress-test assumptions with fresh eyes and expose edge-case blind spots in specifications.</td></tr>
+    <tr valign="top"><td><strong>🗺️ The Cartographer</strong></td><td>Cached repository topology engine</td><td>Map codebase modules and dependencies once into <code>.biome/codebase_topology.json</code>, eliminating redundant scans.</td></tr>
+    <tr valign="top"><td><strong>🦫 The Beaver</strong></td><td>Isolated ephemeral builder</td><td>Execute surgical code mutations across domain pods (DB, Backend, Web, Mobile) with latest dependencies and tests.</td></tr>
+    <tr valign="top"><td><strong>🦎 The Chameleon</strong></td><td>Anti-slop & craftsmanship stylist</td><td>Enforce natural human naming, clean UI microcopy, and purge robotic AI boilerplate.</td></tr>
+    <tr valign="top"><td><strong>🪵 The Woodpecker</strong></td><td>Zero-context code diff inspector</td><td>Peck relentlessly at the raw git diff across 5 vectors (security, fidelity, edge cases, micro-architecture, anti-slop).</td></tr>
     <tr valign="top"><td><strong>⚡ The Reaper</strong></td><td>Lifecycle execution protocol</td><td>Terminate and purge all worker subagent sessions immediately upon task completion (Zero Zombie Invariant).</td></tr>
     <tr valign="top"><td><strong>👤 You</strong></td><td>Human goals & strategic constraints</td><td>Resolve architectural trade-offs, approve the design, and review execution receipts.</td></tr>
   </tbody>
 </table>
 
 > **Core Architectural Invariants**:
-> * **Modular Micro-Architecture**: The Beaver decomposes code into concise, single-responsibility files and structured directories rather than monolithic blobs, ensuring optimal indexing by the Indexer Goldfish into `.biome/project_index.json`.
-> * **The Reaper Protocol (Zero-Zombie Rule)**: All Goldfish reviewers, Indexer subagents, Beaver builder sessions, and Woodpecker inspectors are strictly ephemeral single-use workers. They are terminated and destroyed immediately upon task completion. For any follow-up modification or new task, brand-new instances must be spawned from scratch.
+> * **Elephant State Anchor**: Durable phase checkpoints are written to `.biome/state.json`. If context compaction occurs, the Elephant immediately re-anchors itself and strictly adheres to the Iron Rule.
+> * **Subagent Preamble Contract**: Subagents are never called with ad-hoc prompts; each receives its official persona (`agents/*.md`) and execution skill (`skills/*/SKILL.md`) cold.
+> * **Anti-Slop & Human-Grade Craftsmanship**: Robotic naming (`*Helper`, `*Manager`), AI buzzwords in UI (`seamless`, `empower`), and chatty obvious comments are strictly banned and rejected by the Woodpecker.
+> * **Multi-Domain Pod Swarm**: Complex cross-stack tasks are partitioned into isolated domain pods (Database -> Backend -> Web/Mobile -> E2E), preventing token blowout.
+> * **The Reaper Protocol (Zero-Zombie Rule)**: All worker sessions are strictly ephemeral single-use instances. They are terminated and destroyed immediately upon task completion.
 
 ---
 
@@ -224,5 +234,5 @@ Read [contributing](https://github.com/asteria-core/biome/blob/main/CONTRIBUTING
 ## License
 
 This project is licensed under a dual-licensing structure:
-* **[BIOME License v1.0 (Source-Available)](LICENSE)**: Copyright &copy; 2026 Asteria Studio. All Rights Reserved. Governs the BIOME multi-agent software engineering ecosystem, agent architectures (Elephant, Goldfish, Beaver, Woodpecker), prompts, and orchestration state-machines for personal, academic, and internal non-commercial development. Commercial hosting, SaaS, managed execution, and AI model distillation require a separate commercial license from Asteria Studio.
+* **[BIOME License v1.0 (Source-Available)](LICENSE)**: Copyright &copy; 2026 Asteria Studio. All Rights Reserved. Governs the BIOME multi-agent software engineering ecosystem, agent architectures (Elephant, Goldfish, Beaver, Woodpecker, Falcon, Chameleon), prompts, and orchestration state-machines for personal, academic, and internal non-commercial development. Commercial hosting, SaaS, managed execution, and AI model distillation require a separate commercial license from Asteria Studio.
 * **[Apache License 2.0](LICENSE-APACHE)**: Upstream base portions Copyright &copy; Google LLC, licensed under the Apache License, Version 2.0.

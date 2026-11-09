@@ -29,15 +29,18 @@ Use this when you have an approved or drafted Design Spec and need to generate o
 
 ---
 
-## Execution Protocol
+## Decoupled Indexing Protocol (Cartographer vs. Mutation Planner)
 
-1. **Read-Only Inspection**:
-   * Inspect the codebase directory structure, key entrypoints, and dependency manifests (`package.json`, `go.mod`, `Cargo.toml`, `pyproject.toml`, `pom.xml`, etc.).
-   * Parse the target Design Specification.
-2. **Schema Invariant**:
-   * Emit the normalized index manifest at `.biome/project_index.json` (and mirror to `.egm/project_index.json` for backward compatibility).
-   * **Zero Code Invariant**: Never include function bodies, multi-line logic, or raw source dumps in the JSON. Only capture domain boundaries, exported interfaces, and relative file paths.
-3. **Target Mutation Plan**:
-   * Generate an exact, bounded `target_mutation_plan` list of files to `CREATE`, `MODIFY`, or `DELETE`, along with their rationale referencing the spec.
+To avoid burning tokens re-scanning hundreds of files on every feature:
+1. **Topology Cartography (`.biome/codebase_topology.json`)**:
+   * If `.biome/codebase_topology.json` exists, the Indexer reuses the cached repository topology and dependency definitions.
+   * If missing or outdated, **The Cartographer** (`agents/cartographer.md`) scans the repository tree and caches the topology.
+2. **Surgical Mutation Planning (`.biome/project_index.json`)**:
+   * Parses the target Design Specification.
+   * Computes the exact `target_mutation_plan` mapping target files to explicit actions (`CREATE`, `MODIFY`, or `DELETE`).
+   * **Domain Pod Partitioning**: Classifies every target file under its appropriate domain (`db`, `backend`, `web`, `mobile`, `shared`).
+3. **Schema & Zero Code Invariant**:
+   * Emits the normalized index manifest at `.biome/project_index.json` (and mirrors to `.egm/project_index.json`).
+   * Never include function bodies, multi-line logic, or raw source dumps in the JSON.
 4. **The Reaper Invariant**:
    * Upon writing the index file and returning the completion summary, the Indexer subagent immediately terminates and is destroyed.

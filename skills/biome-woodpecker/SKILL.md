@@ -26,7 +26,7 @@ While the Goldfish swarm audits the text specification *before* code is written,
                │
                ▼
 ┌──────────────────────────────┐
-│       The Woodpecker         │ ◄─── Zero-context inspection across 4 Pecking Vectors
+│       The Woodpecker         │ ◄─── Zero-context inspection across 5 Pecking Vectors
 └──────────────┬───────────────┘
                │
       ┌────────┴────────┐
@@ -48,9 +48,9 @@ While the Goldfish swarm audits the text specification *before* code is written,
 
 ---
 
-## The Four Pecking Vectors
+## The Five Pecking Vectors
 
-The Woodpecker inspects the git diff line-by-line across four mandatory dimensions:
+The Woodpecker inspects the git diff line-by-line across five mandatory dimensions:
 
 1. **Spec & Boundary Fidelity**:
    * Ensures modifications are strictly confined to `target_mutation_plan`.
@@ -68,6 +68,11 @@ The Woodpecker inspects the git diff line-by-line across four mandatory dimensio
    * Enforces single-responsibility, modular files rather than monolithic blobs.
    * Eliminates untyped `any`, unsafe type casts, or disabled linter warnings.
    * Rejects vanity tests that only test trivial happy paths.
+5. **Anti-Slop & Human-Grade Craftsmanship**:
+   * Purges robotic variable/function names (`*Helper`, `*Manager`, `*ProcessorActionHandler`).
+   * Eliminates corporate AI buzzwords in UI labels and microcopy (`seamless`, `empower`, `revolutionary`, `cutting-edge`).
+   * Strips chatty obvious comments (`// function to do X`).
+   * Rejects artificial 5-layer boilerplate abstractions.
 
 ---
 

@@ -28,3 +28,26 @@ You are assisting development in the BIOME repository.
 * **Clear Change Summary**: In every pull request, explicitly list all key changes
   made and why. For feature proposals, define clear in-scope Goals and out-of-scope
   Non-Goals in the checked-in BIOME design document (`docs/designs/<name>.md`).
+
+---
+
+## BIOME Core Architectural Invariants
+
+### 1. Elephant State Anchor & Post-Compaction Recovery
+* Whenever conversational context is compacted or summarized by the host harness, the Elephant MUST:
+  1. Immediately read `.biome/state.json`.
+  2. Re-read `skills/biome/SKILL.md`.
+  3. Strictly enforce **The Elephant Iron Rule**: NEVER write production code directly in the conversation pane. Resume strictly from `active_phase`.
+
+### 2. Subagent Preamble Contract
+* Every subagent invocation MUST include the standardized bootstrap preamble specifying the persona file (`agents/<name>.md`) and execution skill (`skills/biome-<name>/SKILL.md`). Ad-hoc, unstructured subagent prompts are strictly prohibited.
+
+### 3. Anti-Slop & Human-Grade Craftsmanship
+* All generated code, UI titles, and microcopy must adhere to natural human engineering standards:
+  - Ban robotic naming: No `*Helper`, `*Manager`, `*ProcessorHandler`. Use concise verbs and nouns (`login()`, `getUser()`).
+  - Ban AI buzzwords in UI: No `seamless`, `empower`, `revolutionary`, `cutting-edge`, `AI-driven`. Use clean human terms.
+  - Zero chatty obvious comments: Document non-obvious business logic only.
+
+### 4. Decoupled Indexing & Multi-Domain Pod Partitioning
+* Codebase topology is cached in `.biome/codebase_topology.json` by The Cartographer.
+* Multi-stack builds (Database, Backend, Web, Mobile) are partitioned into domain pods and executed in strict dependency order (DB -> Backend -> Web/Mobile -> E2E).
