@@ -27,24 +27,24 @@ break EGM, because the skills read `agents/` and
 
 ### Antigravity App and Antigravity for IDEs
 
-- **Antigravity App**: Run `/plugin`, ask the agent `Install https://github.com/asteria-core/biome`, or manually install into `~/.gemini/config/plugins/egm/` using the commands below.
-- **Antigravity for IDEs (Extension for Visual Studio Code)**: Run `/plugin`, ask the agent `Install https://github.com/asteria-core/biome`, or manually install into `~/.gemini/config/plugins/egm/` using the commands below.
-- **Antigravity IDE (Standalone)**: Not supported at this time. Although the plugin and skills load from `~/.gemini/config/plugins/egm/`, standalone Antigravity IDE (tested on macOS and Linux) does not expose the fresh-context subagent tool (`invoke_subagent`) required for Goldfish reviews (`/biome-brainstorm` and `/biome-review`).
+- **Antigravity App**: Run `/plugin`, ask the agent `Install https://github.com/asteria-core/biome`, or manually install into `~/.gemini/config/plugins/biome/` using the commands below.
+- **Antigravity for IDEs (Extension for Visual Studio Code)**: Run `/plugin`, ask the agent `Install https://github.com/asteria-core/biome`, or manually install into `~/.gemini/config/plugins/biome/` using the commands below.
+- **Antigravity IDE (Standalone)**: Not supported at this time. Although the plugin and skills load from `~/.gemini/config/plugins/biome/`, standalone Antigravity IDE (tested on macOS and Linux) does not expose the fresh-context subagent tool (`invoke_subagent`) required for Goldfish reviews (`/biome-brainstorm` and `/biome-review`).
 
 The Antigravity App and Antigravity for IDEs share the global plugin directory
 `~/.gemini/config/plugins/<name>/`. For a fresh manual installation without the
-`agy` CLI, copy the full runtime bundle into `~/.gemini/config/plugins/egm/`
+`agy` CLI, copy the full runtime bundle into `~/.gemini/config/plugins/biome/`
 (copying into an existing plugin directory can leave obsolete files behind, so
-remove `~/.gemini/config/plugins/egm` first when updating):
+remove `~/.gemini/config/plugins/biome` first when updating):
 
 ```sh
 git clone https://github.com/asteria-core/biome.git
-cd elephant-goldfish-model
-mkdir -p ~/.gemini/config/plugins/egm
-cp -R plugin.json README.md LICENSE skills agents resources docs assets ~/.gemini/config/plugins/egm/
+cd biome
+mkdir -p ~/.gemini/config/plugins/biome
+cp -R plugin.json README.md LICENSE skills agents resources docs assets ~/.gemini/config/plugins/biome/
 ```
 
-Reload the window (or restart the Antigravity App), then confirm that `egm`
+Reload the window (or restart the Antigravity App), then confirm that `biome`
 appears in the plugin list and that its skills (`biome-brainstorm`, `biome-draft`,
 `biome-review`) are available. The command form for these skills in the
 Antigravity App and Antigravity for IDEs has not been verified.

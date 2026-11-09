@@ -20,8 +20,8 @@ path:
 
 ```sh
 git clone https://github.com/asteria-core/biome.git
-muse plugins install ./elephant-goldfish-model --scope user
-muse plugins approve egm
+muse plugins install ./biome --scope user
+muse plugins approve biome
 ```
 
 `marketplace add` on this repository discovers zero plugins: Muse reads the

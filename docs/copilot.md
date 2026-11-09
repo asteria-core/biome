@@ -21,7 +21,7 @@ No Copilot hooks, MCP servers, or replacement manifest are required.
 Set `EGM_ROOT` to the absolute path of the candidate checkout:
 
 ```sh
-EGM_ROOT=/absolute/path/to/elephant-goldfish-model
+EGM_ROOT=/absolute/path/to/biome
 git -C "$EGM_ROOT" rev-parse HEAD
 copilot --version
 COPILOT_OFFLINE=true copilot --plugin-dir "$EGM_ROOT" plugin list
@@ -41,7 +41,7 @@ copilot --plugin-dir "$EGM_ROOT" --add-dir "$EGM_ROOT" --agent egm:egm
 In the first message, supply the absolute package root and requested skill:
 
 ```text
-EGM package root: /absolute/path/to/elephant-goldfish-model
+EGM package root: /absolute/path/to/biome
 Read that package's docs/copilot.md and run biome-brainstorm.
 EGM artifact directory: .dev/docs
 ```
