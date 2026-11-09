@@ -2,11 +2,11 @@
 import { defineConfig, fontProviders } from 'astro/config';
 
 // Static landing site for https://github.com/asteria-core/biome, deployed to GitHub Pages.
-// Analytics and Cookie Notification Bar load only on canonical github.com/asteria-core/biome when
+// Analytics and Cookie Notification Bar load only on canonical biome.dev when
 // PUBLIC_GA_MEASUREMENT_ID is configured; forks and local builds make zero
 // runtime requests to Google hosts.
 export default defineConfig({
-  site: 'https://github.com/asteria-core/biome',
+  site: 'https://biome.dev',
   output: 'static',
   fonts: [
     {

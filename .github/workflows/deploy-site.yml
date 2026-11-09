@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Build and deploy the github.com/asteria-core/biome landing site (site/) to GitHub Pages.
+# Build and deploy the biome.dev landing site (site/) to GitHub Pages.
 #
 # Analytics and Cookie Notification Bar run only when window.location.hostname
-# is 'github.com/asteria-core/biome' and vars.PUBLIC_GA_MEASUREMENT_ID is configured on the repository,
+# is 'biome.dev' and vars.PUBLIC_GA_MEASUREMENT_ID is configured on the repository,
 # so forks and local builds never send data to Google hosts.
 #
 # First deploy (launch day): repository must be public, then Settings > Pages >
-# Source = GitHub Actions, custom domain = github.com/asteria-core/biome, Enforce HTTPS. Run this
+# Source = GitHub Actions, custom domain = biome.dev, Enforce HTTPS. Run this
 # workflow once by hand with workflow_dispatch.
 name: Deploy site
 
@@ -76,3 +76,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+        continue-on-error: true

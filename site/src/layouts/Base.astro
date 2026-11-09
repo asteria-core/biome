@@ -54,9 +54,9 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? '';
     {
       gaMeasurementId && (
         <script is:inline define:vars={{ gaMeasurementId, pageTitle: title }}>
-          // Load Google Cookie Notification Bar + GA4 only on canonical github.com/asteria-core/biome so
+          // Load Google Cookie Notification Bar + GA4 only on canonical biome.dev so
           // forks and local builds never send telemetry to Google servers.
-          if (window.location.hostname === 'github.com/asteria-core/biome' && gaMeasurementId) {
+          if (window.location.hostname === 'biome.dev' && gaMeasurementId) {
             window.dataLayer = window.dataLayer || [];
             let analyticsAllowed = false;
             const disableAnalytics = 'ga-disable-' + gaMeasurementId;
@@ -157,7 +157,7 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? '';
             cnbScript.src =
               'https://www.gstatic.com/glue/cookienotificationbar/cookienotificationbar.min.js';
             cnbScript.dataset.glueCookieNotificationBarCategory = '2A';
-            cnbScript.dataset.glueCookieNotificationBarSiteId = 'github.com/asteria-core/biome';
+            cnbScript.dataset.glueCookieNotificationBarSiteId = 'biome.dev';
             cnbScript.dataset.glueCookieNotificationBarAutoMarginClass = 'footer';
             // CNB's defaults can grant storage independently of an explicit choice.
             // Keep those commands separate; the status listener owns GA consent.

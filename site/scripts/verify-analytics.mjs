@@ -88,7 +88,7 @@ async function visit(host, { failed = false, holdGtag = false, html = enabled } 
 }
 
 try {
-  const delayed = await visit('github.com/asteria-core/biome');
+  const delayed = await visit('biome.dev');
   assert.equal(await delayed.page.evaluate(() => window.__cookieScriptLoaded), true);
   assert.equal(delayed.gaRequests().length, 0, 'GA must not load before asynchronous configuration completes');
   assert.equal(await delayed.page.evaluate(() => window.dataLayer.some(args => args[0] === 'config')), false);
@@ -102,7 +102,7 @@ try {
   await delayed.page.waitForFunction(() => window.__gaCommands.some(args => args[0] === 'config'));
   assert.equal(delayed.gaRequests().length, 1);
   const config = await delayed.page.evaluate(() => window.__gaCommands.find(args => args[0] === 'config')[2]);
-  assert.equal(config.page_location, 'https://github.com/asteria-core/biome/?utm_source=test');
+  assert.equal(config.page_location, 'https://biome.dev/?utm_source=test');
   assert.equal(config.allow_google_signals, false);
   assert.equal(config.allow_ad_personalization_signals, false);
   await delayed.page.waitForNetworkIdle();
@@ -141,7 +141,7 @@ try {
   results.push({ case: 'repeated callbacks', pass: true });
   await delayed.page.close();
 
-  const race = await visit('github.com/asteria-core/biome', { holdGtag: true });
+  const race = await visit('biome.dev', { holdGtag: true });
   await race.page.evaluate(() => window.__finishConsent('ACCEPTED'));
   await race.gtagRequested;
   assert.equal(await race.page.evaluate(() => window.__gaCommands), undefined);
@@ -156,7 +156,7 @@ try {
   await race.page.close();
 
   for (const [status, required] of [['REJECTED', true], ['ACCEPTED', false], ['ACCEPTED', true]]) {
-    const initial = await visit('github.com/asteria-core/biome');
+    const initial = await visit('biome.dev');
     await initial.page.evaluate((state, needed) => window.__finishConsent(state, needed), status, required);
     await initial.page.waitForNetworkIdle();
     const granted = status === 'ACCEPTED' && required;
@@ -167,19 +167,19 @@ try {
     await initial.page.close();
   }
 
-  const failure = await visit('github.com/asteria-core/biome', { failed: true });
+  const failure = await visit('biome.dev', { failed: true });
   assert.equal(failure.gaRequests().length, 0);
   assert.equal(await failure.page.evaluate(() => window.dataLayer.some(args => args[0] === 'config')), false);
   assert.deepEqual(failure.errors, []);
   results.push({ case: 'cookie script failure', pass: true });
   await failure.page.close();
 
-  for (const [host, html] of [['preview.example.com', enabled], ['localhost', enabled], ['github.com/asteria-core/biome', disabled]]) {
+  for (const [host, html] of [['preview.example.com', enabled], ['localhost', enabled], ['biome.dev', disabled]]) {
     const gated = await visit(host, { html });
     assert.equal(gated.requests.length, 0);
     assert.equal(await gated.page.evaluate(() => window.dataLayer === undefined), true);
     assert.deepEqual(gated.errors, []);
-    results.push({ case: host === 'github.com/asteria-core/biome' ? 'measurement ID unset' : `noncanonical ${host}`, pass: true });
+    results.push({ case: host === 'biome.dev' ? 'measurement ID unset' : `noncanonical ${host}`, pass: true });
     await gated.page.close();
   }
   console.log(JSON.stringify({ browser: await browser.version(), googleResponses: 'intercepted fixtures; no live vendor verification', results }, null, 2));

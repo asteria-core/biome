@@ -1,6 +1,6 @@
-# github.com/asteria-core/biome
+# biome.dev
 
-Landing site for the Elephant-Goldfish Model, served at https://github.com/asteria-core/biome from
+Landing site for the Elephant-Goldfish Model, served at https://biome.dev from
 GitHub Pages.
 
 | Light | Dark |
@@ -35,10 +35,10 @@ GitHub Pages.
 - Theme only through gBreeze tokens (`src/styles/tokens.css`) and the
   components' documented custom properties. Do not restyle component boxes.
 - Keep skill names and commands identical to the repository README.
-- **Cookies and analytics (`github.com/asteria-core/biome` only)**: The EGM plugin itself collects zero
-  telemetry. On the canonical `https://github.com/asteria-core/biome` site only (when
+- **Cookies and analytics (`biome.dev` only)**: The EGM plugin itself collects zero
+  telemetry. On the canonical `https://biome.dev` site only (when
   `PUBLIC_GA_MEASUREMENT_ID` is set at build time and
-  `window.location.hostname === 'github.com/asteria-core/biome'`), the page loads Google Cookie
+  `window.location.hostname === 'biome.dev'`), the page loads Google Cookie
   Notification Bar (`cookienotificationbar.min.js`). Google Analytics 4
   (`gtag.js`) loads only after the bar reports an affirmative accepted choice
   with `loaded.detail.required === true`. Pending, rejected, absent, and failed
