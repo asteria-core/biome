@@ -1,4 +1,4 @@
-# Verification and Evaluation Commands for `egm-bootstrap`
+# Verification and Evaluation Commands for `biome-bootstrap`
 
 Frontmatter and link checks run in `pytest tests/unit` (see [TESTING.md](../../TESTING.md)).
 

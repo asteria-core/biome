@@ -13,7 +13,7 @@ section points to them.
     [PR template](.github/PULL_REQUEST_TEMPLATE.md).
 *   **New feature, architectural change, or anything over the Track 1
     limits:** open a
-    [feature proposal issue](https://github.com/google/elephant-goldfish-model/issues/new?template=feature_proposal.md)
+    [feature proposal issue](https://github.com/asteria-core/biome/issues/new?template=feature_proposal.md)
     and follow the Track 2 steps. Existing design docs are listed in
     [docs/designs/README.md](docs/designs/README.md).
 
@@ -23,7 +23,7 @@ branch, follow the [test setup in TESTING.md](TESTING.md), and run
 [PR template](.github/PULL_REQUEST_TEMPLATE.md) and record the result. A
 small fix like this does not need a prior issue or design document.
 
-For usage questions, use [Discussions Q&A](https://github.com/google/elephant-goldfish-model/discussions/categories/q-a).
+For usage questions, use [Discussions Q&A](https://github.com/asteria-core/biome/discussions/categories/q-a).
 
 ## Design Principles
 
@@ -69,16 +69,16 @@ follows the EGM Spec-Driven Development process:
 
 1.  **Reach Out & Align (`design-ready`)**:
     Before investing in a large implementation or full specification, open a
-    [Feature / Architectural Inquiry Issue](https://github.com/google/elephant-goldfish-model/issues/new?template=feature_proposal.md)
+    [Feature / Architectural Inquiry Issue](https://github.com/asteria-core/biome/issues/new?template=feature_proposal.md)
     (`.github/ISSUE_TEMPLATE/feature_proposal.md`) outlining the problem
     statement and proposed `Goals` vs. `Non-Goals`. We recommend using
-    `/egm-brainstorm` to complete this section. Maintainers will review and apply
+    `/biome-brainstorm` to complete this section. Maintainers will review and apply
     `design-ready` once aligned on direction.
 
 2.  **Draft & Review Design Specification**:
     Draft a technical design specification under `docs/designs/<name>.md`. We
-    recommend using `/egm-draft`, and registering it in [`docs/designs/README.md`](docs/designs/README.md).
-    We also recommend running `/egm-review docs/designs/<name>.md` to stress-test
+    recommend using `/biome-draft`, and registering it in [`docs/designs/README.md`](docs/designs/README.md).
+    We also recommend running `/biome-review docs/designs/<name>.md` to stress-test
     the proposal.
 
 3.  **Submit a Design Doc PR and wait for `pr-ready`**:

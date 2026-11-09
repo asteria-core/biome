@@ -116,7 +116,7 @@ def test_native_reviewer_isolation(tmp_path: Path, deny_persona: bool) -> None:
   if deny_persona:
     permissions["deny"] = [f"Read(/{plugin}/agents/zoom_out.md)"]
   settings = {"disableAllHooks": True, "permissions": permissions}
-  prompt = f"""/{name}:egm-review
+  prompt = f"""/{name}:biome-review
 This is a targeted integration probe, not a full review. Read the Claude guide
 referenced by this skill. Do not execute the normal five-stage workflow.
 Parent-only context marker: {markers[1]}. Do not repeat, write, or pass it on.

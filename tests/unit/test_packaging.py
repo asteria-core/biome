@@ -103,8 +103,7 @@ def test_runtime_bundle_is_complete_and_reproducible(
 
 
 @pytest.mark.parametrize("skill,base,facet", [
-    ("beaver", "#1b6ef3", "#7cacf8"),
-    ("biome", "#1b6ef3", "#7cacf8"),
+        ("biome", "#1b6ef3", "#7cacf8"),
     ("bootstrap", "#1b6ef3", "#7cacf8"),
     ("brainstorm", "#1b6ef3", "#7cacf8"),
     ("build", "#1b6ef3", "#7cacf8"),
@@ -141,7 +140,7 @@ def test_bundles_readme_images(source: Path, tmp_path: Path, target: str) -> Non
   image.write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
   (image_dir / "private.txt").write_text("must not ship")
   readme = source / "README.md"
-  readme.write_text(readme.read_text() + '\n![Header](docs/assets/readme-header.svg)\n')
+  readme.write_text(readme.read_text(encoding="utf-8") + '\n![Header](docs/assets/readme-header.svg)\n', encoding="utf-8")
   _, archive = build(source, target, tmp_path / "output")
   with zipfile.ZipFile(archive) as bundle:
     assert bundle.read("docs/assets/readme-header.svg") == image.read_bytes()

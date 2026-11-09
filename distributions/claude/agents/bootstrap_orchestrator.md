@@ -1,5 +1,5 @@
 ---
-name: egm-bootstrap-orchestrator
+name: biome-bootstrap-orchestrator
 description: Orchestrates directory README documentation, partitions subtrees, and coordinates worker subagents.
 license: Apache-2.0
 ---

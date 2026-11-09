@@ -8,7 +8,7 @@
 
 ## Overview
 
-The **EGM Brainstorm Skill** (`/egm-brainstorm`) is a fast way to validate
+The **EGM Brainstorm Skill** (`/biome-brainstorm`) is a fast way to validate
 ideas. It is intended to be run early when a human doesn't know what solution
 they want yet. It gives early access to a Goldfish swarm for "half-baked"
 concepts and can be used before any formal design discussion begins.
@@ -31,12 +31,12 @@ to two major failure modes:
 sequenceDiagram
     autonumber
     actor Human as Software Engineer
-    participant Brainstorm as egm-brainstorm Skill
+    participant Brainstorm as biome-brainstorm Skill
     participant Synth as Synthesizer Persona (Mode: BRAINSTORM)
     participant Swarm as 7-Lens Goldfish Swarm
     participant Artifact as Artifact: concepts_brief.md
 
-    Human->>Brainstorm: /egm-brainstorm (Raw Feature Idea)
+    Human->>Brainstorm: /biome-brainstorm (Raw Feature Idea)
     loop Multi-Turn Chat Drilling
         Brainstorm->>Human: Open-ended probing questions (no multiple-choice modals)
         Human->>Brainstorm: Clarifications & constraints
@@ -49,7 +49,7 @@ sequenceDiagram
     Synth->>Artifact: write_to_file (concepts_brief.md)
     Synth-->>Brainstorm: send_message (Completion & artifact link)
     Brainstorm->>Human: Highlight top objections & invite iteration
-    Human->>Brainstorm: Refine or handoff to /egm-draft
+    Human->>Brainstorm: Refine or handoff to /biome-draft
 ```
 
 ### 1. Step 1: Open-Ended Problem Drilling
@@ -94,7 +94,7 @@ to:
 
 *   Abandon the idea altogether.
 *   Continue refining the hypothesis with additional Goldfish shootdown passes.
-*   Transition into **`/egm-draft`** (when the concept is concrete and ready for
+*   Transition into **`/biome-draft`** (when the concept is concrete and ready for
     formal design doc authoring).
 
 ## Implementation Files & Referenced Components
@@ -106,9 +106,9 @@ delegates directly to the shared EGM subagent swarm and document standards:
 
 | File Path | Type | Purpose & Reason for Existence |
 | :-------- | :--- | :----------------------------- |
-| `skills/egm-brainstorm/SKILL.md` | Skill Definition | Implements `/egm-brainstorm` workflow, multi-turn open-ended drilling, shootdown delegation, and brief finalization. |
-| `skills/egm-brainstorm/TEST.md` | Unit Tests | Verification test scenarios validating the brainstorm ideation and multi-lens critique flow. |
-| `skills/egm-brainstorm/test_scenarios.yaml` | Evaluation Benchmark | Benchmark test suite evaluating brainstorm ideation and multi-lens critique flow. |
+| `skills/biome-brainstorm/SKILL.md` | Skill Definition | Implements `/biome-brainstorm` workflow, multi-turn open-ended drilling, shootdown delegation, and brief finalization. |
+| `skills/biome-brainstorm/TEST.md` | Unit Tests | Verification test scenarios validating the brainstorm ideation and multi-lens critique flow. |
+| `skills/biome-brainstorm/test_scenarios.yaml` | Evaluation Benchmark | Benchmark test suite evaluating brainstorm ideation and multi-lens critique flow. |
 
 ### Referenced Personas & Infrastructure Components
 

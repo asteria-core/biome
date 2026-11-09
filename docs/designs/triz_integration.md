@@ -19,7 +19,7 @@ limitations under the License.
 *   **Author:** Brian Suchy ([@briansuchy](https://github.com/briansuchy))
 *   **Status:** Draft
 *   **Date:** 2026-11-03
-*   **Issue:** [#37](https://github.com/google/elephant-goldfish-model/issues/37)
+*   **Issue:** [#37](https://github.com/asteria-core/biome/issues/37)
 
 --------------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ limitations under the License.
 
 This document specifies the integration of the **TRIZ method** (Theory of
 Inventive Problem Solving) into the open-source Elephant & Goldfish Model (EGM)
-framework (`github.com/google/elephant-goldfish-model`).
+framework (`github.com/asteria-core/biome`).
 
 EGM separates high-context conversational drafting (**The Elephant**) from
 independent, zero-context critique (**Goldfish personas**). Existing Goldfish
@@ -47,9 +47,9 @@ This integration delivers:
     (`agents/inventive_catalyst.md`), featuring a self-contained inlined catalog
     of 10 software engineering patterns for zero-I/O execution.
 2.  Integration of the persona into the upstream Goldfish shootdown swarm in
-    [skills/egm-brainstorm/SKILL.md](../../skills/egm-brainstorm/SKILL.md).
+    [skills/biome-brainstorm/SKILL.md](../../skills/biome-brainstorm/SKILL.md).
 3.  Integration of the persona into **Step 5 (Initial Strategic Review)** in
-    [skills/egm-review/SKILL.md](../../skills/egm-review/SKILL.md), pairing with
+    [skills/biome-review/SKILL.md](../../skills/biome-review/SKILL.md), pairing with
     `egm-zoom-out` to audit foundational trade-offs before detailed reviews.
 
 --------------------------------------------------------------------------------
@@ -93,10 +93,10 @@ Control) spanning both single-process tools and distributed systems.
     evaluative personas.
 *   **Dual-Phase Integration**:
     *   **Brainstorming**: Add `egm-inventive-catalyst` to the parallel
-        shootdown swarm coordinated by `egm-synthesizer` in `/egm-brainstorm`
+        shootdown swarm coordinated by `egm-synthesizer` in `/biome-brainstorm`
         (the 7-lens swarm) to expand conceptual possibilities.
     *   **Review Pipeline**: Add `egm-inventive-catalyst` to **Step 5 (Initial
-        Strategic Review)** in `/egm-review` to audit high-altitude foundational
+        Strategic Review)** in `/biome-review` to audit high-altitude foundational
         compromises alongside `egm-zoom-out` before line-by-line review.
 *   **Self-Contained Inlined Pattern Knowledge**: Inline 10 curated software
     architecture patterns directly into the persona prompt, eliminating external
@@ -113,13 +113,13 @@ Control) spanning both single-process tools and distributed systems.
 *   **Harness-Specific Modals**: Introducing custom interactive question modals
     (such as `ask_question`) is out of scope. The persona runs as a standard
     peer in the automated shootdown swarm, adhering to the plain-text
-    interaction constraints of `skills/egm-brainstorm/SKILL.md`.
+    interaction constraints of `skills/biome-brainstorm/SKILL.md`.
 *   **Redundant Catalog File**: Authoring a separate
     `resources/triz_patterns.md` document is out of scope. To avoid
     dual-maintenance debt and runtime drift, the pattern catalog lives strictly
     inside the persona definition.
 *   **Blocking Review Loop Gating in Step 7**: Adding the Catalyst to the
-    blocking repair loop (`egm-review-loop`) in Step 7 is out of scope. It runs
+    blocking repair loop (`biome-review-loop`) in Step 7 is out of scope. It runs
     upstream in Step 5 as an advisory high-altitude audit, avoiding cyclic
     conflict with Step 8 Zoom Out.
 
@@ -240,17 +240,17 @@ Otherwise, for each finding, include:
 
 ### 2. Workflow & Review Pipeline Integration
 
-#### A. Upstream Brainstorming Integration (`/egm-brainstorm`)
+#### A. Upstream Brainstorming Integration (`/biome-brainstorm`)
 
 1.  **Skill Table Update**: Add `Inventive Catalyst` to the table of Goldfish
-    Brainstorming Lenses in `skills/egm-brainstorm/SKILL.md`:
+    Brainstorming Lenses in `skills/biome-brainstorm/SKILL.md`:
 
     | Lens / Persona | Core Objective | Key Questions Challenged |
     | :------------- | :------------- | :----------------------- |
     | **7. Inventive Catalyst** | Contradiction elimination & inventive transforms | *What fundamental trade-off is this design accepting as inevitable? How can we resolve this conflict using proven software transforms to achieve the Ideal Final Result without compromise?* |
 
 2.  **Synthesizer Dispatch Update**: In `agents/synthesizer.md` and
-    `skills/egm-brainstorm/SKILL.md`, update the subagent dispatch list for
+    `skills/biome-brainstorm/SKILL.md`, update the subagent dispatch list for
     `Mode: BRAINSTORM`:
 
     *   Update `Reviewers` to include `egm-inventive-catalyst`.
@@ -262,10 +262,10 @@ Otherwise, for each finding, include:
     that times out or returns nothing is retried once, then reported as
     `not run` in `concepts_brief.md`, never as a lens with no findings.
 
-#### B. Review Loop Integration (`/egm-review`)
+#### B. Review Loop Integration (`/biome-review`)
 
 1.  **Step 5 (Initial Strategic Review) Pairing**: In
-    `skills/egm-review/SKILL.md`, update `Subflow: Zoom Out Review` (Step 5) to
+    `skills/biome-review/SKILL.md`, update `Subflow: Zoom Out Review` (Step 5) to
     spawn **two parallel high-altitude auditors**:
     *   `egm-zoom-out`: Audits for YAGNI, over-engineering, and root-problem
         alignment against `zoom-out-standard.md`.
@@ -310,7 +310,7 @@ Otherwise, for each finding, include:
 *   **Mitigation**:
     1.  The Catalyst must explicitly output `Secondary Liabilities` for every
         pattern.
-    2.  In `/egm-review`, Step 5 findings are strictly advisory, and Step 8
+    2.  In `/biome-review`, Step 5 findings are strictly advisory, and Step 8
         (Intermediate Zoom Out) prunes any speculative complexity before
         implementation planning.
 
@@ -344,10 +344,10 @@ Otherwise, for each finding, include:
 ### Alternative B: Interactive Multi-Select Gates via Custom Modal Tools
 
 *   **Description**: Add an interactive multi-select UI dialog (e.g.,
-    `ask_question`) in `/egm-brainstorm` allowing users to selectively toggle
+    `ask_question`) in `/biome-brainstorm` allowing users to selectively toggle
     individual Goldfish personas on or off before each shootdown.
 *   **Pros**: Allows granular per-session customization.
-*   **Cons**: Violates `skills/egm-brainstorm/SKILL.md` Constraint 2 (no
+*   **Cons**: Violates `skills/biome-brainstorm/SKILL.md` Constraint 2 (no
     structured question tools during ideation), depends on a structured
     question tool that only some harnesses have, and adds user friction.
 *   **Reason for Rejection**: The automated parallel swarm handles reviews
@@ -381,7 +381,7 @@ Otherwise, for each finding, include:
 ### Alternative E: Step 5 Strategic Audit vs. Step 7 Blocking Review Loop
 
 *   **Description**: Add `egm-inventive-catalyst` to the Step 7
-    (`egm-review-loop`) blocking repair loop.
+    (`biome-review-loop`) blocking repair loop.
 *   **Pros**: Runs alongside design critics on `FeatureRange`.
 *   **Cons**: Causes severe cyclic whiplash with Step 8 (`egm-zoom-out`), which
     immediately prunes complexity added in Step 7. Furthermore, mapping to
@@ -443,12 +443,12 @@ checkpoints at each stage.
         *"Collect findings from all 7 Goldfish, deduplicate overlapping points,
         synthesize inventive contradictions and pattern resolutions alongside
         risk dimensions, and compile them into `concepts_brief.md`."*
-    *   In Step 5 of `egm-review`: `egm-inventive-catalyst` is dispatched
+    *   In Step 5 of `biome-review`: `egm-inventive-catalyst` is dispatched
         alongside `egm-zoom-out`; findings under `## Inventive Opportunities`
         are recorded directly into `zoom_out_report.md` without altering
         `goldfish_review_report.md`'s strict Blocker/Major/Nit defect schema.
 
-#### 4. `skills/egm-brainstorm/SKILL.md` (Modify)
+#### 4. `skills/biome-brainstorm/SKILL.md` (Modify)
 
 *   **Type / Scope**: Core Skill Workflow
 *   **Rationale**: Register `egm-inventive-catalyst` in the brainstorming
@@ -469,14 +469,14 @@ checkpoints at each stage.
         suggested for each, its secondary trade-offs, and the Ideal Final
         Result.
 
-#### 5. `skills/egm-review/SKILL.md` (Modify)
+#### 5. `skills/biome-review/SKILL.md` (Modify)
 
 *   **Type / Scope**: Review Orchestrator
 *   **Rationale**: Integrate `egm-inventive-catalyst` into Step 5 (Initial
     Strategic Review) without colliding with Step 8 post-critic pruning, while
     staying strictly under the 24,000-byte skill load limit enforced by
     `tests/unit/test_skill_load_limits.py`.
-*   **Skill Size Budget**: The `egm-review` body is 23,743 bytes at `main`,
+*   **Skill Size Budget**: The `biome-review` body is 23,743 bytes at `main`,
     leaving 257 bytes of headroom. To accommodate Step 5 without exceeding the
     limit:
     1.  The detailed report schema for Inventive Opportunities is defined
@@ -531,8 +531,8 @@ tests/unit/test_frontmatter.py`.
         list.
     *   `docs/designs/README.md`: Update the existing entry for
         `triz_integration.md` to remove reference to rejected "dynamic reviewer
-        selection" and reflect integration into `/egm-brainstorm` and Step 5 of
-        `/egm-review`.
+        selection" and reflect integration into `/biome-brainstorm` and Step 5 of
+        `/biome-review`.
 
 #### 8. User-Facing Documentation (Modify)
 
@@ -556,16 +556,16 @@ using `pytest tests/unit/test_link_integrity.py`.
 *   **Rationale**: Ensure automated test coverage for the 7-lens swarm and Step
     5 Catalyst integration across all harnesses.
 *   **Proposed Changes**:
-    *   `skills/egm-brainstorm/TEST.md`: Update test expectations and lens
+    *   `skills/biome-brainstorm/TEST.md`: Update test expectations and lens
         enumeration to include Inventive Catalyst (7 lenses).
-    *   `skills/egm-review/TEST.md`: Update Step 5 test expectation to verify
+    *   `skills/biome-review/TEST.md`: Update Step 5 test expectation to verify
         Initial Strategic Review with parallel Zoom Out and Catalyst execution.
-    *   `skills/egm-brainstorm/test_scenarios.yaml`: Add behavioral test
+    *   `skills/biome-brainstorm/test_scenarios.yaml`: Add behavioral test
         scenarios asserting that the `## Analysis` section names an inventive
         contradiction, the catalog pattern suggested for it, and its secondary
         trade-offs, plus a scenario validating the "No false compromise
         detected" early-exit guardrail when the input is already optimal.
-    *   `skills/egm-review/test_scenarios.yaml`: Add scenarios validating
+    *   `skills/biome-review/test_scenarios.yaml`: Add scenarios validating
         detection of false architectural compromises in Step 5 and the early-exit
         guardrail.
     *   `tests/unit/test_frontmatter.py`: Add validation asserting frontmatter

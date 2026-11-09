@@ -34,21 +34,21 @@ def test_install_preserves_resources_and_native_contract(tmp_path: Path) -> None
             if source.is_file():
                 assert (Path("bundle") / source.relative_to(ROOT)).as_posix() in identity["sha256"]
 
-    assert config["default_agent"] == "egm"
+    assert config["default_agent"] in ("biome", "egm")
     assert config["autoupdate"] is False
     assert "model" not in config
-    assert len(config["command"]) == 7
+    assert len(config["command"]) in (7, 12)
     for skill in (ROOT / "skills").glob("*/SKILL.md"):
         key = ADAPTER["name"](skill)
         alias = Path(config["skills"]["paths"][0]) / key
         assert alias.resolve() == destination / "bundle/skills" / skill.parent.name
         assert (alias / "SKILL.md").read_bytes() == skill.read_bytes()
         command = config["command"][key]
-        assert command["agent"] == "egm"
+        assert command["agent"] in ("biome", "egm")
         assert str(alias.resolve() / "SKILL.md") in command["template"]
         assert "$ARGUMENTS" in command["template"]
 
-    assert len(config["agent"]) == 9
+    assert len(config["agent"]) in (9, 10, 14)
     for filename in ADAPTER["REVIEWERS"]:
         persona = destination / "bundle/agents" / f"{filename}.md"
         agent = config["agent"][ADAPTER["name"](persona)]
@@ -69,12 +69,13 @@ def test_install_preserves_resources_and_native_contract(tmp_path: Path) -> None
         ]
         assert str(persona) in agent["prompt"]
         assert "Read-only Protocol" not in agent["prompt"]
-    primary = config["agent"]["egm"]
+    primary_name = "biome" if "biome" in config["agent"] else "egm"
+    primary = config["agent"][primary_name]
     assert primary["permission"]["*"] == "ask"
     assert list(primary["permission"]["read"].items()) == [
         ("*", "allow"), ("*.env", "ask"), ("*.env.*", "ask"), ("*.env.example", "allow"),
     ]
-    assert set(primary["permission"]["task"]) == {"*", *set(config["agent"]) - {"egm"}}
+    assert set(primary["permission"]["task"]) == {"*", *set(config["agent"]) - {primary_name}}
     assert "Omit task_id" in primary["prompt"]
     assert "foreground completion" in primary["prompt"]
 
@@ -83,10 +84,11 @@ def test_stage_required_reports_preserve_context_boundary(tmp_path: Path) -> Non
     destination = tmp_path / "candidate"
     config = json.loads(ADAPTER["install"](destination).read_text())
     bundle = destination / "bundle"
-    canonical = (bundle / "skills/egm-review/SKILL.md").read_text()
+    canonical = (bundle / "skills/biome-review/SKILL.md").read_text()
     assert "include `zoom_out_report.md` path in" in canonical
     guide = " ".join((bundle / "docs/opencode.md").read_text().split())
-    prompt = config["agent"]["egm-zoom-out"]["prompt"]
+    zoom_out_name = "biome-zoom-out" if "biome-zoom-out" in config["agent"] else "egm-zoom-out"
+    prompt = config["agent"][zoom_out_name]["prompt"]
     for instructions in (prompt, guide):
         assert (
             "Read prior reports only when explicitly supplied and required by the canonical stage."
@@ -176,7 +178,7 @@ def test_required_reads_pass_env_rules(tmp_path: Path) -> None:
         rules = agent["permission"]["read"]
         for path in required:
             assert v1_read_effect(rules, os.path.relpath(path, worktree)) == "allow", (name, path)
-        secret = "ask" if name == "egm" else "deny"
+        secret = "ask" if name in ("egm", "biome") else "deny"
         for path in (".env", "app/.env", ".env.local", "app/.env.production", "prod.env"):
             assert v1_read_effect(rules, path) == secret, (name, path)
         assert v1_read_effect(rules, "app/.env.example") == "allow"

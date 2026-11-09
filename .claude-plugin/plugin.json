@@ -2,19 +2,20 @@
   "name": "biome",
   "displayName": "BIOME",
   "version": "1.0.0",
-  "description": "BIOME: Autonomous software delivery ecosystem (Elephant discovery, Goldfish audit, Beaver surgical builds).",
+  "description": "BIOME: Autonomous software delivery ecosystem (Elephant discovery, Goldfish audit, Beaver surgical builds, Woodpecker diff inspection).",
   "author": {
-    "name": "Google"
+    "name": "Asteria Core",
+    "email": "makari.constant.official@gmail.com"
   },
-  "homepage": "https://egm.dev",
-  "repository": "https://github.com/google/elephant-goldfish-model",
+  "homepage": "https://github.com/asteria-core/biome",
+  "repository": "https://github.com/asteria-core/biome",
   "license": "Apache-2.0",
-  "keywords": ["spec-driven-development", "design-documents", "design-review"],
+  "keywords": ["spec-driven-development", "design-documents", "design-review", "autonomous-agents", "biome"],
   "icon": "./.claude-plugin/icon.png",
-  "documentationUrl": "https://github.com/google/elephant-goldfish-model/blob/main/docs/claude.md",
-  "supportUrl": "https://github.com/google/elephant-goldfish-model/issues",
-  "privacyPolicyUrl": "https://policies.google.com/privacy",
-  "termsOfServiceUrl": "https://github.com/google/elephant-goldfish-model/blob/main/LICENSE",
+  "documentationUrl": "https://github.com/asteria-core/biome/blob/main/docs/claude.md",
+  "supportUrl": "https://github.com/asteria-core/biome/issues",
+  "privacyPolicyUrl": "https://github.com/asteria-core/biome/blob/main/docs/privacy.md",
+  "termsOfServiceUrl": "https://github.com/asteria-core/biome/blob/main/LICENSE",
   "agents": [
     "./.claude-plugin/agents/bootstrap_orchestrator.md",
     "./.claude-plugin/agents/codebase_details.md",
@@ -27,6 +28,7 @@
     "./.claude-plugin/agents/structural.md",
     "./.claude-plugin/agents/style.md",
     "./.claude-plugin/agents/synthesizer.md",
+    "./.claude-plugin/agents/woodpecker.md",
     "./.claude-plugin/agents/zoom_out.md"
   ]
 }

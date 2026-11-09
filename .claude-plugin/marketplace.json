@@ -1,13 +1,13 @@
 {
-  "name": "egm",
+  "name": "biome",
   "owner": {
-    "name": "Google"
+    "name": "Asteria Core"
   },
   "plugins": [
     {
-      "name": "egm",
+      "name": "biome",
       "source": "./",
-      "description": "Develop ideas with context and review documents with fresh eyes."
+      "description": "BIOME: Autonomous software delivery ecosystem (Elephant discovery, Goldfish audit, Beaver surgical builds, Woodpecker diff inspection)."
     }
   ]
 }

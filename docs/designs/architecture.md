@@ -61,13 +61,13 @@ The open-source EGM framework is organized into four decoupled subsystems:
 
 ### 1. Skills Layer (`skills/`)
 Modular agent capabilities executable via slash commands or direct invocation:
-*   `egm-brainstorm`: 7-lens shootdown swarm for early concept exploration.
-*   `egm-draft`: Section-by-section specification compiler.
-*   `egm-review`: Orchestrator for the multi-stage review pipeline.
-*   `egm-review-loop`: Concurrent subagent review dispatcher.
-*   `egm-resolve`: Interactive resolution and patch application.
-*   `egm-drift-report`: Agent workflow comparing specs and READMEs to code via host search and file-reading tools.
-*   `egm-bootstrap`: Recursive bottom-up codebase documentation generator.
+*   `biome-brainstorm`: 7-lens shootdown swarm for early concept exploration.
+*   `biome-draft`: Section-by-section specification compiler.
+*   `biome-review`: Orchestrator for the multi-stage review pipeline.
+*   `biome-review-loop`: Concurrent subagent review dispatcher.
+*   `biome-resolve`: Interactive resolution and patch application.
+*   `biome-drift-report`: Agent workflow comparing specs and READMEs to code via host search and file-reading tools.
+*   `biome-bootstrap`: Recursive bottom-up codebase documentation generator.
 
 ### 2. Personas Layer (`agents/`)
 Stateless system prompt instructions for isolated Goldfish reviewer subagents
@@ -98,14 +98,14 @@ sequenceDiagram
     participant VCS as Version Control (PR)
     participant Coder as Implementation Agent
 
-    Human->>Elephant: /egm-brainstorm (Multi-Lens Ideation & Shootdown)
+    Human->>Elephant: /biome-brainstorm (Multi-Lens Ideation & Shootdown)
     Elephant->>Artifact: Write concepts_brief.md
-    Human->>Elephant: /egm-draft
+    Human->>Elephant: /biome-draft
     Elephant->>Artifact: Write docs/designs/FEATURE.md
-    Human->>Reviewer: /egm-review docs/designs/FEATURE.md
+    Human->>Reviewer: /biome-review docs/designs/FEATURE.md
     Note over Reviewer: Zoom Out -> Comprehension -> Critic -> Zoom Out -> Readiness
     Reviewer->>Artifact: Write review reports & findings
-    Human->>Reviewer: Triage & resolve findings (/egm-resolve)
+    Human->>Reviewer: Triage & resolve findings (/biome-resolve)
     Human->>VCS: Open Pull Request with FEATURE.md
     VCS-->>Human: Spec Approved & Merged
     Human->>Coder: Implement against FEATURE.md
@@ -113,14 +113,14 @@ sequenceDiagram
 
 ### Phase 1: Upstream Ideation & Multi-Lens Shootdown (The Elephant)
 
-*   **Command**: `/egm-brainstorm`
+*   **Command**: `/biome-brainstorm`
 *   **Mechanics**: The Elephant interviews the engineer to anchor a core hypothesis,
     then spawns a 7-lens Goldfish swarm to shoot down flawed assumptions.
 *   **Output**: A structured brief written to `concepts_brief.md`.
 
 ### Phase 2: Spec Authoring & Semantic Boundaries
 
-*   **Command**: `/egm-draft`
+*   **Command**: `/biome-draft`
 *   **Mechanics**: Converts the concepts brief (or discussion notes) into an EGM-compliant
     technical design document written to `docs/designs/<feature>.md`.
 *   **Semantic Boundary Discovery**: Establishes a clear boundary between the
@@ -129,7 +129,7 @@ sequenceDiagram
 
 ### Phase 3: Isolated Verification (The Goldfish)
 
-*   **Command**: `/egm-review`
+*   **Command**: `/biome-review`
 *   **Execution**: Executes a five-stage evaluation pipeline:
     1.  **Step 5: Zoom Out Review**: Evaluates simplicity, YAGNI, and codebase
         reuse against `zoom-out-standard.md`.
@@ -149,7 +149,7 @@ sequenceDiagram
 ### Phase 4: Human Review & Submission
 
 *   The human engineer resolves or rejects Goldfish findings using
-    `/egm-resolve`, updates the design doc, and submits the
+    `/biome-resolve`, updates the design doc, and submits the
     specification via Pull Request for human peer review.
 
 ### Phase 5: Implementation & Drift Monitoring
@@ -157,15 +157,15 @@ sequenceDiagram
 *   **Execution**: Coding agents implement code strictly adhering to the
     approved design document. (No Skill.md is required here because the design 
     document is complete and detailed.)
-*   **Phase Write Boundaries**: Phases 1-4 (`/egm-brainstorm`, `/egm-draft`,
-    `/egm-review`, and `/egm-resolve`) should write only specification and
+*   **Phase Write Boundaries**: Phases 1-4 (`/biome-brainstorm`, `/biome-draft`,
+    `/biome-review`, and `/biome-resolve`) should write only specification and
     review artifacts: `concepts_brief.md`, `design_draft.md`, the review
     reports, the design doc, and `SITEMAP.md` if it exists. They should not
     change production source code or dependencies. This is a convention, and
     nothing enforces it. Once Step 9 (Implementation Readiness Test) passes,
     the plan's `Target Scope & File Boundary` list is the set of files Phase 5
     implementation may write.
-*   **Maintenance**: `/egm-drift-report` is run periodically (e.g. weekly) to
+*   **Maintenance**: `/biome-drift-report` is run periodically (e.g. weekly) to
     detect divergence between codebase implementations and checked-in design docs.
 
 ## Artifact-First UX Protocol

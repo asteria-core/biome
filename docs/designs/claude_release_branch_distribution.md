@@ -47,7 +47,7 @@ read on 2026-10-29.
     It can change the tracked branch or tag in the plugin's settings.
 *   If `plugin.json` sets `version`, raise it with every release.
 *   The portal's Validate step run on 2026-10-29 against
-    `google/elephant-goldfish-model`, plugin path `distributions/claude`, branch
+    `asteria-core/biome`, plugin path `distributions/claude`, branch
     `main` at f0ba151, passed with 6 warnings and 9 policy holds. A policy hold
     sends a version to a reviewer. The author submitted nothing.
 
@@ -442,7 +442,7 @@ group, `publish-claude-branch`, has `cancel-in-progress: false`.
         that begins "For Anthropic, the generated runtime is checked in" (through
         "Do not commit ZIPs.") with: "For Anthropic, dispatching the publisher
         from `main` after a release adds the runtime to `release/claude`. In the directory portal,
-        use repository `google/elephant-goldfish-model` with tracked branch
+        use repository `asteria-core/biome` with tracked branch
         `release/claude` and the fixed plugin path validated in rollout. Preserve
         an existing submission's path. Do not commit the runtime or
         ZIPs to `main`." Keep the OpenAI sentences.
@@ -474,7 +474,7 @@ group, `publish-claude-branch`, has `cancel-in-progress: false`.
     *   Not changed: `.claude-plugin/marketplace.json` has `"source": "./"`, which
         points at the repository root, where `.claude-plugin/plugin.json` exists.
         Installs through `claude plugin marketplace add
-        google/elephant-goldfish-model` do not read `distributions/claude`. The
+        asteria-core/biome` do not read `distributions/claude`. The
         Phase 6 gate checks this.
 
 ### Verification Plan

@@ -1,0 +1,6 @@
+interface:
+  display_name: "BIOME"
+  short_description: "Autonomous end-to-end software delivery ecosystem"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#1B6EF3"

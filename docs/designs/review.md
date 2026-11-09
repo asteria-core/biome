@@ -15,12 +15,12 @@ strict qualitative rubrics.
 
 This document specifies:
 
-1.  The multi-stage review pipeline (`/egm-review`).
-2.  The review orchestration driver (`egm-review-loop`).
+1.  The multi-stage review pipeline (`/biome-review`).
+2.  The review orchestration driver (`biome-review-loop`).
 3.  The complete catalog of specialized reviewer personas.
 4.  The mapping to document standards and evaluation rubrics
     (`resources/document_standards/`).
-5.  The interactive resolution engine (`egm-resolve`).
+5.  The interactive resolution engine (`biome-resolve`).
 
 ## The Problem
 
@@ -37,7 +37,7 @@ same context window drafts and reviews a plan:
 The Goldfish model mitigates this by spawning fresh, stateless subagents that
 read only the target document and explicitly referenced source files.
 
-## Review Pipeline Architecture (`/egm-review`)
+## Review Pipeline Architecture (`/biome-review`)
 
 The full review pipeline executes five sequential evaluation phases:
 
@@ -50,14 +50,14 @@ flowchart TD
     Step6 --> Gate6{Gaps Found?}
     Gate6 -- Yes --> UpdateContext[Clarify Definitions / Context]
     Gate6 -- No --> Step7[Step 7: Critic Review]
-    Step7 --> Loop7[egm-review-loop: design_critic + structural + style]
-    Loop7 --> Resolve7[egm-resolve]
+    Step7 --> Loop7[biome-review-loop: design_critic + structural + style]
+    Loop7 --> Resolve7[biome-resolve]
     Resolve7 --> Step8[Step 8: Intermediate Zoom Out Review]
     Step8 --> Gate8{YAGNI / Bloat Found?}
     Gate8 -- Yes --> PruneBloat[Prune Defensive Over-Engineering]
     Gate8 -- No / Resolved --> Step9[Step 9: Implementation Readiness Test]
-    Step9 --> Loop9[egm-review-loop: implementation_readiness + codebase_details + style]
-    Loop9 --> Resolve9[egm-resolve]
+    Step9 --> Loop9[biome-review-loop: implementation_readiness + codebase_details + style]
+    Loop9 --> Resolve9[biome-resolve]
     Resolve9 --> Done([Ready for Human Peer Review])
 ```
 
@@ -130,7 +130,7 @@ standards; it does not replace those rubrics.
 
 --------------------------------------------------------------------------------
 
-## The Interactive Resolution Engine (`egm-resolve`)
+## The Interactive Resolution Engine (`biome-resolve`)
 
 When Goldfish reviewers complete their audit, the **Elephant Resolution Engine**
 ingests the flat findings list and manages interactive triage.
@@ -180,15 +180,15 @@ drafting.
 
 | File Path | Type | Purpose & Reason for Existence |
 | :-------- | :--- | :----------------------------- |
-| `skills/egm-review/SKILL.md` | Skill Definition | Entry point orchestrating the multi-stage review pipeline (Zoom Out $\rightarrow$ Comprehension $\rightarrow$ Critic $\rightarrow$ Intermediate Zoom Out $\rightarrow$ Readiness). |
-| `skills/egm-review/TEST.md` | Unit Tests | Verification test scenarios testing `/egm-review` multi-stage flow and checkpoint gating. |
-| `skills/egm-review/test_scenarios.yaml` | Evaluation Benchmark | Benchmark test suite evaluating model review precision and recall. |
-| `skills/egm-review-loop/SKILL.md` | Skill Definition | Central review driver managing asynchronous subagent spawning and findings collection. |
-| `skills/egm-review-loop/TEST.md` | Unit Tests | Verification test scenarios testing goldfish review loop dispatch. |
-| `skills/egm-review-loop/test_scenarios.yaml` | Evaluation Benchmark | Benchmark test suite evaluating goldfish review loop dispatch. |
-| `skills/egm-resolve/SKILL.md` | Skill Definition | Elephant resolution engine managing `CONTEST` vs `PROPOSE FIX` triage and automated fixes. |
-| `skills/egm-resolve/TEST.md` | Unit Tests | Verification test scenarios validating the finding categorization and resolution loop. |
-| `skills/egm-resolve/test_scenarios.yaml` | Evaluation Benchmark | Benchmark test suite evaluating model resolution and fix proposal accuracy. |
+| `skills/biome-review/SKILL.md` | Skill Definition | Entry point orchestrating the multi-stage review pipeline (Zoom Out $\rightarrow$ Comprehension $\rightarrow$ Critic $\rightarrow$ Intermediate Zoom Out $\rightarrow$ Readiness). |
+| `skills/biome-review/TEST.md` | Unit Tests | Verification test scenarios testing `/biome-review` multi-stage flow and checkpoint gating. |
+| `skills/biome-review/test_scenarios.yaml` | Evaluation Benchmark | Benchmark test suite evaluating model review precision and recall. |
+| `skills/biome-review-loop/SKILL.md` | Skill Definition | Central review driver managing asynchronous subagent spawning and findings collection. |
+| `skills/biome-review-loop/TEST.md` | Unit Tests | Verification test scenarios testing goldfish review loop dispatch. |
+| `skills/biome-review-loop/test_scenarios.yaml` | Evaluation Benchmark | Benchmark test suite evaluating goldfish review loop dispatch. |
+| `skills/biome-resolve/SKILL.md` | Skill Definition | Elephant resolution engine managing `CONTEST` vs `PROPOSE FIX` triage and automated fixes. |
+| `skills/biome-resolve/TEST.md` | Unit Tests | Verification test scenarios validating the finding categorization and resolution loop. |
+| `skills/biome-resolve/test_scenarios.yaml` | Evaluation Benchmark | Benchmark test suite evaluating model resolution and fix proposal accuracy. |
 | `agents/*.md` | Persona Prompts | System prompt instructions for all 8 Goldfish reviewers and the Synthesizer. |
 | `resources/document_standards/*.md` | Document Standards | Evaluation rubrics and standards for feature specs, implementation readiness, and simplicity. |
 

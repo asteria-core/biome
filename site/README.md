@@ -1,6 +1,6 @@
-# egm.dev
+# github.com/asteria-core/biome
 
-Landing site for the Elephant-Goldfish Model, served at https://egm.dev from
+Landing site for the Elephant-Goldfish Model, served at https://github.com/asteria-core/biome from
 GitHub Pages.
 
 | Light | Dark |
@@ -35,10 +35,10 @@ GitHub Pages.
 - Theme only through gBreeze tokens (`src/styles/tokens.css`) and the
   components' documented custom properties. Do not restyle component boxes.
 - Keep skill names and commands identical to the repository README.
-- **Cookies and analytics (`egm.dev` only)**: The EGM plugin itself collects zero
-  telemetry. On the canonical `https://egm.dev` site only (when
+- **Cookies and analytics (`github.com/asteria-core/biome` only)**: The EGM plugin itself collects zero
+  telemetry. On the canonical `https://github.com/asteria-core/biome` site only (when
   `PUBLIC_GA_MEASUREMENT_ID` is set at build time and
-  `window.location.hostname === 'egm.dev'`), the page loads Google Cookie
+  `window.location.hostname === 'github.com/asteria-core/biome'`), the page loads Google Cookie
   Notification Bar (`cookienotificationbar.min.js`). Google Analytics 4
   (`gtag.js`) loads only after the bar reports an affirmative accepted choice
   with `loaded.detail.required === true`. Pending, rejected, absent, and failed
@@ -77,7 +77,7 @@ these are integration regression checks, not a live Google library audit.
 ## Skill icons
 
 `src/components/SkillIcon.astro` imports the canonical
-`../skills/egm_*/assets/icon.svg` files with `?url`. The website and plugin packages
+`../skills/biome_*/assets/icon.svg` files with `?url`. The website and plugin packages
 use these same assets; do not copy them into `public/` or redraw them in components.
 Each decorative glyph is 28px inside a 40px circle using the existing surface
 tokens, with an adjacent skill name or command providing its accessible label.

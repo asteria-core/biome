@@ -1,11 +1,11 @@
 {
-  "name": "egm",
+  "name": "biome",
   "interface": {
-    "displayName": "Elephant-Goldfish Model"
+    "displayName": "BIOME"
   },
   "plugins": [
     {
-      "name": "egm",
+      "name": "biome",
       "source": "./",
       "policy": {
         "installation": "AVAILABLE",

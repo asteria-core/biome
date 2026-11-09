@@ -81,9 +81,9 @@ This proposal has a separate scope. Issue #7 and the worked-example issue #58 re
 
 | Task group | Skills and commands |
 | --- | --- |
-| Develop an idea | Brainstorm (`/egm-brainstorm`), Draft (`/egm-draft`) |
-| Review a document | Review (`/egm-review`), Resolve findings (`/egm-resolve`), Custom review (`/egm-review-loop`) |
-| Work with code | Document a codebase (`/egm-bootstrap`), Check for drift (`/egm-drift-report`) |
+| Develop an idea | Brainstorm (`/biome-brainstorm`), Draft (`/biome-draft`) |
+| Review a document | Review (`/biome-review`), Resolve findings (`/biome-resolve`), Custom review (`/biome-review-loop`) |
+| Work with code | Document a codebase (`/biome-bootstrap`), Check for drift (`/biome-drift-report`) |
 
 ### Search and copy documentation
 
@@ -152,9 +152,9 @@ Resolve relative paths against the source Markdown file, not its website route.
 Keep query strings and fragments. Preserve absolute URLs, root-relative website paths, and anchor-only references.
 Reject paths outside the repository and missing relative targets during the documentation check.
 
-- Link to repository files through `https://github.com/google/elephant-goldfish-model/blob/main/<path>`.
-- Link to repository directories through `https://github.com/google/elephant-goldfish-model/tree/main/<path>`.
-- Resolve image nodes through `https://raw.githubusercontent.com/google/elephant-goldfish-model/main/<path>`.
+- Link to repository files through `https://github.com/asteria-core/biome/blob/main/<path>`.
+- Link to repository directories through `https://github.com/asteria-core/biome/tree/main/<path>`.
+- Resolve image nodes through `https://raw.githubusercontent.com/asteria-core/biome/main/<path>`.
 - For reference definitions used by images, use the raw asset destination. Other definitions follow the file or directory rule.
 
 An image and an ordinary link can share one reference definition. Use the raw destination for that definition so the image remains valid.
@@ -233,7 +233,7 @@ Extract the existing inline consent script into `site/src/components/Analytics.a
 The component accepts `pageTitle: string` and reads `PUBLIC_GA_MEASUREMENT_ID` during the build.
 `Base.astro` and the Starlight `Head.astro` override both render this component.
 The component emits no script when the measurement ID is empty.
-Its script still checks `window.location.hostname === 'egm.dev'` before it loads external resources.
+Its script still checks `window.location.hostname === 'github.com/asteria-core/biome'` before it loads external resources.
 The shared footer keeps the consent-management control.
 
 Update `site/tests/analytics.test.mjs` to test the extracted script.
@@ -242,7 +242,7 @@ Check pending, rejected, accepted, revoked, failed-initialization, and noncanoni
 
 ### Deployment
 
-GitHub Pages remains the production target for `egm.dev`.
+GitHub Pages remains the production target for `github.com/asteria-core/biome`.
 Its build reacts to site files, website Markdown, skill instructions, and skill icon changes.
 A daily build refreshes public star data.
 
@@ -414,5 +414,5 @@ The Zoom Out review finds no major issue. Comprehension findings pass a resoluti
 The readiness review identifies two file classifications. The draft now states both operations explicitly.
 The exact interface dimensions remain in this document to keep the selected visual target measurable.
 
-These bounded rubric reviews do not establish full `egm-review` completion or convergence.
+These bounded rubric reviews do not establish full `biome-review` completion or convergence.
 The full protocol and maintainer approval remain pending.

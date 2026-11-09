@@ -1,5 +1,5 @@
 ---
-name: egm-structural
+name: biome-structural
 description: Document structure reviewer.
 license: Apache-2.0
 tools: [Read, Grep, Glob]

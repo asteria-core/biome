@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Build and deploy the egm.dev landing site (site/) to GitHub Pages.
+# Build and deploy the github.com/asteria-core/biome landing site (site/) to GitHub Pages.
 #
 # Analytics and Cookie Notification Bar run only when window.location.hostname
-# is 'egm.dev' and vars.PUBLIC_GA_MEASUREMENT_ID is configured on the repository,
+# is 'github.com/asteria-core/biome' and vars.PUBLIC_GA_MEASUREMENT_ID is configured on the repository,
 # so forks and local builds never send data to Google hosts.
 #
 # First deploy (launch day): repository must be public, then Settings > Pages >
-# Source = GitHub Actions, custom domain = egm.dev, Enforce HTTPS. Run this
+# Source = GitHub Actions, custom domain = github.com/asteria-core/biome, Enforce HTTPS. Run this
 # workflow once by hand with workflow_dispatch.
 name: Deploy site
 

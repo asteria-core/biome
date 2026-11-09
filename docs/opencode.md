@@ -5,7 +5,7 @@
 This adapter targets OpenCode CLI **1.18.29**, with V1 `task` and `permission` interfaces.
 It does not target V2 `subagent` or `permissions` interfaces.
 Installation checks do not establish workflow or isolation support.
-Maintainer approval, live workflows, and isolation verification remain pending under [#146](https://github.com/google/elephant-goldfish-model/issues/146).
+Maintainer approval, live workflows, and isolation verification remain pending under [#146](https://github.com/asteria-core/biome/issues/146).
 The proposed architecture is in [the additional harness design](designs/additional-harnesses.md).
 
 ## Install
@@ -44,11 +44,11 @@ Select `egm` before native skill use. Other primary agents do not receive this a
 For review text, use an ordinary message rather than a slash command. For example:
 
 ```text
-Use the egm-review skill to review /absolute/path/design.md.
+Use the biome-review skill to review /absolute/path/design.md.
 ```
 
 Paste material into that ordinary message, or save it in a file for the agent to read.
-The generated `/egm-brainstorm`, `/egm-draft`, and `/egm-review` commands retain
+The generated `/biome-brainstorm`, `/biome-draft`, and `/biome-review` commands retain
 OpenCode's native command syntax. Their arguments are not literal text: OpenCode
 evaluates shell markers (an exclamation mark followed by a command in backticks)
 before agent tool permissions apply. Do not paste untrusted review material into

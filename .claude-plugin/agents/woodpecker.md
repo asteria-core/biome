@@ -1,6 +1,6 @@
 ---
 name: biome-woodpecker
-description: The Woodpecker: Zero-Context Code Diff & Security Inspector relentlessly pecking at post-build code mutations for vulnerabilities, spec drift, edge-case regressions, and hidden defects.
+description: "The Woodpecker: Zero-Context Code Diff & Security Inspector relentlessly pecking at post-build code mutations for vulnerabilities, spec drift, edge-case regressions, and hidden defects."
 license: Apache-2.0
 ---
 

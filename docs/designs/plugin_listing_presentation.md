@@ -30,9 +30,9 @@ This proposal supplies a separate design review path. It does not claim a scope 
 - Describe idea development, document preparation, and independent review in plain language.
 - Use one short description for each skill across canonical and generated files.
 - Set the OpenAI listing category to Productivity.
-- Keep `https://egm.dev` as the website destination.
+- Keep `https://github.com/asteria-core/biome` as the website destination.
 - Keep the repository issues page as the support destination.
-- Use `https://policies.google.com/privacy` for `privacyPolicyUrl` and retain `https://github.com/google/elephant-goldfish-model/blob/main/LICENSE` for `termsOfServiceUrl`.
+- Use `https://policies.google.com/privacy` for `privacyPolicyUrl` and retain `https://github.com/asteria-core/biome/blob/main/LICENSE` for `termsOfServiceUrl`.
 - Keep manifest files schema-valid and generated Claude files equal to package output.
 - Add three plugin starter prompts and a default prompt for each of the seven skills.
 - Preserve EGM-prefixed skill names and stable skill identifiers.
@@ -152,27 +152,27 @@ The seven canonical skill bodies remain unchanged.
 - `README.md`.
 - `plugin.json`.
 - `scripts/pack_plugin.py`.
-- `skills/egm-bootstrap/SKILL.md`.
-- `skills/egm-bootstrap/agents/openai.yaml`.
-- `skills/egm-bootstrap/assets/icon.png`.
-- `skills/egm-brainstorm/SKILL.md`.
-- `skills/egm-brainstorm/agents/openai.yaml`.
-- `skills/egm-brainstorm/assets/icon.png`.
-- `skills/egm-draft/SKILL.md`.
-- `skills/egm-draft/agents/openai.yaml`.
-- `skills/egm-draft/assets/icon.png`.
-- `skills/egm-drift-report/SKILL.md`.
-- `skills/egm-drift-report/agents/openai.yaml`.
-- `skills/egm-drift-report/assets/icon.png`.
-- `skills/egm-resolve/SKILL.md`.
-- `skills/egm-resolve/agents/openai.yaml`.
-- `skills/egm-resolve/assets/icon.png`.
-- `skills/egm-review-loop/SKILL.md`.
-- `skills/egm-review-loop/agents/openai.yaml`.
-- `skills/egm-review-loop/assets/icon.png`.
-- `skills/egm-review/SKILL.md`.
-- `skills/egm-review/agents/openai.yaml`.
-- `skills/egm-review/assets/icon.png`.
+- `skills/biome-bootstrap/SKILL.md`.
+- `skills/biome-bootstrap/agents/openai.yaml`.
+- `skills/biome-bootstrap/assets/icon.png`.
+- `skills/biome-brainstorm/SKILL.md`.
+- `skills/biome-brainstorm/agents/openai.yaml`.
+- `skills/biome-brainstorm/assets/icon.png`.
+- `skills/biome-draft/SKILL.md`.
+- `skills/biome-draft/agents/openai.yaml`.
+- `skills/biome-draft/assets/icon.png`.
+- `skills/biome-drift-report/SKILL.md`.
+- `skills/biome-drift-report/agents/openai.yaml`.
+- `skills/biome-drift-report/assets/icon.png`.
+- `skills/biome-resolve/SKILL.md`.
+- `skills/biome-resolve/agents/openai.yaml`.
+- `skills/biome-resolve/assets/icon.png`.
+- `skills/biome-review-loop/SKILL.md`.
+- `skills/biome-review-loop/agents/openai.yaml`.
+- `skills/biome-review-loop/assets/icon.png`.
+- `skills/biome-review/SKILL.md`.
+- `skills/biome-review/agents/openai.yaml`.
+- `skills/biome-review/assets/icon.png`.
 - `tests/integration/test_codex.py`.
 - `tests/unit/test_packaging.py`.
 
@@ -191,27 +191,27 @@ Regenerate these files with the existing package builder. Do not edit them indep
 - `distributions/claude/.claude-plugin/plugin.json`.
 - `distributions/claude/README.md`.
 - `distributions/claude/plugin.json`.
-- `distributions/claude/skills/egm-bootstrap/SKILL.md`.
-- `distributions/claude/skills/egm-bootstrap/agents/openai.yaml`.
-- `distributions/claude/skills/egm-bootstrap/assets/icon.png`.
-- `distributions/claude/skills/egm-brainstorm/SKILL.md`.
-- `distributions/claude/skills/egm-brainstorm/agents/openai.yaml`.
-- `distributions/claude/skills/egm-brainstorm/assets/icon.png`.
-- `distributions/claude/skills/egm-draft/SKILL.md`.
-- `distributions/claude/skills/egm-draft/agents/openai.yaml`.
-- `distributions/claude/skills/egm-draft/assets/icon.png`.
-- `distributions/claude/skills/egm-drift-report/SKILL.md`.
-- `distributions/claude/skills/egm-drift-report/agents/openai.yaml`.
-- `distributions/claude/skills/egm-drift-report/assets/icon.png`.
-- `distributions/claude/skills/egm-resolve/SKILL.md`.
-- `distributions/claude/skills/egm-resolve/agents/openai.yaml`.
-- `distributions/claude/skills/egm-resolve/assets/icon.png`.
-- `distributions/claude/skills/egm-review-loop/SKILL.md`.
-- `distributions/claude/skills/egm-review-loop/agents/openai.yaml`.
-- `distributions/claude/skills/egm-review-loop/assets/icon.png`.
-- `distributions/claude/skills/egm-review/SKILL.md`.
-- `distributions/claude/skills/egm-review/agents/openai.yaml`.
-- `distributions/claude/skills/egm-review/assets/icon.png`.
+- `distributions/claude/skills/biome-bootstrap/SKILL.md`.
+- `distributions/claude/skills/biome-bootstrap/agents/openai.yaml`.
+- `distributions/claude/skills/biome-bootstrap/assets/icon.png`.
+- `distributions/claude/skills/biome-brainstorm/SKILL.md`.
+- `distributions/claude/skills/biome-brainstorm/agents/openai.yaml`.
+- `distributions/claude/skills/biome-brainstorm/assets/icon.png`.
+- `distributions/claude/skills/biome-draft/SKILL.md`.
+- `distributions/claude/skills/biome-draft/agents/openai.yaml`.
+- `distributions/claude/skills/biome-draft/assets/icon.png`.
+- `distributions/claude/skills/biome-drift-report/SKILL.md`.
+- `distributions/claude/skills/biome-drift-report/agents/openai.yaml`.
+- `distributions/claude/skills/biome-drift-report/assets/icon.png`.
+- `distributions/claude/skills/biome-resolve/SKILL.md`.
+- `distributions/claude/skills/biome-resolve/agents/openai.yaml`.
+- `distributions/claude/skills/biome-resolve/assets/icon.png`.
+- `distributions/claude/skills/biome-review-loop/SKILL.md`.
+- `distributions/claude/skills/biome-review-loop/agents/openai.yaml`.
+- `distributions/claude/skills/biome-review-loop/assets/icon.png`.
+- `distributions/claude/skills/biome-review/SKILL.md`.
+- `distributions/claude/skills/biome-review/agents/openai.yaml`.
+- `distributions/claude/skills/biome-review/assets/icon.png`.
 
 Add the 14 PNG assets listed above. Delete no source files. Change no dependencies.
 

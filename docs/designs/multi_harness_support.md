@@ -3,7 +3,7 @@
 * **Authors:** Sriram ([@Seburan](https://github.com/Seburan)), Sriram Yatham ([@yathamsriram243-blip](https://github.com/yathamsriram243-blip))
 * **Status:** Stage 1 design proposal; native contracts and live runs unverified
 * **Updated:** 2026-10-30
-* **Refs:** [#116](https://github.com/google/elephant-goldfish-model/issues/116)
+* **Refs:** [#116](https://github.com/asteria-core/biome/issues/116)
 
 ## 1. Problem and Goals
 
@@ -52,7 +52,7 @@ turning an input into an implementation contract.
 | --- | --- | --- |
 | Hermes Agent | Current [delegation documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation) exposes `delegate_task(goal, context)`. Children have fresh conversations but inherit tool access and may receive workspace project context. | Package discovery, exact installed release, persona loading, project-context suppression, and enforced read-only permissions. Do not assume `hermes.spawn` or a per-call Claude-style tool filter. |
 | OpenClaw | The [manifest documentation](https://docs.openclaw.ai/plugins/manifest) distinguishes native `openclaw.plugin.json` plugins from compatible bundles. | Probe the existing EGM bundle first. Otherwise document the native schema and package root. Verify `openclaw plugins install`, loaded plugin identity, and the exact `sessions_spawn` schema against the pinned release. A renamed JSON file does not prove compatibility. |
-| Delta | [#116](https://github.com/google/elephant-goldfish-model/issues/116) names Delta as a target. | Confirm the product, upstream repository, release, installation format, and delegation API. No `delta.spawn`, isolation flag, manifest path, or minimum version is specified here. |
+| Delta | [#116](https://github.com/asteria-core/biome/issues/116) names Delta as a target. | Confirm the product, upstream repository, release, installation format, and delegation API. No `delta.spawn`, isolation flag, manifest path, or minimum version is specified here. |
 
 No host-specific manifest path or minimum engine version is selected until
 the corresponding source and native installation probe establish it.
@@ -135,7 +135,7 @@ Attach the following evidence for each host:
   project context were excluded. Use a parent-only canary probe.
 * Effective child permissions and a negative probe showing mutation attempts
   are blocked. A prompt asking for read-only behavior is insufficient.
-* End-to-end `/egm-brainstorm`, `/egm-draft`, and `/egm-review` outputs.
+* End-to-end `/biome-brainstorm`, `/biome-draft`, and `/biome-review` outputs.
   Verify reviewer completion, required reads, and stage order from traces.
 * Limits, failures, and measured usage. Redact credentials before publication.
 

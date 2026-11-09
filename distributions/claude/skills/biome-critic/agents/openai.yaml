@@ -1,0 +1,6 @@
+interface:
+  display_name: "BIOME Critic"
+  short_description: "Adversarial UI/UX and architectural audit"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#1B6EF3"

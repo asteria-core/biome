@@ -3,7 +3,7 @@
 - **Author:** [@n3wth](https://github.com/n3wth)
 - **Status:** Proposal. Maintainer scope approval and design review pending.
 - **Date:** 2026-10-24
-- **Tracking:** [Cursor #145](https://github.com/google/elephant-goldfish-model/issues/145), [OpenCode #146](https://github.com/google/elephant-goldfish-model/issues/146), [Copilot CLI #147](https://github.com/google/elephant-goldfish-model/issues/147)
+- **Tracking:** [Cursor #145](https://github.com/asteria-core/biome/issues/145), [OpenCode #146](https://github.com/asteria-core/biome/issues/146), [Copilot CLI #147](https://github.com/asteria-core/biome/issues/147)
 
 ## Problem and goals
 
@@ -85,10 +85,10 @@ Record unknown native isolation as unverified, never as a passing result.
 
 Preserve the gates defined in the canonical skills:
 
-- [Brainstorm](../../skills/egm-brainstorm/SKILL.md): confirm readiness before Goldfish dispatch, then approve the brief before handoff.
-- [Draft](../../skills/egm-draft/SKILL.md): confirm the intake and obtain approval to draft. Approve each section. Confirm the destination when none was supplied.
-- [Review](../../skills/egm-review/SKILL.md): select the preset when none was supplied. Preserve its required stage checkpoints and pause/resume choices.
-- [Resolve](../../skills/egm-resolve/SKILL.md): present proposed fixes and contested findings before applying edits approved by the user.
+- [Brainstorm](../../skills/biome-brainstorm/SKILL.md): confirm readiness before Goldfish dispatch, then approve the brief before handoff.
+- [Draft](../../skills/biome-draft/SKILL.md): confirm the intake and obtain approval to draft. Approve each section. Confirm the destination when none was supplied.
+- [Review](../../skills/biome-review/SKILL.md): select the preset when none was supplied. Preserve its required stage checkpoints and pause/resume choices.
+- [Resolve](../../skills/biome-resolve/SKILL.md): present proposed fixes and contested findings before applying edits approved by the user.
 
 Use plain chat when the host has no structured question tool. Wait for the
 human response wherever the selected workflow requires one. A noninteractive
@@ -152,9 +152,9 @@ Propose any required implementation separately after this assessment.
 ### Shared checks
 
 Reuse the prompts and assertions in the existing skill suites:
-[brainstorm scenarios](../../skills/egm-brainstorm/test_scenarios.yaml),
-[draft scenarios](../../skills/egm-draft/test_scenarios.yaml), and
-[review scenarios](../../skills/egm-review/test_scenarios.yaml).
+[brainstorm scenarios](../../skills/biome-brainstorm/test_scenarios.yaml),
+[draft scenarios](../../skills/biome-draft/test_scenarios.yaml), and
+[review scenarios](../../skills/biome-review/test_scenarios.yaml).
 Use the marker probe and line-count workflow fixture in
 [`tests/integration/test_codex.py`](../../tests/integration/test_codex.py),
 plus the project-instruction and parent-marker probe in
@@ -162,7 +162,7 @@ plus the project-instruction and parent-marker probe in
 as behavioral references. Their native trace readers are host-specific.
 Adapt evidence collection to each new host; do not reuse incompatible parsers.
 The common runner and results schema remain follow-up work in
-[#112](https://github.com/google/elephant-goldfish-model/issues/112).
+[#112](https://github.com/asteria-core/biome/issues/112).
 
 Offline checks must cover:
 

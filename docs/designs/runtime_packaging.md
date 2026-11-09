@@ -86,8 +86,8 @@ OpenAI packaging does not establish support for every ChatGPT mode.
 - Record the source SHA, installed artifact identity, host/model version,
   and separate installation, workflow, and isolation outcomes.
 - Preserve the cloud workflow and isolation gaps in
-  [Cowork #105](https://github.com/google/elephant-goldfish-model/issues/105)
-  and [ChatGPT Work #106](https://github.com/google/elephant-goldfish-model/issues/106).
+  [Cowork #105](https://github.com/asteria-core/biome/issues/105)
+  and [ChatGPT Work #106](https://github.com/asteria-core/biome/issues/106).
 - Obtain scope approval and merge this design before merging #136.
 - Coordinate tagged artifacts through the [release design](releases.md).
 

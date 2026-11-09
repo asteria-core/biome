@@ -13,14 +13,14 @@
 # limitations under the License.
 
 skill: "biome-review-loop"
-description: "Behavioral evaluation scenario suite for egm-review-loop skill."
+description: "Behavioral evaluation scenario suite for biome-review-loop skill."
 
 scenarios:
   - scenario_id: "orchestrate_parallel_critiques"
     description: "Verifies review persona orchestration and findings compilation."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review-loop/SKILL.md"
+      skill_file: "skills/biome-review-loop/SKILL.md"
     turns:
       - user_input: "Orchestrate multi-perspective Goldfish review on docs/design.md."
         assertions:
@@ -32,7 +32,7 @@ scenarios:
     description: "Verifies the loop stops on consecutive clean rounds, not on zero findings, and does not re-open settled findings."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review-loop/SKILL.md"
+      skill_file: "skills/biome-review-loop/SKILL.md"
     turns:
       - user_input: "Round 3 of the review loop on docs/design.md returned two Nits and one Major that was contested in round 1. Round 2 was clean. What happens next?"
         assertions:
@@ -44,7 +44,7 @@ scenarios:
     description: "Verifies a reviewer with no status in the synthesizer summary counts as not run, so a zero-findings round is not clean."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review-loop/SKILL.md"
+      skill_file: "skills/biome-review-loop/SKILL.md"
     turns:
       - user_input: "The synthesizer summary for round 2 on docs/design.md says: 0 findings; egm-design completed, egm-structural completed. egm-style was also requested. Is round 2 clean?"
         assertions:
@@ -56,7 +56,7 @@ scenarios:
     description: "Verifies that a URL in GoldfishContext is saved as a file before the first round, because some reviewers cannot open URLs."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review-loop/SKILL.md"
+      skill_file: "skills/biome-review-loop/SKILL.md"
     turns:
       - user_input: "Run the review loop on docs/design.md, full file, with reviewers design_critic and structural, both on feature-spec-standard, and GoldfishContext [src/cache.py, https://redis.io/docs/latest/develop/use/keyspace/]. I confirm this configuration; start round 1."
         assertions:
@@ -74,7 +74,7 @@ scenarios:
     description: "Verifies that the loop asks for a local copy when a GoldfishContext page cannot be saved."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review-loop/SKILL.md"
+      skill_file: "skills/biome-review-loop/SKILL.md"
     turns:
       - user_input: "Run the review loop on docs/design.md, full file, with reviewers design_critic and structural, both on feature-spec-standard, and GoldfishContext [src/cache.py, https://redis.io/docs/latest/develop/use/keyspace/]. Network access is off in this session, so that page cannot be fetched. I confirm this configuration; start round 1."
         assertions:

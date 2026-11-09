@@ -9,7 +9,7 @@ import vm from 'node:vm';
 const layout = readFileSync(new URL('../src/layouts/Base.astro', import.meta.url), 'utf8');
 const source = layout.match(/<script is:inline define:vars=\{\{ gaMeasurementId, pageTitle: title \}\}>([\s\S]*?)<\/script>/)[1];
 
-function page({ hostname = 'egm.dev', measurementId = 'G-TEST' } = {}) {
+function page({ hostname = 'github.com/asteria-core/biome', measurementId = 'G-TEST' } = {}) {
   const elements = [];
   const window = {
     location: {
@@ -82,7 +82,7 @@ test('pending and rejected consent never load GA; a later affirmative choice sta
   assert.ok(commands.findIndex(([command, type, value]) => command === 'consent' && type === 'update' && value.analytics_storage === 'granted')
     < commands.findIndex(([command]) => command === 'config'));
   const config = commands.find(([command]) => command === 'config')[2];
-  assert.equal(config.page_location, 'https://egm.dev/guide?utm_source=test');
+  assert.equal(config.page_location, 'https://github.com/asteria-core/biome/guide?utm_source=test');
   assert.equal(config.page_referrer, 'https://example.com/start');
   assert.equal(config.allow_google_signals, false);
   assert.equal(config.allow_ad_personalization_signals, false);

@@ -5,7 +5,7 @@ Author: @n3wth. Date: 2026-10-25.
 
 ## Purpose and scope
 
-Use the same seven skill marks in plugin pickers and the README, with egm.dev
+Use the same seven skill marks in plugin pickers and the README, with github.com/asteria-core/biome
 integration in a separate follow-up PR.
 The approved artwork uses familiar silhouettes with two color facets. This
 change replaces the existing skill artwork; it does not change skill behavior,
@@ -13,7 +13,7 @@ reviewer permissions, installation, or the Elephant-Goldfish logo.
 
 ## Source and geometry
 
-Each `skills/egm-*/assets/icon.svg` is the canonical asset. Keep the SVGs
+Each `skills/biome-*/assets/icon.svg` is the canonical asset. Keep the SVGs
 self-contained, with a title and a 24 by 24 viewBox. Visible ink stays inside
 the 20 px keyline. Optical size and positioning corrections are part of the
 artwork; do not normalize individual bounding boxes or stroke widths.

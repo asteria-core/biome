@@ -1,5 +1,23 @@
 ## Execution Instructions
 
+*   **The Elephant Iron Rule (CRITICAL)**: The Elephant is strictly prohibited
+    from writing or editing source code. The Elephant's sole function is
+    conversational discovery, spec generation, and reviewing Beaver receipts.
+    Code modifications are exclusively performed by the Beaver (via `skills/biome-build`)
+    using the deterministic `.egm/project_index.json` manifest emitted by the Indexer Goldfish.
+*   **The Reaper Protocol & Zero-Zombie Invariant (CRITICAL)**: Every subagent
+    (Goldfish reviewer, Indexer Goldfish, Beaver builder) is strictly single-use
+    and ephemeral. Immediately upon delivering its deliverable (review report,
+    `.egm/project_index.json`, or execution receipt), the subagent session MUST
+    be terminated and destroyed. If the user subsequently requests any change, modification, or
+    follow-up work, the Elephant is strictly forbidden from reusing, reviving, or
+    sending messages to any previous subagent. A completely brand-new, clean subagent
+    instance must be spawned from scratch for every subsequent iteration.
+*   **Modular Micro-Architecture Mandate**: All generated code must adhere to
+    strict single-responsibility decomposition. Never bundle multiple features
+    or sprawling algorithms into monolithic files. Separate distinct concerns into
+    cleanly organized folders and granular files with minimal line counts to ensure
+    crisp, unambiguous indexing by `.egm/project_index.json`.
 *   **Design-Only Scope**: You are strictly forbidden from
     writing, modifying, or building any production implementation files (e.g.,
     `.h`, `.cc`, `.py`, `.go`) in the source tree. You may only write code

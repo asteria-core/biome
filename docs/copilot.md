@@ -2,7 +2,7 @@
 
 # GitHub Copilot CLI integration
 
-Experimental adapter for [issue #147](https://github.com/google/elephant-goldfish-model/issues/147).
+Experimental adapter for [issue #147](https://github.com/asteria-core/biome/issues/147).
 Workflow execution and reviewer isolation remain unverified. This guide does
 not establish support for Copilot in VS Code or the cloud agent.
 
@@ -42,11 +42,11 @@ In the first message, supply the absolute package root and requested skill:
 
 ```text
 EGM package root: /absolute/path/to/elephant-goldfish-model
-Read that package's docs/copilot.md and run egm-brainstorm.
+Read that package's docs/copilot.md and run biome-brainstorm.
 EGM artifact directory: .dev/docs
 ```
 
-Use `egm-draft` or `egm-review` in later requests. Provide the target document
+Use `biome-draft` or `biome-review` in later requests. Provide the target document
 for review. Use the `egm:egm` entry agent so the host mapping loads before a skill.
 Selecting a reviewer as the main session does not establish a fresh Goldfish context.
 Check `/agent` for name conflicts before use; personal profiles can override package profiles.
@@ -162,7 +162,7 @@ Representative native records, with the local root abbreviated as `<package>`:
 
 ```json
 {"id":"egm:egm-design","source":"plugin","path":"<package>/com.github.copilot/agents/egm-design.agent.md","tools":["read","search"],"userInvocable":false,"mcpServers":{}}
-{"name":"egm-review","commandName":"egm:egm-review","source":"plugin","path":"<package>/skills/egm-review/SKILL.md","enabled":true}
+{"name":"biome-review","commandName":"egm:biome-review","source":"plugin","path":"<package>/skills/biome-review/SKILL.md","enabled":true}
 ```
 
 The standalone `skill list` command omitted mounted skills on this version.

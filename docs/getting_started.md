@@ -28,7 +28,7 @@ The EGM skills and personas are packaged as a plugin for **Antigravity**, **Clau
 
 1.  **Skills**: The skills in `skills/` can be installed via the plugin/extension
     manifest. This guide shows their commands without a prefix (e.g.
-    `/egm-brainstorm`, `/egm-draft`, `/egm-review`); see
+    `/biome-brainstorm`, `/biome-draft`, `/biome-review`); see
     [Try your first design](../README.md#try-your-first-design) for how to
     invoke them in Antigravity (agy CLI), Claude Code, and Codex, such as the
     `/egm:` prefix.
@@ -56,16 +56,16 @@ Use whichever skill serves your immediate bottleneck.
 
 The "core" workflow looks like:
 
-1.  **`/egm-brainstorm`**: Start an upstream ideation session. This command
+1.  **`/biome-brainstorm`**: Start an upstream ideation session. This command
     prompts the developer to clarify the concept, then spawns a multi-lens Goldfish
     swarm to stress-test the concept and generate a structured `concepts_brief.md`
     artifact.
 
-2.  **`/egm-draft`**: Drafts a design doc. This command turns a concept brief or
+2.  **`/biome-draft`**: Drafts a design doc. This command turns a concept brief or
     initial idea into a formal markdown design doc under `docs/designs/`, section
     by section.
 
-3.  **`/egm-review`**: Reviews a design with **Goldfish**. Performs a
+3.  **`/biome-review`**: Reviews a design with **Goldfish**. Performs a
     multi-stage review of a design doc in a fresh, zero-context session to
     validate its completeness, clarity, self-containment, and readiness.
 
@@ -80,7 +80,7 @@ The "core" workflow looks like:
     Once all review objections are resolved and the design specification is marked APPROVED:
     *   **The Elephant Iron Rule**: The Elephant is strictly prohibited from writing or editing source code. The Elephant's sole function is conversational discovery, spec generation, and reviewing Beaver receipts.
     *   **Deterministic Indexing (`agents/indexer.md`)**: A fresh zero-context Indexer Goldfish inspects the codebase and parses the approved spec to emit a normalized `.egm/project_index.json` containing `target_mutation_plan`.
-    *   **Phase-Isolated Build (`skills/egm-build`)**: The Beaver builder executes the mutations within an isolated, ephemeral session without inheriting conversational history, runs local tests, performs self-healing, creates an atomic semantic commit, and returns an execution receipt.
+    *   **Phase-Isolated Build (`skills/biome-build`)**: The Beaver builder executes the mutations within an isolated, ephemeral session without inheriting conversational history, runs local tests, performs self-healing, creates an atomic semantic commit, and returns an execution receipt.
 
     > NOTE: Every team is going to have different skills that are relevant to
     > their implementation phase. Readability and style guides, profiling tools,
@@ -92,7 +92,7 @@ The "core" workflow looks like:
 To ensure that your design specifications and active codebase remain
 synchronized over time, EGM provides a drift detection skill:
 
-*   **`/egm-drift-report`**: Scan your design directory and referenced code for
+*   **`/biome-drift-report`**: Scan your design directory and referenced code for
     drift. Any detected divergence should be reconciled. Either update the doc,
     or the code. Human picks which.
 
@@ -119,7 +119,7 @@ path/to/project
 
 ### Bootstrapping
 
-`/egm-bootstrap <path/to/project>` automatically generates, formats, and
+`/biome-bootstrap <path/to/project>` automatically generates, formats, and
 performs a first-pass verification of READMEs across a directory tree to
 establish codebase context. Humans should still review this output. It does this
 using a bottom-up, recursive summarization process:

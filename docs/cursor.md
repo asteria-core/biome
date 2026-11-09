@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 
 This adapter targets Cursor local Agent. Installation, workflow, and isolation
 remain unverified. Do not add Cursor to the supported-host table yet.
-See the [design](designs/additional-harnesses.md) and [issue #145](https://github.com/google/elephant-goldfish-model/issues/145).
+See the [design](designs/additional-harnesses.md) and [issue #145](https://github.com/asteria-core/biome/issues/145).
 
 ## Interface and version
 
@@ -78,13 +78,13 @@ Before the first skill, provide the installed root to the local Agent:
 ```text
 EGM_ROOT: /absolute/path/to/cursor-package
 Read /absolute/path/to/cursor-package/docs/cursor.md.
-Run /egm-brainstorm for the requested feature.
+Run /biome-brainstorm for the requested feature.
 ```
 
 Select the installed EGM skill from Cursor's slash menu.
 If a skill is not exposed, read its absolute `skills/<directory>/SKILL.md`
 and follow it in the parent context. Do not invent a slash-command namespace.
-Use the same process for `egm-draft`, `egm-review`, and workflow subskills.
+Use the same process for `biome-draft`, `biome-review`, and workflow subskills.
 The adapter rule must be active before execution.
 
 Resolve `agents/`, `resources/`, and `docs/` against the selected package root.

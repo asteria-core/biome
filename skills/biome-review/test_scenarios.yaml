@@ -13,14 +13,14 @@
 # limitations under the License.
 
 skill: "biome-review"
-description: "Behavioral evaluation scenario suite for egm-review skill."
+description: "Behavioral evaluation scenario suite for biome-review skill."
 
 scenarios:
   - scenario_id: "intake_preset_selection_before_split_discovery"
     description: "Asserts that Step 2 Curated Pipeline Preset selection precedes Step 3 Semantic Split Discovery."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Run EGM Review on docs/feature_spec_and_plan.md."
         assertions:
@@ -41,7 +41,7 @@ scenarios:
     description: "Asserts that selecting Feature Spec Gates Only bypasses split discovery and halts before Stage 9."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Run EGM Review on early-stage feature spec with Preset: Feature Spec Gates Only."
         assertions:
@@ -56,7 +56,7 @@ scenarios:
     description: "Verifies comprehension critique flags undefined terminology."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Review this draft: 'The synchronizer will save data to InternalDB using MagicSync.'"
         assertions:
@@ -68,7 +68,7 @@ scenarios:
     description: "Injects distributed architecture lacking SLOs/latencies; asserts design critic catches omissions."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Review this design: 'We will store user profiles in a globally replicated database across multiple read replicas.'"
         assertions:
@@ -80,7 +80,7 @@ scenarios:
     description: "Injects underspecified tasks; asserts readiness review flags non-actionable steps."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Review implementation plan: '1. Write the client library. 2. Run verification.'"
         assertions:
@@ -92,7 +92,7 @@ scenarios:
     description: "Verifies heading hierarchy, banned adjectives, and objective tone."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Audit the style and structure of this design document draft."
         assertions:
@@ -104,7 +104,7 @@ scenarios:
     description: "Verifies the Comprehension Test does not apply the re-implementation standard to a design document."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Run only Stage 6 (Comprehension Test) on docs/designs/rate_limit.md. Which document standard does the reviewer apply?"
         assertions:
@@ -116,7 +116,7 @@ scenarios:
     description: "Verifies the Comprehension Test report keeps the reviewer's paraphrase."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Run only Stage 6 (Comprehension Test) on docs/designs/rate_limit.md. The reviewer reports no findings. What goes in comprehension_report.md?"
         assertions:
@@ -128,7 +128,7 @@ scenarios:
     description: "Asserts that links outside the working directory are listed and need user approval, and that declined links are reported as excluded."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Run EGM Review on docs/design.md with Step: uninterrupted and no additional context. The doc links to ./api.md, /etc/hosts, ../../other-repo/notes.md, and https://example.com/spec."
         assertions:
@@ -157,7 +157,7 @@ scenarios:
     description: "Verifies that a URL the user gives in GoldfishContext is saved as a file before the first stage, because some reviewers cannot open URLs."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Run EGM Review on docs/design.md with Step: 5 and GoldfishContext [https://redis.io/docs/latest/develop/use/keyspace/]. The doc cites no other sources."
         assertions:
@@ -175,7 +175,7 @@ scenarios:
     description: "Asserts that Step 5 Initial Strategic Review dispatches Inventive Catalyst to detect false compromises and identify inventive pattern resolutions."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "Execute Step 5 (Initial Strategic Review) on docs/designs/storage.md, which states that high write throughput inevitably requires sacrificing durability."
         assertions:
@@ -187,7 +187,7 @@ scenarios:
     description: "Validates that Inventive Catalyst outputs No false compromise detected when foundational architecture has no false compromise in Step 5."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-review/SKILL.md"
+      skill_file: "skills/biome-review/SKILL.md"
     turns:
       - user_input: "In Step 5, Inventive Catalyst returned \"No false compromise detected\" and Zoom Out returned two findings. Write the Inventive Catalyst part of zoom_out_report.md."
         assertions:

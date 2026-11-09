@@ -277,7 +277,7 @@ These simulated approvals do not test interactive approval-gate behavior.
 Use direct dispatch for this test so each reviewer is visible in the parent
 trace; test nested delegation separately. Run real fresh-context native
 reviewers, wait for completion, and write concepts_brief.md and design_draft.md.
-Then run egm-review on design_draft.md with Step: uninterrupted and no additional
+Then run biome-review on design_draft.md with Step: uninterrupted and no additional
 GoldfishContext. Produce all five stage reports, including implementation
 readiness. Use distinct report paths; do not overwrite another stage's report.
 Do not publish, commit, use external services or memory, or modify the plugin.
@@ -292,10 +292,10 @@ are unavailable. Keep the fixture small and reviews concise.
         for path in (root / "skills").iterdir()
         if path.is_dir()
     }
-    assert {"egm-brainstorm", "egm-draft", "egm-review"} <= skill_dirs.keys()
+    assert {"biome-brainstorm", "biome-draft", "biome-review"} <= skill_dirs.keys()
     required_skill_reads = {
         skill_dirs[skill] / "SKILL.md"
-        for skill in ("egm-brainstorm", "egm-draft", "egm-review")
+        for skill in ("biome-brainstorm", "biome-draft", "biome-review")
     }
     reads = successful_reads(trace)
     assert required_skill_reads <= reads, "Installed skills not read"

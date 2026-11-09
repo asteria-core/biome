@@ -3,7 +3,7 @@
 *   **The Elephant Iron Rule (CRITICAL)**: The Elephant is strictly prohibited
     from writing or editing source code. The Elephant's sole function is
     conversational discovery, spec generation, and reviewing Beaver receipts.
-    Code modifications are exclusively performed by the Beaver (via `skills/egm-build`)
+    Code modifications are exclusively performed by the Beaver (via `skills/biome-build`)
     using the deterministic `.egm/project_index.json` manifest emitted by the Indexer Goldfish.
 *   **The Reaper Protocol & Zero-Zombie Invariant (CRITICAL)**: Every subagent
     (Goldfish reviewer, Indexer Goldfish, Beaver builder) is strictly single-use

@@ -1,12 +1,12 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 
-// Static landing site for https://egm.dev, deployed to GitHub Pages.
-// Analytics and Cookie Notification Bar load only on canonical egm.dev when
+// Static landing site for https://github.com/asteria-core/biome, deployed to GitHub Pages.
+// Analytics and Cookie Notification Bar load only on canonical github.com/asteria-core/biome when
 // PUBLIC_GA_MEASUREMENT_ID is configured; forks and local builds make zero
 // runtime requests to Google hosts.
 export default defineConfig({
-  site: 'https://egm.dev',
+  site: 'https://github.com/asteria-core/biome',
   output: 'static',
   fonts: [
     {

@@ -30,11 +30,11 @@ Stage 2: use Closes #<issue> with pr-ready and link the merged design.
 
 <!-- List relevant checks, commands or evidence links, and results.
 Call out failures and meaningful checks not run, with the reason.
-For Stage 1, record egm-review, egm-resolve, and any remaining findings.
+For Stage 1, record biome-review, biome-resolve, and any remaining findings.
 For harness support, record host/version, installation, and evidence for
-egm-brainstorm, egm-draft, and egm-review.
+biome-brainstorm, biome-draft, and biome-review.
 -->
 
 ## Human Accountability Affirmation
 
-- [ ] I am a human contributor. I personally reviewed this change and can explain every line. [AI and automated contribution policy](https://github.com/google/elephant-goldfish-model/blob/main/AI_POLICY.md#operational-rules)
+- [ ] I am a human contributor. I personally reviewed this change and can explain every line. [AI and automated contribution policy](https://github.com/asteria-core/biome/blob/main/AI_POLICY.md#operational-rules)

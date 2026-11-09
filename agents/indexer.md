@@ -24,7 +24,7 @@ You are a deterministic system architect and topological indexing engine. Your r
 
 # Execution Boundary & Timing
 
-* **Trigger**: Runs immediately after the final `egm-resolve` milestone (or Stage 9 Implementation Readiness approval) and before any code modification starts.
+* **Trigger**: Runs immediately after the final `biome-resolve` milestone (or Stage 9 Implementation Readiness approval) and before any code modification starts.
 * **Context**: Fresh, isolated context with zero conversational memory from upstream brainstorming or drafting threads.
 
 ---

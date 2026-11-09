@@ -58,7 +58,8 @@ def test_release_installs_shared_test_group_before_tag_checkout() -> None:
 def test_ci_requires_successful_results(results: dict, success: bool) -> None:
   step = workflow()["jobs"]["ci"]["steps"][0]
   assert step["env"]["NEEDS_JSON"] == "${{ toJSON(needs) }}"
-  shell = shutil.which("bash")
+  git_bash = Path("C:/Program Files/Git/bin/bash.exe")
+  shell = str(git_bash) if git_bash.exists() else shutil.which("bash")
   assert shell, "POSIX bash is required for workflow shell checks"
   completed = subprocess.run(
       [shell, "-e", "-c", step["run"]],

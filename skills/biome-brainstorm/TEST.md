@@ -4,7 +4,7 @@ Frontmatter and link checks run in `pytest tests/unit` (see [TESTING.md](../../T
 
 ## Protocol Verification Checklist
 
-When evaluating or exploring `egm-brainstorm` interactively in chat, verify:
+When evaluating or exploring `biome-brainstorm` interactively in chat, verify:
 
 -   **Step 1 (Open-Ended Clarification & Gate):** Drills down into half-baked concepts
     using open-ended chat questions (without structured question tools or multiple-choice lists)
@@ -15,4 +15,4 @@ When evaluating or exploring `egm-brainstorm` interactively in chat, verify:
     Inventive Catalyst).
 -   **Step 3 & 4 (Concepts Brief Deliverable & Handoff):** Compiles and saves the
     synthesized `concepts_brief.md` artifact for user review and handoff to
-    `/egm-draft`.
+    `/biome-draft`.

@@ -10,16 +10,16 @@ text.
 | --- | --- |
 | ChatGPT desktop | Install the [published EGM plugin](https://chatgpt.com/plugins/plugins_6aeb90f47ec88191a3c107e01d3eb357) (desktop-only listing); see [packaging](codex.md#test-a-local-package) for personal testing |
 | Codex desktop | Install the [published EGM plugin](https://chatgpt.com/plugins/plugins_6aeb90f47ec88191a3c107e01d3eb357) (desktop-only listing) |
-| Antigravity CLI | `agy plugin install https://github.com/google/elephant-goldfish-model` |
+| Antigravity CLI | `agy plugin install https://github.com/asteria-core/biome` |
 | Antigravity App | Run `/plugin` or see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
 | Antigravity for IDEs | Run `/plugin` or see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
 | Antigravity IDE (standalone) | Not supported; see [installation instructions](#antigravity-app-and-antigravity-for-ides) |
-| Claude Code | `claude plugin marketplace add google/elephant-goldfish-model && claude plugin install egm@egm` |
-| Claude Cowork | Install from claude.ai/plugins or the Cowork plugin panel via marketplace `google/elephant-goldfish-model` |
-| Codex CLI | `codex plugin marketplace add google/elephant-goldfish-model && codex plugin add egm@egm` |
-| ChatGPT workspace import | Admin > Plugins > Add > Import marketplace, repo URL `https://github.com/google/elephant-goldfish-model`, path `.agents/plugins`; cloud review limits still apply |
-| omp | `omp plugin marketplace add google/elephant-goldfish-model && omp plugin install egm@egm` |
-| Muse | `git clone https://github.com/google/elephant-goldfish-model.git && muse plugins install ./elephant-goldfish-model --scope user && muse plugins approve egm` |
+| Claude Code | `claude plugin marketplace add asteria-core/biome && claude plugin install egm@egm` |
+| Claude Cowork | Install from claude.ai/plugins or the Cowork plugin panel via marketplace `asteria-core/biome` |
+| Codex CLI | `codex plugin marketplace add asteria-core/biome && codex plugin add egm@egm` |
+| ChatGPT workspace import | Admin > Plugins > Add > Import marketplace, repo URL `https://github.com/asteria-core/biome`, path `.agents/plugins`; cloud review limits still apply |
+| omp | `omp plugin marketplace add asteria-core/biome && omp plugin install egm@egm` |
+| Muse | `git clone https://github.com/asteria-core/biome.git && muse plugins install ./elephant-goldfish-model --scope user && muse plugins approve egm` |
 
 Install the whole plugin. Skill-only installers that copy `skills/` alone
 break EGM, because the skills read `agents/` and
@@ -27,9 +27,9 @@ break EGM, because the skills read `agents/` and
 
 ### Antigravity App and Antigravity for IDEs
 
-- **Antigravity App**: Run `/plugin`, ask the agent `Install https://github.com/google/elephant-goldfish-model`, or manually install into `~/.gemini/config/plugins/egm/` using the commands below.
-- **Antigravity for IDEs (Extension for Visual Studio Code)**: Run `/plugin`, ask the agent `Install https://github.com/google/elephant-goldfish-model`, or manually install into `~/.gemini/config/plugins/egm/` using the commands below.
-- **Antigravity IDE (Standalone)**: Not supported at this time. Although the plugin and skills load from `~/.gemini/config/plugins/egm/`, standalone Antigravity IDE (tested on macOS and Linux) does not expose the fresh-context subagent tool (`invoke_subagent`) required for Goldfish reviews (`/egm-brainstorm` and `/egm-review`).
+- **Antigravity App**: Run `/plugin`, ask the agent `Install https://github.com/asteria-core/biome`, or manually install into `~/.gemini/config/plugins/egm/` using the commands below.
+- **Antigravity for IDEs (Extension for Visual Studio Code)**: Run `/plugin`, ask the agent `Install https://github.com/asteria-core/biome`, or manually install into `~/.gemini/config/plugins/egm/` using the commands below.
+- **Antigravity IDE (Standalone)**: Not supported at this time. Although the plugin and skills load from `~/.gemini/config/plugins/egm/`, standalone Antigravity IDE (tested on macOS and Linux) does not expose the fresh-context subagent tool (`invoke_subagent`) required for Goldfish reviews (`/biome-brainstorm` and `/biome-review`).
 
 The Antigravity App and Antigravity for IDEs share the global plugin directory
 `~/.gemini/config/plugins/<name>/`. For a fresh manual installation without the
@@ -38,15 +38,15 @@ The Antigravity App and Antigravity for IDEs share the global plugin directory
 remove `~/.gemini/config/plugins/egm` first when updating):
 
 ```sh
-git clone https://github.com/google/elephant-goldfish-model.git
+git clone https://github.com/asteria-core/biome.git
 cd elephant-goldfish-model
 mkdir -p ~/.gemini/config/plugins/egm
 cp -R plugin.json README.md LICENSE skills agents resources docs assets ~/.gemini/config/plugins/egm/
 ```
 
 Reload the window (or restart the Antigravity App), then confirm that `egm`
-appears in the plugin list and that its skills (`egm-brainstorm`, `egm-draft`,
-`egm-review`) are available. The command form for these skills in the
+appears in the plugin list and that its skills (`biome-brainstorm`, `biome-draft`,
+`biome-review`) are available. The command form for these skills in the
 Antigravity App and Antigravity for IDEs has not been verified.
 
 ## Manifests
@@ -145,7 +145,7 @@ and end-to-end workflow fixtures. Reviewer isolation evidence is narrower:
 parent-turn isolation and host-instruction exclusion are separate results.
 
 Claude reviewer adapters set `omitClaudeMd: true`; see the
-[Claude integration](claude.md#reviewer-isolation). For Codex, issue [#237](https://github.com/google/elephant-goldfish-model/issues/237)
+[Claude integration](claude.md#reviewer-isolation). For Codex, issue [#237](https://github.com/asteria-core/biome/issues/237)
 reports that Codex CLI 0.166.0 supplied project and user `AGENTS.md` files
 despite `fork_turns: "none"`. For Antigravity CLI, the same issue reports
 project `AGENTS.md` and `GEMINI.md` in reviewer context. These are reported
@@ -154,26 +154,26 @@ The Codex test and recorded Antigravity run check parent-turn isolation only;
 neither verifies instruction-file exclusion. No host-specific exclusion
 control is verified here for Codex or Antigravity.
 
-**Claude Cowork** ([#105](https://github.com/google/elephant-goldfish-model/issues/105)) and **ChatGPT Work** ([#106](https://github.com/google/elephant-goldfish-model/issues/106)) have working installation paths with open cloud trace verification gaps. The README's prefix guidance covers only Antigravity (agy CLI), Claude Code, and Codex. For ChatGPT workspace imports, the skills are reached through `@egm` (see [ChatGPT](codex.md#chatgpt)); the command form in Claude Cowork is not recorded yet.
+**Claude Cowork** ([#105](https://github.com/asteria-core/biome/issues/105)) and **ChatGPT Work** ([#106](https://github.com/asteria-core/biome/issues/106)) have working installation paths with open cloud trace verification gaps. The README's prefix guidance covers only Antigravity (agy CLI), Claude Code, and Codex. For ChatGPT workspace imports, the skills are reached through `@egm` (see [ChatGPT](codex.md#chatgpt)); the command form in Claude Cowork is not recorded yet.
 
-**omp** ([#186](https://github.com/google/elephant-goldfish-model/issues/186)) has a working installation path. Skills are invoked as `/skill:egm-<command>` (omp registers one command per skill; it has no `/egm-*` namespace). Community-verified on omp v18.12.6: all seven skills discover and resolve, and all nine reviewer personas register as subagents. End-to-end workflow fixtures are not yet automated for omp.
+**omp** ([#186](https://github.com/asteria-core/biome/issues/186)) has a working installation path. Skills are invoked as `/skill:egm-<command>` (omp registers one command per skill; it has no `/egm-*` namespace). Community-verified on omp v18.12.6: all seven skills discover and resolve, and all nine reviewer personas register as subagents. End-to-end workflow fixtures are not yet automated for omp.
 
-**Muse** (1.4.14) has a working installation path. `muse plugins validate` reports the plugin valid with all seven skills and all ten agent adapters supported; every agent tool projection is unsupported, so Claude tool allowlists do not restrict Muse reviewers. Install from a local path; `marketplace add` on this repository discovers zero plugins because Muse reads the Codex catalog first. End-to-end workflow fixtures passed on 2026-10-30 (brainstorm, draft, and uninterrupted review with 15 fresh-context reviewers); named `egm/egm-*` agents cannot be spawned in this runtime, so reviewers used the general-purpose fallback reading the installed persona first. See the [Muse guide](https://github.com/google/elephant-goldfish-model/blob/main/docs/muse.md). No skill routes a Muse session to that guide yet ([#252](https://github.com/google/elephant-goldfish-model/issues/252)), so point the session at it.
+**Muse** (1.4.14) has a working installation path. `muse plugins validate` reports the plugin valid with all seven skills and all ten agent adapters supported; every agent tool projection is unsupported, so Claude tool allowlists do not restrict Muse reviewers. Install from a local path; `marketplace add` on this repository discovers zero plugins because Muse reads the Codex catalog first. End-to-end workflow fixtures passed on 2026-10-30 (brainstorm, draft, and uninterrupted review with 15 fresh-context reviewers); named `egm/egm-*` agents cannot be spawned in this runtime, so reviewers used the general-purpose fallback reading the installed persona first. See the [Muse guide](https://github.com/asteria-core/biome/blob/main/docs/muse.md). No skill routes a Muse session to that guide yet ([#252](https://github.com/asteria-core/biome/issues/252)), so point the session at it.
 
-See the [harness test record](https://github.com/google/elephant-goldfish-model/blob/main/TESTING.md#harness-test-record) for tested surfaces and limits.
+See the [harness test record](https://github.com/asteria-core/biome/blob/main/TESTING.md#harness-test-record) for tested surfaces and limits.
 
 We welcome contributors who want to help verify and expand harness support.
 
 ### Contributing Support for New Harnesses
 
-A harness counts as supported after `/egm-brainstorm`, `/egm-draft`, and
-`/egm-review` run end to end through its plugin install. When contributing
+A harness counts as supported after `/biome-brainstorm`, `/biome-draft`, and
+`/biome-review` run end to end through its plugin install. When contributing
 support for another harness:
 
 1. Add the appropriate manifest or configuration file to the repository root
    (e.g., matching the harness's plugin/extension standard).
 2. Document install steps, manifest mapping, and delegation mechanics in this guide
    (`docs/harnesses.md`).
-3. Verify that `/egm-brainstorm`, `/egm-draft`, and `/egm-review` run end to end,
+3. Verify that `/biome-brainstorm`, `/biome-draft`, and `/biome-review` run end to end,
    and attach verification notes or execution transcripts in your Pull Request description
-   (as outlined in the [Pull Request Template](https://github.com/google/elephant-goldfish-model/blob/main/.github/PULL_REQUEST_TEMPLATE.md)).
+   (as outlined in the [Pull Request Template](https://github.com/asteria-core/biome/blob/main/.github/PULL_REQUEST_TEMPLATE.md)).

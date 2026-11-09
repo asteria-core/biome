@@ -3,7 +3,7 @@
 *   **Author:** Smit Parmar ([@smituparmar01](https://github.com/smituparmar01))
 *   **Status:** Draft
 *   **Date:** 2026-10-28
-*   **Issue:** [#175](https://github.com/google/elephant-goldfish-model/issues/175)
+*   **Issue:** [#175](https://github.com/asteria-core/biome/issues/175)
 
 --------------------------------------------------------------------------------
 
@@ -18,21 +18,21 @@ and replies in chat with a short answer and at most three suggested next steps.
 The skill is advisory only. It does not write files, run other skills, or
 change the state of a skill that is in progress.
 
-Issue [#175](https://github.com/google/elephant-goldfish-model/issues/175)
+Issue [#175](https://github.com/asteria-core/biome/issues/175)
 proposed the name `/ask-egm`. The maintainers chose `/egm-ask` on that issue,
 so the command follows the `egm-` prefix that every other EGM skill uses.
 
 ## The Problem
 
-1.  **Blank Canvas**: New users have seen a demo of `/egm-brainstorm` or
-    `/egm-review` but do not know what to type to start, which skill fits their
+1.  **Blank Canvas**: New users have seen a demo of `/biome-brainstorm` or
+    `/biome-review` but do not know what to type to start, which skill fits their
     task, or what input a skill expects.
 
 2.  **Lost After a Break**: The skills can be used in any order (see
     [getting_started.md](../getting_started.md)). Within one session, each
-    skill already names the next step when it finishes: egm-brainstorm's
-    handoff offers `/egm-draft`, egm-draft recommends `egm-review`, and
-    egm-review's stage gates name the next stage. That handoff is gone in a new
+    skill already names the next step when it finishes: biome-brainstorm's
+    handoff offers `/biome-draft`, biome-draft recommends `biome-review`, and
+    biome-review's stage gates name the next stage. That handoff is gone in a new
     session, or when the user returns to a project later. The user then sees
     artifact files on disk but does not know which skill wrote them or which
     one to run next.
@@ -90,7 +90,7 @@ sequenceDiagram
 
 ### Where the Skill Reads From
 
-`skills/egm-ask/SKILL.md` opens with the same two-line harness preamble as the
+`skills/biome-ask/SKILL.md` opens with the same two-line harness preamble as the
 other EGM skills: in Claude Code or Cowork it reads `docs/claude.md`, and in
 Codex or ChatGPT Work it reads `docs/codex.md`. That preamble fixes two
 things:
@@ -120,7 +120,7 @@ If the user gives no question, the skill treats it as a **Next step** question.
 ### Step 2: Detect the Workflow Stage
 
 The skill looks for EGM artifacts in the same places, and in the same order, as
-egm-draft's intake (egm-draft Step 1): the working directory, the harness's
+biome-draft's intake (biome-draft Step 1): the working directory, the harness's
 artifact directory (see [harnesses.md](../harnesses.md), "Artifact
 Directory"), then `scratch/`. An `EGM artifact directory: <path>` line in the
 user's prompt or agent instructions file replaces the working directory, as
@@ -145,12 +145,12 @@ same table, and a renamed artifact is updated in one place.
 
 | Artifacts found (written by) | Detected stage | Suggested next step |
 | :--------------------------- | :------------- | :------------------ |
-| None, and no `docs/designs/*.md` | Not started | `egm-brainstorm` for a new idea, or `egm-bootstrap` to document an existing codebase |
-| `concepts_brief.md` (egm-brainstorm) | Ideation done | `egm-draft`, which reads `concepts_brief.md` as its first input |
-| `design_draft.md` (egm-draft), no matching `docs/designs/<feature>.md` | Draft in progress | Continue `egm-draft` until it writes `docs/designs/<feature>.md` |
-| `docs/designs/<feature>.md`, no review reports | Ready for review | `egm-review docs/designs/<feature>.md` |
-| `zoom_out_report.md`, `comprehension_report.md`, `critic_report.md`, `intermediate_zoom_out_report.md`, `implementation_readiness_report.md`, or `consolidated_review_report.md` (egm-review) | Review started; completion unknown | Ask whether the review of this target finished. If it did, `egm-resolve` on its findings. If not, continue the pending review |
-| `goldfish_review_report.md` (egm-resolve) without `Status: resolved` | Resolution in progress | Return to the resolve step that is waiting for an answer, or run `egm-resolve` again |
+| None, and no `docs/designs/*.md` | Not started | `biome-brainstorm` for a new idea, or `biome-bootstrap` to document an existing codebase |
+| `concepts_brief.md` (biome-brainstorm) | Ideation done | `biome-draft`, which reads `concepts_brief.md` as its first input |
+| `design_draft.md` (biome-draft), no matching `docs/designs/<feature>.md` | Draft in progress | Continue `biome-draft` until it writes `docs/designs/<feature>.md` |
+| `docs/designs/<feature>.md`, no review reports | Ready for review | `biome-review docs/designs/<feature>.md` |
+| `zoom_out_report.md`, `comprehension_report.md`, `critic_report.md`, `intermediate_zoom_out_report.md`, `implementation_readiness_report.md`, or `consolidated_review_report.md` (biome-review) | Review started; completion unknown | Ask whether the review of this target finished. If it did, `biome-resolve` on its findings. If not, continue the pending review |
+| `goldfish_review_report.md` (biome-resolve) without `Status: resolved` | Resolution in progress | Return to the resolve step that is waiting for an answer, or run `biome-resolve` again |
 | `goldfish_review_report.md` with `Status: resolved` | Findings resolved | Human review of the design (getting_started.md, step 4); implement only after the checks below pass |
 
 **Before suggesting implementation.** A checked-in design or a resolved report
@@ -194,7 +194,7 @@ The reply is plain English and follows this shape:
     long output out of chat; a help answer that needs more space points to the
     doc that already holds it.
 *   Commands use the form the harness guide gives, for example
-    `/egm:egm-draft` in Claude Code. With no harness guide, the skill shows the
+    `/egm:biome-draft` in Claude Code. With no harness guide, the skill shows the
     bare command and repeats the README note on prefixes.
 *   Every EGM command shown must belong to an installed skill. Host commands
     and settings (for example `claude plugin enable egm@egm`) may appear only
@@ -205,7 +205,7 @@ The reply is plain English and follows this shape:
 ### Rules: Pending Gates and Read-Only
 
 **Pending gates.** A user may run `/egm-ask` while another skill waits for an
-answer, for example at egm-resolve's resolution gate. That gate accepts free
+answer, for example at biome-resolve's resolution gate. That gate accepts free
 text, including custom instructions. `/egm-ask` does not answer, resume, or
 act on the pending gate. Its read-only rules end with its reply. The user
 answers the pending gate directly.
@@ -225,7 +225,7 @@ when the user asks for it.
 | Alternative | Reason rejected |
 | :---------- | :-------------- |
 | **Ask in plain chat (no new skill)** | Works today, but EGM skills are absent from automatic skill discovery, so the model does not see their descriptions, artifact names, or stage order unless they are already in the conversation. |
-| **Improve the existing skill handoffs** | Worth doing as follow-up: egm-brainstorm and egm-draft print their next command without the harness prefix. It does not help a new session, skill choice, or troubleshooting, which are the cases this design targets. |
+| **Improve the existing skill handoffs** | Worth doing as follow-up: biome-brainstorm and biome-draft print their next command without the harness prefix. It does not help a new session, skill choice, or troubleshooting, which are the cases this design targets. |
 | **Read-only subagent answers the question** | Enforces read-only with tools, but next-step and troubleshooting answers need the user's recent turns and error text. Routing only some question types to a subagent adds a second execution path and a new adapter in each harness, a large cost for a 20-line reply. |
 | **"What to run next" section in the docs only** | Adopted as the data source (Step 2), but a static section cannot see which artifacts the user has. |
 | **Write the answer to an artifact file** | Help answers are short. A file per question adds clutter, and the user has to open it. |
@@ -257,15 +257,15 @@ when the user asks for it.
 
 | Path | Create/Modify | Change |
 | :--- | :------------ | :----- |
-| `skills/egm-ask/SKILL.md` | Create | Harness preamble, the four question types, stage detection, answer shape, and the pending-gate and read-only rules. The body must stay under the 24,000-byte limit checked by `tests/unit/test_skill_load_limits.py`. |
-| `skills/egm-ask/TEST.md` | Create | Manual verification steps for each question type and stage. |
-| `skills/egm-ask/test_scenarios.yaml` | Create | Behavioral scenarios from Testing below. |
-| `skills/egm-ask/agents/openai.yaml` | Create | Display name and icon metadata, matching the other skills. |
-| `skills/egm-ask/assets/icon.svg` | Create | Skill icon following [skill_icons.md](skill_icons.md). |
+| `skills/biome-ask/SKILL.md` | Create | Harness preamble, the four question types, stage detection, answer shape, and the pending-gate and read-only rules. The body must stay under the 24,000-byte limit checked by `tests/unit/test_skill_load_limits.py`. |
+| `skills/biome-ask/TEST.md` | Create | Manual verification steps for each question type and stage. |
+| `skills/biome-ask/test_scenarios.yaml` | Create | Behavioral scenarios from Testing below. |
+| `skills/biome-ask/agents/openai.yaml` | Create | Display name and icon metadata, matching the other skills. |
+| `skills/biome-ask/assets/icon.svg` | Create | Skill icon following [skill_icons.md](skill_icons.md). |
 | `docs/getting_started.md` | Modify | Add the "What to run next" stage table and a `/egm-ask` entry. |
 | `scripts/pack_plugin.py` | Modify | Add `egm-ask` to the skill list. |
 | `tests/unit/test_harnesses.py` | Modify | Add `egm-ask` to `EXPECTED_SKILLS`. |
-| `tests/unit/test_packaging.py` | Modify | Add `skills/egm-ask/SKILL.md` to the expected packaged files. |
+| `tests/unit/test_packaging.py` | Modify | Add `skills/biome-ask/SKILL.md` to the expected packaged files. |
 | `distributions/claude/` | Modify | Regenerate with `scripts/pack_plugin.py`. |
 | `README.md` | Modify | List `/egm-ask` with the other commands. |
 | `docs/designs/architecture.md` | Modify | Add `egm-ask` to the Skills Layer list. |
@@ -283,24 +283,24 @@ when the user asks for it.
 
 ## Testing
 
-`skills/egm-ask/test_scenarios.yaml` uses the same scenario format as the other
+`skills/biome-ask/test_scenarios.yaml` uses the same scenario format as the other
 skills' suites and covers at least:
 
-1.  Empty workspace, no question: suggests `egm-brainstorm` or `egm-bootstrap`.
-2.  Only `concepts_brief.md` present: suggests `egm-draft`.
+1.  Empty workspace, no question: suggests `biome-brainstorm` or `biome-bootstrap`.
+2.  Only `concepts_brief.md` present: suggests `biome-draft`.
 3.  Review reports present for the current target: asks whether that review
-    finished before suggesting `egm-resolve`, and does not bypass a pending gate.
+    finished before suggesting `biome-resolve`, and does not bypass a pending gate.
 4.  `critic_report.md` present and the user says the review did not finish:
-    suggests continuing `egm-review`, not starting it again.
+    suggests continuing `biome-review`, not starting it again.
 5.  `concepts_brief.md` and `docs/designs/x.md` both present: names the latest
     stage and lists both files.
 6.  "Please fix my draft for me": makes no edits and names the skill that does
     that work.
 7.  Unrelated programming question: replies that it only covers EGM.
-8.  Called while an `egm-resolve` gate is pending: answers the question, makes
+8.  Called while an `biome-resolve` gate is pending: answers the question, makes
     no edits, and picks no gate option.
 9.  "Which skill compares my designs with code?": recommends
-    `egm-drift-report` and cites its `SKILL.md`.
+    `biome-drift-report` and cites its `SKILL.md`.
 10. Persona-read failure: cites `docs/claude.md`.
 11. Resolved report and two checked-in designs, and the user names neither:
     asks the user to confirm the design (the report's `**Target:**`, or which
@@ -312,6 +312,6 @@ size limit, packaging, and link integrity).
 
 ## References
 
-*   Issue [#175](https://github.com/google/elephant-goldfish-model/issues/175):
+*   Issue [#175](https://github.com/asteria-core/biome/issues/175):
     Add /ask-egm command for contextual help and guidance.
 *   Dave Rensin, [Elephants, Goldfish, and the New Golden Age of Software Engineering](https://medium.com/@drensin/elephants-goldfish-and-the-new-golden-age-of-software-engineering-c33641a48874) (Medium, 2026).

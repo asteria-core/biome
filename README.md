@@ -196,15 +196,15 @@ You can use each skill when you need it. You do not have to follow the full sequ
 
 - [Getting started](docs/getting_started.md): the workflow and project layout.
 - [Setup](docs/harnesses.md): installation, agent capabilities, and known limits.
-- [Architecture](docs/designs/architecture.md): how skills and reviewers fit together.
-- [Testing](TESTING.md): checks, execution records, and verification limits.
+- [Architecture](https://github.com/asteria-core/biome/blob/main/docs/designs/architecture.md): how skills and reviewers fit together.
+- [Testing](https://github.com/asteria-core/biome/blob/main/TESTING.md): checks, execution records, and verification limits.
 
 ## Contribute
 
-Read [contributing](CONTRIBUTING.md) for PRs, [issues](https://github.com/asteria-core/biome/issues) for bugs, and [discussions](https://github.com/asteria-core/biome/discussions) for questions.
+Read [contributing](https://github.com/asteria-core/biome/blob/main/CONTRIBUTING.md) for PRs, [issues](https://github.com/asteria-core/biome/issues) for bugs, and [discussions](https://github.com/asteria-core/biome/discussions) for questions.
 
 ## License
 
 This project is licensed under a dual-licensing structure:
-* **[BIOME Perpetual Source-Available License v1.0 (Enterprise-Hardened Edition)](LICENSE)**: Copyright &copy; 2026 Asteria Studio. All Rights Reserved. Governs the BIOME multi-agent software engineering ecosystem, agent architectures (Elephant, Goldfish, Beaver, Woodpecker), prompts, and orchestration state-machines for personal, academic, and internal non-commercial development. Commercial hosting, SaaS, managed execution, and AI model distillation require a separate commercial license from Asteria Studio.
+* **[BIOME License v1.0 (Source-Available)](LICENSE)**: Copyright &copy; 2026 Asteria Studio. All Rights Reserved. Governs the BIOME multi-agent software engineering ecosystem, agent architectures (Elephant, Goldfish, Beaver, Woodpecker), prompts, and orchestration state-machines for personal, academic, and internal non-commercial development. Commercial hosting, SaaS, managed execution, and AI model distillation require a separate commercial license from Asteria Studio.
 * **[Apache License 2.0](LICENSE-APACHE)**: Upstream base portions Copyright &copy; Google LLC, licensed under the Apache License, Version 2.0.

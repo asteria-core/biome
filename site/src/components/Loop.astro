@@ -5,19 +5,19 @@ const steps = [
   {
     name: 'Brainstorm',
     icon: 'brainstorm',
-    command: '/egm-brainstorm',
+    command: '/biome-brainstorm',
     body: 'Clarify a rough idea through open-ended questioning and stress-test the hypothesis into a concept brief.',
   },
   {
     name: 'Draft',
     icon: 'draft',
-    command: '/egm-draft',
+    command: '/biome-draft',
     body: 'Turn the brief into a living design doc under docs/designs/, section by section.',
   },
   {
     name: 'Review',
     icon: 'review',
-    command: '/egm-review',
+    command: '/biome-review',
     body: 'Fresh zero-context Goldfish subagents check completeness, clarity, self-containment, and implementation readiness.',
   },
 ] as const;
@@ -47,7 +47,7 @@ const steps = [
       <span class="marker"><SkillIcon skill="drift_report" /></span>
       <div class="drift-head">
         <h3 class="title">Check for drift</h3>
-        <span class="cmd">/egm-drift-report</span>
+        <span class="cmd">/biome-drift-report</span>
       </div>
       <p class="muted">
         After implementation, compare the code with the spec and report where they diverge.

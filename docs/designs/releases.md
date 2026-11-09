@@ -67,9 +67,9 @@ replacing existing assets. Neither job creates tags or publishes releases.
 4. Select the reviewed version and commit. Regenerate packaged content and
    validate all included runtime changes before a maintainer creates the tag.
 5. Dispatch the workflow. Inspect both archives, checksums, and source identity.
-   Verify each ZIP with `gh attestation verify FILE --repo google/elephant-goldfish-model`.
+   Verify each ZIP with `gh attestation verify FILE --repo asteria-core/biome`.
    Require the signing workflow `.github/workflows/release.yml` from `main`.
-6. Complete [the exact-bundle verification procedure in #60](https://github.com/google/elephant-goldfish-model/issues/60)
+6. Complete [the exact-bundle verification procedure in #60](https://github.com/asteria-core/biome/issues/60)
    for each claimed host using these exact artifacts. Record
    installed-file identity, host/model versions, date, and separate installation,
    workflow, and isolation results.

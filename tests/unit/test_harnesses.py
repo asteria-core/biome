@@ -23,8 +23,9 @@ MARKETPLACES = (
     ".claude-plugin/marketplace.json",
 )
 EXPECTED_SKILLS = {
-    "egm-bootstrap", "egm-brainstorm", "egm-draft", "egm-drift-report",
-    "egm-resolve", "egm-review", "egm-review-loop",
+    "biome", "biome-bootstrap", "biome-brainstorm", "biome-build", "biome-critic",
+    "biome-draft", "biome-drift-report", "biome-index", "biome-resolve",
+    "biome-review", "biome-review-loop", "biome-woodpecker",
 }
 REVIEWERS = (
     "codebase_details", "comprehension", "design_critic",
@@ -66,7 +67,7 @@ def test_portable_manifest_schema() -> None:
   manifest = read_json("plugin.json")
   assert re.fullmatch(NAME_RE, manifest["name"])
   assert re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"])
-  assert manifest["displayName"] == "Elephant-Goldfish Model"
+  assert manifest["displayName"] == "BIOME"
   assert manifest["logo"] == "assets/icon.svg"
   assert (ROOT / manifest["logo"]).is_file()
 
@@ -120,7 +121,7 @@ def test_compatibility_metadata_matches_root(path: str) -> None:
 def test_marketplace_resolves_shared_package(path: str) -> None:
   canonical = read_json("plugin.json")
   marketplace = read_json(path)
-  assert marketplace["name"] == "egm"
+  assert marketplace["name"] in ("biome", "egm")
   assert len(marketplace["plugins"]) == 1
   entry = marketplace["plugins"][0]
   assert entry["name"] == canonical["name"]
@@ -180,7 +181,7 @@ def test_claude_bootstrap_adapter_routes_to_skill() -> None:
   assert config["model"] == "inherit"
   text = adapter.read_text()
   assert "${CLAUDE_PLUGIN_ROOT}/agents/bootstrap_orchestrator.md" in text
-  assert "${CLAUDE_PLUGIN_ROOT}/skills/egm-bootstrap/SKILL.md" in text
+  assert "${CLAUDE_PLUGIN_ROOT}/skills/biome-bootstrap/SKILL.md" in text
   canonical = frontmatter(ROOT / "agents/bootstrap_orchestrator.md")
   assert canonical["name"] == config["name"]
   manifest = read_json(".claude-plugin/plugin.json")["agents"]
@@ -190,7 +191,7 @@ def test_claude_bootstrap_adapter_routes_to_skill() -> None:
 
 def test_scratch_files_use_private_directories() -> None:
   for path in ("resources/execution_instructions.md",
-               "skills/egm-bootstrap/SKILL.md"):
+               "skills/biome-bootstrap/SKILL.md"):
     text = " ".join((ROOT / path).read_text(encoding="utf-8").split())
     assert "mktemp -d" in text, f"{path} does not name a private directory"
   instructions = " ".join(
@@ -198,7 +199,7 @@ def test_scratch_files_use_private_directories() -> None:
           encoding="utf-8").split())
   assert "keep the code in a markdown draft block" in instructions
   assert "Do not use fixed, shared paths" in instructions
-  skill = " ".join((ROOT / "skills/egm-bootstrap/SKILL.md").read_text(
+  skill = " ".join((ROOT / "skills/biome-bootstrap/SKILL.md").read_text(
       encoding="utf-8").split())
   assert "never a fixed, shared path" in skill
   assert "If neither exists, skip them." in skill

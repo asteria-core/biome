@@ -13,14 +13,14 @@
 # limitations under the License.
 
 skill: "biome-bootstrap"
-description: "Behavioral evaluation scenario suite for egm-bootstrap skill."
+description: "Behavioral evaluation scenario suite for biome-bootstrap skill."
 
 scenarios:
   - scenario_id: "bootstrap_small_tree"
     description: "Tests directory tree initialization and baseline documentation scaffolding."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-bootstrap/SKILL.md"
+      skill_file: "skills/biome-bootstrap/SKILL.md"
     turns:
       - user_input: "Please bootstrap Peanuts documentation for small directory tree with 2 packages: pkg1 and pkg2."
         assertions:
@@ -32,9 +32,9 @@ scenarios:
     description: "Verifies confirmation gate before creating or overwriting existing tree structures in large directories."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-bootstrap/SKILL.md"
+      skill_file: "skills/biome-bootstrap/SKILL.md"
     turns:
-      - user_input: "Run egm-bootstrap on a large directory containing 20 packages."
+      - user_input: "Run biome-bootstrap on a large directory containing 20 packages."
         assertions:
           - type: "required_pattern"
             pattern: "(confirm|warn|proceed|scope|approval|threshold)"
@@ -44,7 +44,7 @@ scenarios:
     description: "Verifies contracts cite real code symbols in [file:symbol] form, emit None for empty invariants, and do not infer interfaces from directory names."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-bootstrap/SKILL.md"
+      skill_file: "skills/biome-bootstrap/SKILL.md"
     turns:
       - user_input: "Bootstrap a README for directory refund_service/. It contains one file, string_utils.py, defining a single pure helper. Show the generated Interface and Invariants sections."
         assertions:
@@ -62,7 +62,7 @@ scenarios:
     description: "Verifies generated Verification sections use valid Bazel target patterns."
     eval_type: "deterministic"
     system_prompt:
-      skill_file: "skills/egm-bootstrap/SKILL.md"
+      skill_file: "skills/biome-bootstrap/SKILL.md"
     turns:
       - user_input: "Bootstrap READMEs for a Bazel repository with BUILD.bazel files in pkg/a and pkg/b. Show the Verification section generated for pkg/a."
         assertions:

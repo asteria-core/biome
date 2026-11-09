@@ -8,15 +8,15 @@
 
 ## Overview
 
-The **EGM Design Drafting Skill** (`/egm-draft`) converts the ideation
-artifact (`concepts_brief.md` from `/egm-brainstorm` or discussion notes) into a
+The **EGM Design Drafting Skill** (`/biome-draft`) converts the ideation
+artifact (`concepts_brief.md` from `/biome-brainstorm` or discussion notes) into a
 formal, living design document under `docs/designs/`. It drafts the document
 iteratively section-by-section, gathering feedback at each stage before saving to
 disk.
 
 Crucially, it establishes **semantic boundaries** within the document to enable
-downstream multi-agent reviews (`/egm-review`) and automated drift auditing
-(`/egm-drift-report`).
+downstream multi-agent reviews (`/biome-review`) and automated drift auditing
+(`/biome-drift-report`).
 
 ## The Problem
 
@@ -57,14 +57,14 @@ prompt produces severe quality issues:
 sequenceDiagram
     autonumber
     actor Human as Software Engineer
-    participant Draft as egm-draft Skill
+    participant Draft as biome-draft Skill
     participant Summary as Artifact: concepts_brief.md / notes
     participant DraftArtifact as Artifact: design_draft.md
     participant Workspace as Workspace File: docs/designs/<FEATURE>.md
-    participant Review as egm-review Skill
+    participant Review as biome-review Skill
 
     Note over Human,Draft: Step 1: Predecessor Context Ingestion
-    Human->>Draft: /egm-draft
+    Human->>Draft: /biome-draft
     Draft->>Summary: Read concepts_brief.md & verify consensus
 
     Note over Human,Draft: Step 2, 3, 4: High-Level Sections (FeatureRange)
@@ -82,15 +82,15 @@ sequenceDiagram
     Draft->>Human: Report contradictions & architectural additions
     Draft->>DraftArtifact: Append Watermark Footer
     Draft->>Workspace: Write docs/designs/<FEATURE>.md
-    Draft->>Human: Provide link to spec & recommend /egm-review
-    Human->>Review: /egm-review docs/designs/<FEATURE>.md
+    Draft->>Human: Provide link to spec & recommend /biome-review
+    Human->>Review: /biome-review docs/designs/<FEATURE>.md
 ```
 
 --------------------------------------------------------------------------------
 
-## The Drafting Protocol (`/egm-draft`)
+## The Drafting Protocol (`/biome-draft`)
 
-The `/egm-draft` workflow converts the ideation artifact into a living
+The `/biome-draft` workflow converts the ideation artifact into a living
 markdown design doc:
 
 ### Step 1: Predecessor Context Ingestion
@@ -125,14 +125,14 @@ Drafts the execution section:
 
 *   Reconciles the draft against the predecessor context and asks the user to
     decide each contradiction. It does not self-grade against the Zoom Out
-    standard; `/egm-review` Stage 5 does that from a fresh context.
+    standard; `/biome-review` Stage 5 does that from a fresh context.
 *   Appends a standardized provenance watermark footer (*`*Drafted with EGM*`*)
     separated by a horizontal rule delimiter (`--------------------------------------------------------------------------------`)
     after trailing open questions.
 *   Writes the document to `docs/designs/<FEATURE>.md`.
 *   Registers the document in `docs/designs/README.md` if present.
 *   Formats markdown using standard markdown formatters.
-*   Outputs a clickable link and instructs the user to run `/egm-review`.
+*   Outputs a clickable link and instructs the user to run `/biome-review`.
 
 --------------------------------------------------------------------------------
 
@@ -159,7 +159,7 @@ and drift analysis.
 ## Provenance Watermarking
 
 To support lightweight provenance tracking and human inspection, all design
-`/egm-draft` specs include a footer watermark:
+`/biome-draft` specs include a footer watermark:
 
 ```markdown
 --------------------------------------------------------------------------------
@@ -194,10 +194,10 @@ The drafting capability is implemented across the following skill and reference 
 
 | File Path | Type | Purpose & Reason for Existence |
 | :-------- | :--- | :----------------------------- |
-| `skills/egm-draft/SKILL.md` | Skill Definition | Implements `/egm-draft` section-by-section markdown compilation, sitemap registration, and formatting. |
-| `skills/egm-draft/TEST.md` | Unit Tests | Verification test scenarios validating the drafting and finalization workflow. |
-| `skills/egm-draft/test_scenarios.yaml` | Evaluation Benchmark | Co-located behavioral eval suite evaluating model adherence to the drafting protocol. |
-| `skills/egm-draft/references/design_doc.md` | Document Template | Canonical markdown design document template defining required sections and layout. |
+| `skills/biome-draft/SKILL.md` | Skill Definition | Implements `/biome-draft` section-by-section markdown compilation, sitemap registration, and formatting. |
+| `skills/biome-draft/TEST.md` | Unit Tests | Verification test scenarios validating the drafting and finalization workflow. |
+| `skills/biome-draft/test_scenarios.yaml` | Evaluation Benchmark | Co-located behavioral eval suite evaluating model adherence to the drafting protocol. |
+| `skills/biome-draft/references/design_doc.md` | Document Template | Canonical markdown design document template defining required sections and layout. |
 | `resources/execution_instructions.md` | Execution Instructions | Core execution rules enforcing no-code guardrails, silent compliance, and one-question-at-a-time pacing. |
 
 --------------------------------------------------------------------------------

@@ -11,15 +11,15 @@ must not be treated as verified Goldfish isolation environments.
 ## Invocation and resources
 
 ```sh
-claude plugin marketplace add google/elephant-goldfish-model
+claude plugin marketplace add asteria-core/biome
 claude plugin install egm@egm
 ```
 
 Enable the installed plugin with `claude plugin enable egm@egm`.
-Start messages with `/egm:egm-brainstorm`, `/egm:egm-draft`, or `/egm:egm-review`.
+Start messages with `/egm:biome-brainstorm`, `/egm:biome-draft`, or `/egm:biome-review`.
 Skills retain `disable-model-invocation: true`: their absence from automatic
 skill discovery is expected. The `Skill` tool refuses these skills, so to run
-another EGM skill (for example `egm-review-loop` or `egm-resolve` during review
+another EGM skill (for example `biome-review-loop` or `biome-resolve` during review
 Stages 7 and 9), read its `SKILL.md` and follow it in the same thread. Do not
 use the `Skill` tool for EGM skills. Keep drafting and orchestration in the
 main context.
@@ -172,7 +172,7 @@ to avoid confusion with an already installed `egm` plugin. Validate it with
 ## Claude Cowork
 
 Claude Cowork uses the same `.claude-plugin` package as Claude Code.
-Install the plugin from claude.ai/plugins or the Cowork plugin panel via marketplace `google/elephant-goldfish-model`.
+Install the plugin from claude.ai/plugins or the Cowork plugin panel via marketplace `asteria-core/biome`.
 For a candidate package, Customize > Plugins > Add plugin > Upload plugin
 accepts a ZIP containing the Claude manifest, adapters, and shared runtime files.
 Install it and choose **Try in chat**. Record whether the resulting task runs

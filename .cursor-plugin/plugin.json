@@ -1,10 +1,13 @@
 {
-  "name": "egm",
-  "version": "0.1.1",
-  "description": "Develop ideas with context and review documents with fresh eyes.",
-  "author": {"name": "Google"},
-  "homepage": "https://egm.dev",
-  "repository": "https://github.com/google/elephant-goldfish-model",
+  "name": "biome",
+  "version": "1.0.0",
+  "description": "BIOME: Autonomous software delivery ecosystem (Elephant discovery, Goldfish audit, Beaver surgical builds, Woodpecker diff inspection).",
+  "author": {
+    "name": "Asteria Core",
+    "email": "makari.constant.official@gmail.com"
+  },
+  "homepage": "https://github.com/asteria-core/biome",
+  "repository": "https://github.com/asteria-core/biome",
   "license": "Apache-2.0",
   "logo": ".cursor-plugin/assets/icon.svg",
   "skills": "./skills/",

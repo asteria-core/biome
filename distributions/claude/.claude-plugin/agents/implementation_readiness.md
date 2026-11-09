@@ -1,5 +1,5 @@
 ---
-name: egm-implementation-readiness
+name: biome-implementation-readiness
 description: Implementation readiness reviewer.
 license: Apache-2.0
 tools: [Read, Grep, Glob]
