@@ -172,16 +172,28 @@ See the [workflow guide](docs/getting_started.md) for the full process.
 
 ## The Animals of BIOME
 
+### The Four Pillar Animals (Emblem Core)
+
+The four primary animals form the balanced equilibrium of the BIOME emblem:
+
 <table>
-  <thead><tr><th align="left">Animal</th><th align="left">Context Mode</th><th align="left">Responsibility</th></tr></thead>
+  <thead><tr><th align="left">Pillar Animal</th><th align="left">Context Mode</th><th align="left">Responsibility</th></tr></thead>
   <tbody>
     <tr valign="top"><td><strong>🐘 The Elephant</strong></td><td>Project context & conversational memory</td><td>Explore the problem, draft specifications, and coordinate delivery. <em>Strictly prohibited from writing or editing source code.</em></td></tr>
-    <tr valign="top"><td><strong>🦅 The Falcon</strong></td><td>Rapid reconnaissance scout</td><td>Probe codebase entrypoints, signatures, and schemas without polluting the Elephant's context.</td></tr>
     <tr valign="top"><td><strong>🐠 The Goldfish</strong></td><td>Zero-context stateless inspection</td><td>Stress-test assumptions with fresh eyes and expose edge-case blind spots in specifications.</td></tr>
+    <tr valign="top"><td><img src="skills/biome-build/assets/icon.svg" width="16" height="16" align="top" alt=""> <strong>The Beaver</strong></td><td>Isolated ephemeral builder</td><td>Execute surgical code modifications across domain pods (DB, Backend, Web, Mobile) with latest dependencies and tests.</td></tr>
+    <tr valign="top"><td><img src="skills/biome-woodpecker/assets/icon.svg" width="16" height="16" align="top" alt=""> <strong>The Woodpecker</strong></td><td>Zero-context code diff inspector</td><td>Peck relentlessly at the raw git diff across 5 vectors (security, fidelity, edge cases, micro-architecture, anti-slop).</td></tr>
+  </tbody>
+</table>
+
+### Specialized Auxiliary Operatives & Lifecycle
+
+<table>
+  <thead><tr><th align="left">Operative</th><th align="left">Context Mode</th><th align="left">Specialized Responsibility</th></tr></thead>
+  <tbody>
+    <tr valign="top"><td><strong>🦅 The Falcon</strong></td><td>Rapid reconnaissance scout</td><td>Probe codebase entrypoints, signatures, and schemas without polluting the Elephant's context.</td></tr>
     <tr valign="top"><td><strong>🗺️ The Cartographer</strong></td><td>Cached repository topology engine</td><td>Map codebase modules and dependencies once into <code>.biome/codebase_topology.json</code>, eliminating redundant scans.</td></tr>
-    <tr valign="top"><td><strong>🦫 The Beaver</strong></td><td>Isolated ephemeral builder</td><td>Execute surgical code mutations across domain pods (DB, Backend, Web, Mobile) with latest dependencies and tests.</td></tr>
     <tr valign="top"><td><strong>🦎 The Chameleon</strong></td><td>Anti-slop & craftsmanship stylist</td><td>Enforce natural human naming, clean UI microcopy, and purge robotic AI boilerplate.</td></tr>
-    <tr valign="top"><td><strong>🪵 The Woodpecker</strong></td><td>Zero-context code diff inspector</td><td>Peck relentlessly at the raw git diff across 5 vectors (security, fidelity, edge cases, micro-architecture, anti-slop).</td></tr>
     <tr valign="top"><td><strong>⚡ The Reaper</strong></td><td>Lifecycle execution protocol</td><td>Terminate and purge all worker subagent sessions immediately upon task completion (Zero Zombie Invariant).</td></tr>
     <tr valign="top"><td><strong>👤 You</strong></td><td>Human goals & strategic constraints</td><td>Resolve architectural trade-offs, approve the design, and review execution receipts.</td></tr>
   </tbody>

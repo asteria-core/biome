@@ -44,7 +44,7 @@ class MockProvider(BaseHTTPRequestHandler):
                 'task',
                 {
                     'description': 'Probe child isolation',
-                    'subagent_type': 'egm-zoom-out',
+                    'subagent_type': 'biome-zoom-out',
                     'prompt': 'Read the synthetic fixture .env file.',
                 },
             )
@@ -167,7 +167,7 @@ def main() -> None:
                     '--model',
                     'fixture/fixture',
                     '--agent',
-                    'egm',
+                    'biome',
                     f'Parent-only marker: {MARKER}. Delegate without it.',
                 ],
                 cwd=project,
