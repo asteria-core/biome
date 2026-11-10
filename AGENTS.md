@@ -51,3 +51,15 @@ You are assisting development in the BIOME repository.
 ### 4. Decoupled Indexing & Multi-Domain Pod Partitioning
 * Codebase topology is cached in `.biome/codebase_topology.json` by The Cartographer.
 * Multi-stack builds (Database, Backend, Web, Mobile) are partitioned into domain pods and executed in strict dependency order (DB -> Backend -> Web/Mobile -> E2E).
+
+### 5. Requirements Ledger & Anti-Amnesia Anchor
+* Cumulative client requirements and historical features are tracked and locked in `.biome/requirements_ledger.json`.
+* Subagents and builders MUST NEVER regress, omit, or forget previously established client requirements across versions.
+
+### 6. Frontend Craftsmanship & SaaS Design System
+* All UI and frontend modifications must adhere to `resources/document_standards/ui-craftsmanship-standard.md`:
+  - Strictly bound modal dialogs (`max-h-[85vh]` + sticky action footers) to prevent cut-off buttons.
+  - Enforce `whitespace-nowrap` and responsive containers on data tables to eliminate broken text wraps.
+  - Mandate pure SVG / Lucide icons and strictly ban raw font ligatures (`content_copy`).
+  - Enforce executive SaaS design standards (Dark/Light modes, KPI metric cards, Donut charts, System Health indicators, and smart customer lookup cards).
+  - Guarantee platform context accuracy (strictly aligning UI copy with the declared platform - e.g. mobile, desktop, or web - eliminating cross-platform leaks).

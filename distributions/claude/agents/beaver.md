@@ -57,6 +57,18 @@ When operating within a multi-domain project (Database, Backend, Web Admin, Mobi
 * If tests fail, analyze the root cause and execute targeted self-healing corrections (up to 3 repair iterations).
 * Never alter tests to produce false positives or mask legitimate implementation defects.
 
+### 6. Frontend Craftsmanship & SaaS Design System Mandate (CRITICAL)
+When building web, mobile, or dashboard UI, strictly adhere to `resources/document_standards/ui-craftsmanship-standard.md`:
+* **Modal Containment Law**: Every modal MUST have `max-h-[85vh]`, `flex flex-col`, scrollable body, and sticky footer so action buttons are NEVER cut off below the viewport.
+* **Defensive Table Law**: Data tables MUST use `whitespace-nowrap` on codes, badges, dates, and actions within `overflow-x-auto min-w-[...]` to eliminate ugly multi-line text wrapping.
+* **Asset Integrity**: Strictly use self-contained SVG or Lucide icon components. BAN raw font ligatures like `<span>content_copy</span>`.
+* **Platform Context Accuracy**: Respect target platform context. For mobile, desktop, or web applications, strictly align all copy and micro-interactions with the declared platform, banning cross-platform leaked terminology (e.g., referencing browser extensions or web stores in native mobile applications).
+* **Executive SaaS Standards**: Implement cohesive Dark/Light themes, KPI stat cards with progress bars, Donut charts for status distribution, System Health indicators, and smart customer lookup cards.
+
+### 7. Requirements Ledger & Anti-Amnesia Invariant
+* Prior to executing any mutations, inspect `.biome/requirements_ledger.json`.
+* Every feature listed with status `LOCKED_IN_PRODUCTION` is inviolable: you MUST NEVER remove, overwrite, or regress established user-facing features, historical operational logs, custom configurations, or administrative interfaces across build iterations.
+
 ---
 
 # Execution Output

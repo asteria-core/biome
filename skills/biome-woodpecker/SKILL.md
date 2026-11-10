@@ -48,13 +48,14 @@ While the Goldfish swarm audits the text specification *before* code is written,
 
 ---
 
-## The Five Pecking Vectors
+## The Six Pecking Vectors
 
-The Woodpecker inspects the git diff line-by-line across five mandatory dimensions:
+The Woodpecker inspects the git diff line-by-line across six mandatory dimensions:
 
-1. **Spec & Boundary Fidelity**:
+1. **Spec & Boundary Fidelity & Anti-Amnesia**:
    * Ensures modifications are strictly confined to `target_mutation_plan`.
    * Verifies all API endpoints, models, and contracts match the approved Design Spec verbatim.
+   * **Requirements Ledger Verification**: Guarantees that no pre-existing locked requirements from `.biome/requirements_ledger.json` (such as established features, operational logs, or administrative interfaces) were omitted, overwritten, or forgotten.
    * Catches any unapproved scope creep or skipped error handling loops.
 2. **Security & Defensive Hardening**:
    * Evaluates injection risks (SQLi, command injection, path traversal, XSS).
@@ -73,6 +74,13 @@ The Woodpecker inspects the git diff line-by-line across five mandatory dimensio
    * Eliminates corporate AI buzzwords in UI labels and microcopy (`seamless`, `empower`, `revolutionary`, `cutting-edge`).
    * Strips chatty obvious comments (`// function to do X`).
    * Rejects artificial 5-layer boilerplate abstractions.
+6. **UI/UX Craftsmanship & Visual Integrity**:
+   * Validates against `resources/document_standards/ui-craftsmanship-standard.md`:
+   * Eliminates table text wrapping via `whitespace-nowrap` on alphanumeric codes, durations, and dates.
+   * Verifies modal geometry: `max-h-[85vh]`, internal scrolling, and permanently visible sticky action footers.
+   * Eliminates raw font ligatures (`content_copy`) by enforcing pure SVG/Lucide icon components.
+   * Confirms platform context fidelity (strictly mobile app copy, zero web extension references for mobile products).
+   * Confirms Dark/Light theme consistency and proper RTL/LTR layout symmetry.
 
 ---
 

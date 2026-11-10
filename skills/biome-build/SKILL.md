@@ -42,20 +42,29 @@ Use this when you already have an approved Design Spec and a generated `.biome/p
    * **Natural, Idiomatic Naming**: Strictly ban robotic suffixes (`*Helper`, `*Manager`, `*ProcessorHandler`). Use clean, idiomatic verbs and nouns (`login()`, `getUser()`, `syncOrders()`).
    * **Human UI Microcopy**: Ban AI marketing buzzwords (`seamless`, `empower`, `revolutionary`, `cutting-edge`, `AI-driven`). Use direct, professional human copy ("Analytics & Billing", "Export CSV").
    * **Zero Narrative Comments**: Strip obvious line-by-line comments. Document only non-obvious business invariants and concurrency guards.
-4. **Multi-Domain Pod Swarm**:
+4. **Frontend Craftsmanship & SaaS Design System Mandate (`resources/document_standards/ui-craftsmanship-standard.md`)**:
+   * When touching UI or web/mobile domains:
+     - **Modal Containment Law**: Modals must declare `max-h-[85vh]`, internal scroll, and sticky footer. Action buttons must NEVER clip below the viewport.
+     - **Defensive Table Law**: Enforce `whitespace-nowrap` on codes, dates, and status pills inside `overflow-x-auto min-w-[...]` to eliminate broken text wraps.
+     - **Asset Integrity**: Use self-contained SVG / Lucide components. Strictly ban raw font ligatures (`content_copy`).
+     - **Platform Context Fidelity**: For mobile apps (`Reelio`), strictly ban references to browser extensions or "المتصفح".
+     - **Executive SaaS Standards**: Implement Dark/Light palettes, KPI metric cards, Donut status charts, System Health bars, and rich customer preview lookup cards.
+5. **Requirements Ledger & Anti-Amnesia Guarantee**:
+   * The Beaver MUST read `.biome/requirements_ledger.json` before coding and guarantee that no previously approved client features are removed, regressed, or forgotten.
+6. **Multi-Domain Pod Swarm**:
    * For multi-stack features (Database, Backend, Web Admin, Mobile), execute domain builds in dependency order (DB -> Backend -> Web/Mobile -> E2E).
    * Each Beaver pod receives only its domain slice, preventing token explosion.
-5. **Modular Micro-Architecture Mandate**:
+7. **Modular Micro-Architecture Mandate**:
    * Decompose features into single-responsibility, minimal-line files across structured directories (e.g. `services/`, `validators/`, `handlers/`).
    * Avoid monolithic monster files. Keep functions concise, decoupled, and cleanly typed.
-6. **Latest Dependency & Modern API Mandate**:
+8. **Latest Dependency & Modern API Mandate**:
    * **Latest Semver Lookup**: When introducing or upgrading any package, query package registries (npm, PyPI, crates.io, Go modules) for the absolute latest stable release.
    * **Changelog & Deprecation Inspection**: Verify breaking changes and changelogs to build against modern idioms, strictly avoiding deprecated APIs.
    * **Explicit Version Pinning**: Pin the exact modern version in manifest and index.
-7. **Zero Placeholders**: All code must be production-grade, typed, and complete. No `TODO` or placeholder comments.
-8. **Self-Healing Test Cycle**: Execute project test suites (`pytest`, `npm test`, `go test`, `cargo test`) and auto-correct up to 3 cycles.
-9. **The Woodpecker Inspection Gate**: After unit tests pass and before creating the git commit, spawn **The Woodpecker** (`agents/woodpecker.md`) to perform a zero-context security, fidelity, and anti-slop audit of the `git diff`.
-10. **The Reaper Protocol**: Upon emitting the 3-bullet execution receipt, the Beaver session MUST terminate immediately and be destroyed. No zombie processes.
+9. **Zero Placeholders**: All code must be production-grade, typed, and complete. No `TODO` or placeholder comments.
+10. **Self-Healing Test Cycle**: Execute project test suites (`pytest`, `npm test`, `go test`, `cargo test`) and auto-correct up to 3 cycles.
+11. **The Woodpecker Inspection Gate**: After unit tests pass and before creating the git commit, spawn **The Woodpecker** (`agents/woodpecker.md`) to perform a zero-context security, fidelity, anti-amnesia, and UI craftsmanship audit of the `git diff`.
+12. **The Reaper Protocol**: Upon emitting the 3-bullet execution receipt, the Beaver session MUST terminate immediately and be destroyed. No zombie processes.
 
 ---
 

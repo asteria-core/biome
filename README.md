@@ -21,7 +21,9 @@
 * **The Cartographer** maps codebase topology and caches dependencies in `.biome/codebase_topology.json`.
 * **The Beaver** builds phase-isolated code modifications partitioned across domain pods (Database, Backend, Web, Mobile) with human-grade craftsmanship.
 * **The Chameleon** eliminates robotic AI naming, marketing buzzwords in UI, and chatty comments.
-* **The Woodpecker** audits the raw git diff line-by-line across 5 pecking vectors before commit.
+* **The UI Craftsman** audits web and mobile frontends against bounded modal geometry, defensive table layouts, and executive SaaS aesthetics.
+* **The Woodpecker** audits the raw git diff line-by-line across 6 pecking vectors before commit.
+* **The Memory Vault** locks cumulative client requirements in `.biome/requirements_ledger.json` to guarantee zero requirement amnesia across iterations.
 * **The Reaper Protocol** terminates and purges completed workers immediately to enforce the Zero-Zombie Invariant.
 * **You** make the architectural trade-offs, approve specifications, and review execution receipts.
 

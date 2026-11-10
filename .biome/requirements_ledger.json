@@ -1,0 +1,127 @@
+{
+  "project_name": "Reelio",
+  "version": "2.0.0",
+  "last_updated": "2026-11-10T19:30:00Z",
+  "client_reference": "Wahid (+20 10 07200296)",
+  "active_ledger": [
+    {
+      "id": "REQ-001",
+      "category": "BRANDING_AND_CONTEXT",
+      "title": "Brand Identity & Mobile-First Terminology",
+      "description": "App officially rebranded to 'Reelio' (Tagline: Create. Realize. Reel.). All copy, messages, and guides must reflect mobile app context. All browser/extension/web-extension terminology is strictly banned.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "WhatsApp audit 2026-11-10",
+      "anti_regression_guards": [
+        "Do not revert to 'vidFlow' or 'EasySpeak'",
+        "Do not mention 'المتصفح' or browser extension"
+      ]
+    },
+    {
+      "id": "REQ-002",
+      "category": "UI_TABLE_ERGONOMICS",
+      "title": "Data Table Layout & Text Wrapping Prevention",
+      "description": "All table columns must have explicit widths and whitespace-nowrap. Activation codes, dates, and plan durations (e.g. 'Pro Studio (5 يوماً)') must never wrap onto multiple lines. Action buttons must remain fully visible and never clipped.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "WhatsApp screenshot 2026-11-10 at 3.22.48 PM",
+      "anti_regression_guards": [
+        "Enforce whitespace-nowrap on codes, dates, and badges",
+        "Wrap table in overflow-x-auto with min-w-[800px]"
+      ]
+    },
+    {
+      "id": "REQ-003",
+      "category": "UI_MODAL_GEOMETRY",
+      "title": "Modal Viewport Bounding & Sticky Action Footer",
+      "description": "Modals must never extend beyond the viewport or hide action buttons. Constrain modal to max-h-[85vh] with flex flex-col, overflow-y-auto body, and sticky bottom footer containing confirm/cancel buttons.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "WhatsApp screenshot 2026-11-10 at 3.24.11 PM",
+      "anti_regression_guards": [
+        "Action buttons must be fixed/sticky and 100% visible on all viewports",
+        "Body must scroll internally if content overflows"
+      ]
+    },
+    {
+      "id": "REQ-004",
+      "category": "UI_ASSET_INTEGRITY",
+      "title": "Icon and Visual Asset Rendering Integrity",
+      "description": "All icons must be rendered as valid SVGs or Lucide icons. Raw ligature strings (e.g. 'content_copy') rendered as plain text are strictly prohibited.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "WhatsApp screenshot 2026-11-10 at 3.23.27 PM",
+      "anti_regression_guards": [
+        "Ban raw icon ligature text in JSX/HTML",
+        "Validate icon component imports"
+      ]
+    },
+    {
+      "id": "REQ-005",
+      "category": "UX_INTELLIGENCE",
+      "title": "Customer Lookup & Device Intelligence Card",
+      "description": "When activating by User ID or Phone, display an instant verified customer card showing name, phone, verified badge, device hardware (e.g. 'iPhone 15 Pro, iOS 18.1'), and active tier. Provide clear inline guidance for device ID lookup.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "WhatsApp screenshots 2026-11-08 at 1.30.09 PM & 2026-11-10 at 3.24.49 PM",
+      "anti_regression_guards": [
+        "Never show cryptic unexplained 'معرف الجهاز' input",
+        "Always render customer preview card upon valid ID/phone entry"
+      ]
+    },
+    {
+      "id": "REQ-006",
+      "category": "UI_DASHBOARD_EXCELLENCE",
+      "title": "Executive SaaS Dashboard & Dual Theme Architecture",
+      "description": "Dashboard must match modern executive SaaS standards: Dark mode (Obsidian Navy #0B0F19/#1E293B) and Light mode, warm amber/gold accents (#FBBF24), Hero greeting banner with date range, KPI metric cards with progress bars and trend deltas, visual Donut chart of license status distribution, and System Health indicator banner.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "Client White-Label reference screenshots 2026-11-10 at 3.38.33 PM - 3.39.04 PM & voice note",
+      "anti_regression_guards": [
+        "Both Dark Mode and Light Mode must be supported seamlessly",
+        "KPI cards, Donut chart, and System Health status must be present"
+      ]
+    },
+    {
+      "id": "REQ-007",
+      "category": "ADMIN_SETTINGS",
+      "title": "Administrator Profile, Security & Bilingual Localization",
+      "description": "Dedicated Admin/Company Settings tab allowing the admin to view and edit profile info, email, password, company name, support channels, and switch interface language between Arabic (RTL) and English (LTR).",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "Client voice note & screenshot 2026-11-10 at 3.38.43 PM",
+      "anti_regression_guards": [
+        "Admin settings must never be omitted or reduced to a lone logout button",
+        "Support bilingual RTL/LTR switching"
+      ]
+    },
+    {
+      "id": "REQ-008",
+      "category": "OPERATIONS_LOGS",
+      "title": "WhatsApp Message Logs, Notes & Absent Tracking",
+      "description": "Preserve operations sections: WhatsApp message history (delivery status, sent messages, direct wa.me chat links), Revenue & Notes, and Absent tracking.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "Client feedback 2026-11-08 and 2026-11-10",
+      "anti_regression_guards": [
+        "Do not remove WhatsApp logs or revenue notes sections across iterations"
+      ]
+    },
+    {
+      "id": "REQ-009",
+      "category": "VOUCHERS_AND_COUPONS",
+      "title": "Flexible Activation Coupons & Message Generator",
+      "description": "Vouchers renamed to discount coupons / activation vouchers. Support custom duration (in days, weeks, custom integer 1-3650 days). WhatsApp phone number binding is optional. Includes ready-to-send localized WhatsApp message template with direct wa.me link.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "Client feedback 2026-11-08 at 1.29 PM",
+      "anti_regression_guards": [
+        "Do not enforce minimum 30 days for vouchers",
+        "Phone number lock must remain strictly optional"
+      ]
+    },
+    {
+      "id": "REQ-0010",
+      "category": "SUBSCRIPTION_MANAGEMENT",
+      "title": "Full Subscription Lifecycle Actions & Customer Association",
+      "description": "Every subscription record must clearly show the customer name and avatar, and provide an action menu with Delete, Suspend, Resuspend, Upgrade Plan, and Renew Now options.",
+      "status": "LOCKED_IN_PRODUCTION",
+      "provenance": "Client feedback 2026-11-08 at 1.29.57 PM",
+      "anti_regression_guards": [
+        "Never show anonymous subscription rows without customer name",
+        "Must provide suspend, resuspend, and delete actions"
+      ]
+    }
+  ]
+}

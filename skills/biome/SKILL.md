@@ -49,6 +49,7 @@ Task Parameters:
 - Target File: <path>
 - Domain / Scope: <domain>
 - Exact Objective: <detailed instruction>
+- Active Requirements Ledger: .biome/requirements_ledger.json
 ```
 
 ---
@@ -56,9 +57,10 @@ Task Parameters:
 ## State Anchor & Anti-Compaction Recovery Protocol
 
 To survive context compaction in long-running conversational sessions:
-1. **Atomic Checkpointing**: At the conclusion of every phase, the Elephant writes the current state to `.biome/state.json`.
+1. **Atomic Checkpointing**: At the conclusion of every phase, the Elephant writes the current state to `.biome/state.json` and updates `.biome/requirements_ledger.json`.
 2. **Post-Compaction Recovery**: If the Elephant detects that conversational context has been compacted, truncated, or summarized, it MUST:
    * Read `.biome/state.json` immediately.
+   * Read `.biome/requirements_ledger.json` to anchor all cumulative client requirements and prevent amnesia.
    * Re-read `skills/biome/SKILL.md`.
    * Strictly observe **The Elephant Iron Rule**: NEVER write production code directly in the conversation pane. Resume the pipeline from the recorded `active_phase`.
 
@@ -106,11 +108,13 @@ When invoked without sub-command flags, execute these phases sequentially withou
 Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sessions using the Subagent Preamble Contract:
 1. **The Hardened Critic (`agents/critic.md`)**:
    * Evaluates UI/UX journeys, interaction loops, state traps, and backend contract leakage.
-2. **Architecture & Feasibility Evaluators**:
+2. **The UI/UX Master Craftsman (`agents/ui_craftsman.md`)**:
+   * Mandatory whenever the feature touches UI or web/mobile pods. Audits modal geometry (`max-h-[85vh]` sticky footers), table whitespace wrapping, executive SaaS themes (Dark/Light), asset integrity (no raw icon ligatures), and mobile platform fidelity.
+3. **Architecture & Feasibility Evaluators**:
    * `biome-design` (`agents/design_critic.md`): Audits scalability and single points of failure.
    * `biome-comprehension` (`agents/comprehension.md`): Audits self-containment and naive readability.
    * `biome-implementation-readiness` (`agents/implementation_readiness.md`): Validates unambiguous actionability and target boundary allowlists.
-3. Consolidate all reviewer outputs into `goldfish_review_report.md`. Update `.biome/state.json`.
+4. Consolidate all reviewer outputs into `goldfish_review_report.md`. Update `.biome/state.json`.
 
 ### Phase 4: Feedback Auto-Resolve & Approval Gate
 1. **Trivial Remediation**: Automatically apply uncontested fixes directly to `docs/designs/<feature_name>.md`.
@@ -125,22 +129,27 @@ Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sess
 2. **Multi-Domain Pod Swarm**:
    * For multi-tier changes (Database, Backend, Web, Mobile), execute domain pods in dependency order (DB -> Backend -> Web/Mobile -> E2E).
    * Each Beaver pod receives only its domain slice.
-3. **Anti-Slop & Human-Grade Craftsmanship**:
+3. **Anti-Amnesia Guarantee**:
+   * The Beaver reads `.biome/requirements_ledger.json` and guarantees zero deletion or regression of previously locked client features.
+4. **Frontend Craftsmanship Mandate**:
+   * Strictly adhere to `resources/document_standards/ui-craftsmanship-standard.md` (bounded modals, `whitespace-nowrap` on tables, pure SVG icons, executive SaaS palettes).
+5. **Anti-Slop & Human-Grade Craftsmanship**:
    * Idiomatic naming: Ban robotic suffixes (`*Helper`, `*Manager`, `*ProcessorHandler`).
    * Human UI copy: Ban AI marketing buzzwords (`seamless`, `empower`, `revolutionary`, `cutting-edge`).
    * Clean comments: Document non-obvious business invariants only.
-4. **Latest Dependency & Modern API Mandate**:
+6. **Latest Dependency & Modern API Mandate**:
    * Query registries for latest semver and inspect changelogs to avoid deprecated patterns.
-5. **Self-Healing Test Loop**: Run project test suite, auto-correcting up to 3 cycles. Update `.biome/state.json`.
+7. **Self-Healing Test Loop**: Run project test suite, auto-correcting up to 3 cycles. Update `.biome/state.json`.
 
 ### Phase 7: The Woodpecker - Zero-Context Code Diff & Security Audit
 1. Spawn **The Woodpecker** (`agents/woodpecker.md` / `skills/biome-woodpecker`) in a fresh, isolated session.
-2. Inspect `git diff` across the **Five Pecking Vectors**:
-   * Vector 1: Spec & Boundary Fidelity
+2. Inspect `git diff` across the **Six Pecking Vectors**:
+   * Vector 1: Spec & Boundary Fidelity & Anti-Amnesia Ledger Verification
    * Vector 2: Security & Defensive Hardening
    * Vector 3: Pathological Edge Cases & Failure Modes
    * Vector 4: Micro-Architecture & Type Rigor
    * Vector 5: Anti-Slop & Human-Grade Craftsmanship
+   * Vector 6: UI/UX Craftsmanship & Visual Integrity
 3. The Woodpecker writes `woodpecker_audit_report.md`:
    * If `REJECTED`: Passes blocking defects back to The Beaver for surgical self-healing (up to 2 repair cycles).
    * If `APPROVED`: Authorizes the final atomic semantic git commit (`feat(<scope>): ...`) and emission of the 3-bullet execution receipt.

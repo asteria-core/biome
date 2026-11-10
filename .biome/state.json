@@ -1,15 +1,18 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "active_phase": "IDLE",
   "active_spec": null,
-  "last_checkpoint": "2026-11-09T10:24:00Z",
+  "last_checkpoint": "2026-11-10T19:30:00Z",
   "gate_status": "READY",
   "domain_pods": ["db", "backend", "web", "mobile"],
   "cached_topology_path": ".biome/codebase_topology.json",
+  "requirements_ledger_path": ".biome/requirements_ledger.json",
   "iron_rules": [
     "ELEPHANT_WRITES_ZERO_PRODUCTION_CODE",
     "SUBAGENTS_SPAWNED_EPHEMERAL_AND_STATELESS",
     "ZERO_AI_SLOP_AND_IDIOMATIC_NAMING_ENFORCED",
-    "SUBAGENT_INVOCATION_MUST_PASS_PREAMBLE_AND_SKILL"
+    "SUBAGENT_INVOCATION_MUST_PASS_PREAMBLE_AND_SKILL",
+    "REQUIREMENTS_LEDGER_ANCHORED_ANTI_AMNESIA",
+    "FRONTEND_CRAFTSMANSHIP_AND_DESIGN_SYSTEM_ENFORCED"
   ]
 }
