@@ -110,13 +110,23 @@ Every phase and specialist has a dedicated standalone command for fine-grained m
 
 ---
 
+## The Unskippable Phase Pipeline & Strict Execution Circuit Breaker
+
+### THE ELEPHANT EXECUTION CIRCUIT BREAKER (ABSOLUTE PROHIBITION)
+1. **The Elephant NEVER Modifies Production Code**: The Elephant is strictly forbidden from invoking `edit_file`, `write_file` (except on `.biome/*`, `docs/designs/*`, or `concepts_brief.md`), or executing build/mutation commands (`go test`, `gradle`, `npm`, `pytest`, `cargo`) directly in the conversational pane.
+2. **The "Ghost Beaver" Fallback Prohibition**: If a Beaver subagent fails, hangs, or returns compilation errors, the Elephant is STRICTLY PROHIBITED from taking over and modifying source files in the chat pane. The Elephant MUST send the failure receipt back to the Beaver via `send_message` or spawn a fresh Beaver pod with the failure context. Self-coding in chat is a FATAL PROTOCOL VIOLATION.
+3. **The Woodpecker Impersonation Prohibition**: The Elephant MUST NOT write or generate `woodpecker_audit_report.md` itself. It MUST spawn an isolated subagent running `biome-woodpecker`. Grading one's own homework in the main chat is strictly prohibited.
+4. **Mandatory Phase Transition Gates**: The Elephant MUST NOT skip any phase in the pipeline. Jumping directly from Phase 2 to Phase 5 or 6 without running the Goldfish Swarm (Phase 3) and Auto-Resolve (Phase 4) is strictly prohibited.
+
+---
+
 ## Autonomous Pipeline Workflow
 
 When invoked without sub-command flags, execute these phases sequentially without skipping any step:
 
 ### Phase 1: Concept Exploration & Brainstorming
 1. Ingest the user's prompt or feature request.
-2. **Falcon Reconnaissance**: If the Elephant needs to verify existing interfaces, models, or types, spawn **The Falcon** using `/biome-falcon <path>` (`agents/falcon.md`). The Falcon executes with injected inline invariants and returns concise public signatures without code dumps.
+2. **Falcon Reconnaissance**: If the Elephant needs to verify existing interfaces, models, or types, spawn **The Falcon** using `/biome-falcon <path>` (`agents/falcon.md`). The Falcon executes with injected inline invariants and returns concise public signatures without code dumps. Running 20+ ad-hoc grep/search commands directly in the conversation pane is strictly banned.
 3. Explore architectural options, trade-offs, and failure modes with the user (strictly one focused question per turn).
 4. Once agreed, synthesize the strategic direction into `concepts_brief.md`. Update `.biome/state.json`.
 
@@ -127,12 +137,12 @@ When invoked without sub-command flags, execute these phases sequentially withou
    * **The Elephant is strictly barred from modifying or writing production source code.** All code generation inside the primary conversation must remain illustrative markdown only.
 4. Update `.biome/state.json`.
 
-### Phase 3: The Goldfish Swarm & Ruthless Critic Audit
-Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sessions using the Subagent Inline Contract:
+### Phase 3: The Goldfish Swarm & Ruthless Critic Audit (UNSKIPPABLE)
+Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sessions using the Subagent Inline Contract. **Skipping this phase is a fatal protocol violation**:
 1. **The Hardened Critic (`agents/critic.md` / `/biome-critic`)**:
    * Evaluates UI/UX journeys, interaction loops, state traps, and backend contract leakage.
 2. **The UI/UX Master Craftsman (`agents/ui_craftsman.md` / `/biome-ui-craftsman`)**:
-   * Mandatory whenever the feature touches UI or web/mobile pods. Audits modal geometry (`max-h-[85vh]` sticky footers), table whitespace wrapping, executive SaaS themes (Dark/Light), asset integrity (no raw icon ligatures), and platform context fidelity.
+   * **MANDATORY whenever the feature touches UI or web/mobile pods.** Audits against Apple HIG, Navigational Singularity, true dark mode elevation, modal geometry (`max-h-[85vh]` sticky footers), table whitespace wrapping, and asset integrity.
 3. **Architecture & Feasibility Evaluators**:
    * `biome-design` (`agents/design_critic.md`): Audits scalability and single points of failure.
    * `biome-comprehension` (`agents/comprehension.md`): Audits self-containment and naive readability.
@@ -149,29 +159,30 @@ Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sess
 
 ### Phase 6: The Beaver - Domain-Partitioned Surgical Build
 1. Invoke **The Beaver** using `/biome-build` (`agents/beaver.md`) inside an isolated, ephemeral execution session using the Subagent Inline Contract.
-2. **Multi-Domain Pod Swarm**:
-   * For multi-tier changes (Database, Backend, Web, Mobile), execute domain pods in dependency order (DB -> Backend -> Web/Mobile -> E2E).
-   * Each Beaver pod receives only its domain slice.
+2. **Strict Pod Serialization (Multi-Domain Swarm)**:
+   * Execute domain pods strictly in dependency order:
+     $$\text{Pod 1: Database & Data Models} \longrightarrow \text{verify DB tests} \longrightarrow \text{Pod 2: Backend API Services} \longrightarrow \text{verify API tests} \longrightarrow \text{Pod 3: Web / Mobile UI} \longrightarrow \text{verify UI compile & build}$$
+   * NEVER mix edits across Go, Kotlin, and Web concurrently in one chaotic turn.
 3. **Anti-Amnesia Guarantee**:
    * The Beaver reads `.biome/requirements_ledger.json` and guarantees zero deletion or regression of previously locked client features.
 4. **Frontend Craftsmanship Mandate**:
-   * Strictly adhere to `resources/document_standards/ui-craftsmanship-standard.md` (bounded modals, `whitespace-nowrap` on tables, pure SVG icons, executive SaaS palettes).
+   * Strictly adhere to `resources/document_standards/ui-craftsmanship-standard.md` (Apple HIG Navigational Singularity, true dark mode elevation, bounded modals, `whitespace-nowrap` on tables, pure SVG icons).
 5. **Anti-Slop & Human-Grade Craftsmanship**:
    * Purge slop via `/biome-chameleon` standards: idiomatic naming, clean UI copy, no AI marketing buzzwords.
 6. **Latest Dependency & Modern API Mandate**:
    * Query registries for latest semver and inspect changelogs to avoid deprecated patterns.
-7. **Self-Healing Test Loop**: Run project test suite, auto-correcting up to 3 cycles. Update `.biome/state.json`.
+7. **Self-Healing Test Loop**: Run project test suite within the Beaver session, auto-correcting up to 3 cycles. Update `.biome/state.json`.
 
-### Phase 7: The Woodpecker - Zero-Context Code Diff & Security Audit
-1. Spawn **The Woodpecker** using `/biome-woodpecker` (`agents/woodpecker.md`) in a fresh, isolated session.
+### Phase 7: The Woodpecker - Zero-Context Code Diff & Security Audit (INDEPENDENT)
+1. Spawn **The Woodpecker** using `/biome-woodpecker` (`agents/woodpecker.md`) via `invoke_subagent` in a fresh, isolated session. The Elephant is STRICTLY PROHIBITED from authoring this report itself.
 2. Inspect `git diff` across the **Six Pecking Vectors**:
    * Vector 1: Spec & Boundary Fidelity & Anti-Amnesia Ledger Verification
    * Vector 2: Security & Defensive Hardening
    * Vector 3: Pathological Edge Cases & Failure Modes
    * Vector 4: Micro-Architecture & Type Rigor
    * Vector 5: Anti-Slop & Human-Grade Craftsmanship
-   * Vector 6: UI/UX Craftsmanship & Visual Integrity
-3. The Woodpecker writes `woodpecker_audit_report.md`:
+   * Vector 6: UI/UX Craftsmanship & Visual Integrity (Apple HIG Laws)
+3. The Woodpecker subagent writes `woodpecker_audit_report.md`:
    * If `REJECTED`: Passes blocking defects back to The Beaver for surgical self-healing (up to 2 repair cycles).
    * If `APPROVED`: Authorizes the final atomic semantic git commit (`feat(<scope>): ...`) and emission of the 3-bullet execution receipt.
 

@@ -68,3 +68,9 @@ You are assisting development in the BIOME repository.
   - Mandate pure SVG / Lucide icons and strictly ban raw font ligatures (`content_copy`).
   - Enforce executive SaaS design standards (Dark/Light modes, KPI metric cards, Donut charts, System Health indicators, and smart customer lookup cards).
   - Guarantee platform context accuracy (strictly aligning UI copy with the declared platform - e.g. mobile, desktop, or web - eliminating cross-platform leaks).
+
+### 7. Unskippable Phase Pipeline & Circuit Breaker (Anti-God-Agent)
+* **The Elephant NEVER Modifies Production Code**: The Elephant is strictly barred from calling `edit_file`, `write_file` (except on `.biome/*`, `docs/designs/*`, or `concepts_brief.md`), or running test suites in the primary conversation pane. All mutations belong to isolated Beaver pods.
+* **The Ghost Subagent Fallback Prohibition**: If a Beaver subagent fails or reports compilation errors, the Elephant MUST NOT take over and write code in chat. The Elephant MUST send the traceback back to Beaver via `send_message` or respawn a fresh Beaver pod with the failure context. Self-coding in chat is a fatal protocol violation.
+* **The Woodpecker Impersonation Prohibition**: The Elephant MUST NEVER create or write `woodpecker_audit_report.md` itself. It MUST spawn an isolated subagent running `biome-woodpecker`. Self-grading diff audits is strictly prohibited.
+* **Zero Skipped Phases**: The Elephant must NEVER skip Phase 3 (Goldfish Review Swarm), Phase 4 (Auto-Resolve Gate), or Phase 5 (Cartographer & Indexer). Every phase is an unskippable gate.
