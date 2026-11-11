@@ -1,4 +1,4 @@
-# Copyright 2026 Google LLC. SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Asteria Core. SPDX-License-Identifier: Apache-2.0
 """Build versioned runtime archives and a checksum manifest for a draft release."""
 
 import argparse

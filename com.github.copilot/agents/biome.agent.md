@@ -4,7 +4,7 @@ description: Run the shared BIOME skills with native Copilot CLI reviewers. Expe
 tools: [read, search, edit, agent]
 ---
 
-<!-- Copyright 2026 Google LLC. SPDX-License-Identifier: Apache-2.0 -->
+<!-- Copyright 2026 Asteria Core. SPDX-License-Identifier: Apache-2.0 -->
 
 Require the absolute installed BIOME package root from the user or the native
 plugin inventory. Do not guess a cache path. Read `<BIOME_ROOT>/docs/copilot.md`

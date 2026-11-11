@@ -35,21 +35,37 @@ A living, phased software architecture where ideas are explored, the Elephant sp
 
 ---
 
-## Subagent Preamble Contract (MANDATORY)
+## Subagent Preamble Contract (MANDATORY INLINE INJECTION)
 
-Whenever the Elephant spawns any subagent (Reviewer, Indexer, Beaver, Woodpecker, Falcon, Chameleon), it is **STRICTLY PROHIBITED** from generating an ad-hoc, informal prompt. The Elephant MUST format the subagent prompt using this standardized bootstrap preamble:
+Whenever the Elephant spawns any subagent (Falcon, Cartographer, Reviewer, Indexer, Beaver, Woodpecker, Chameleon, UI Craftsman), it is **STRICTLY PROHIBITED** from generating an informal prompt or relying on the subagent to read files on disk.
+
+Subagents frequently fail to execute `read_file` on persona files. Therefore, the Elephant MUST format the subagent prompt using this standardized bootstrap contract, which begins with the explicit slash command and directly injects all persona rules, skill invariants, and ledger requirements inline:
 
 ```text
-[SUBAGENT BOOTSTRAP PREAMBLE]
+/<skill_name> <target_parameters>
+
+[MANDATORY SUBAGENT INLINE CONTRACT]
 Role: <Subagent Name>
-Persona Definition: agents/<persona_file>.md
-Execution Skill: skills/biome-<skill_folder>/SKILL.md
-Mandate: Read your Persona and Execution Skill files first. Adhere strictly to the rubrics and invariants defined therein.
-Task Parameters:
-- Target File: <path>
+Persona: agents/<persona_file>.md
+Execution Skill: /<skill_name> (skills/<skill_folder>/SKILL.md)
+
+=== INJECTED PERSONA INVARIANTS ===
+<Inlined verbatim core mandates from the target agent persona>
+
+=== INJECTED EXECUTION INVARIANTS ===
+<Inlined verbatim execution rules from the target skill>
+
+=== ACTIVE REQUIREMENTS LEDGER ===
+<Summary of all active LOCKED_IN_PRODUCTION requirements from .biome/requirements_ledger.json>
+
+=== TURN 1 COMPLIANCE ASSERTION ===
+Before running any tool or writing code/reports, your very first response MUST state:
+"Confirmed: Active as [<Subagent Name>] under [/<skill_name>]. Injected invariants and requirements ledger locked."
+
+=== TASK DIRECTIVE ===
+- Target File/Path: <path>
 - Domain / Scope: <domain>
 - Exact Objective: <detailed instruction>
-- Active Requirements Ledger: .biome/requirements_ledger.json
 ```
 
 ---
@@ -75,10 +91,14 @@ To survive context compaction in long-running conversational sessions:
 Executes the full automated end-to-end pipeline across all phases from concept exploration to verified git commit.
 
 ### 2. Standalone Granular Commands
-Every phase has a dedicated standalone command for fine-grained manual execution:
+Every phase and specialist has a dedicated standalone command for fine-grained manual execution:
+* `/biome-falcon <Target>`: Rapid codebase reconnaissance scout returning compact signatures ([`skills/biome-falcon`](../biome-falcon/SKILL.md))
+* `/biome-cartographer`: Repository topology cartographer emitting `.biome/codebase_topology.json` ([`skills/biome-cartographer`](../biome-cartographer/SKILL.md))
 * `/biome-brainstorm <Idea>`: Explore ideas and write a concept brief ([`skills/biome-brainstorm`](../biome-brainstorm/SKILL.md))
 * `/biome-draft [BriefPath]`: Draft a spec section-by-section with the Elephant ([`skills/biome-draft`](../biome-draft/SKILL.md))
 * `/biome-critic <TargetFile>`: Standalone Cynical Lead Auditor & Adversarial User review ([`skills/biome-critic`](../biome-critic/SKILL.md))
+* `/biome-ui-craftsman <TargetFile>`: UI/UX Master Craftsman & Aesthetic Auditor ([`skills/biome-ui-craftsman`](../biome-ui-craftsman/SKILL.md))
+* `/biome-chameleon <TargetFile>`: Anti-Slop & Human-Grade Craftsmanship Auditor ([`skills/biome-chameleon`](../biome-chameleon/SKILL.md))
 * `/biome-review <TargetFile>`: Full 5-stage Goldfish reviewer swarm audit ([`skills/biome-review`](../biome-review/SKILL.md))
 * `/biome-resolve <TargetFile>`: Address review findings and negotiate changes ([`skills/biome-resolve`](../biome-resolve/SKILL.md))
 * `/biome-index [SpecPath]`: Deterministic Structural Indexer to emit `.biome/project_index.json` ([`skills/biome-index`](../biome-index/SKILL.md))
@@ -93,7 +113,7 @@ When invoked without sub-command flags, execute these phases sequentially withou
 
 ### Phase 1: Concept Exploration & Brainstorming
 1. Ingest the user's prompt or feature request.
-2. **Falcon Reconnaissance**: If the Elephant needs to verify existing interfaces or types, spawn **The Falcon** (`agents/falcon.md`) to return concise public signatures. The Elephant never dumps raw source files into its own context.
+2. **Falcon Reconnaissance**: If the Elephant needs to verify existing interfaces, models, or types, spawn **The Falcon** using `/biome-falcon <path>` (`agents/falcon.md`). The Falcon executes with injected inline invariants and returns concise public signatures without code dumps.
 3. Explore architectural options, trade-offs, and failure modes with the user (strictly one focused question per turn).
 4. Once agreed, synthesize the strategic direction into `concepts_brief.md`. Update `.biome/state.json`.
 
@@ -105,11 +125,11 @@ When invoked without sub-command flags, execute these phases sequentially withou
 4. Update `.biome/state.json`.
 
 ### Phase 3: The Goldfish Swarm & Ruthless Critic Audit
-Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sessions using the Subagent Preamble Contract:
-1. **The Hardened Critic (`agents/critic.md`)**:
+Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sessions using the Subagent Inline Contract:
+1. **The Hardened Critic (`agents/critic.md` / `/biome-critic`)**:
    * Evaluates UI/UX journeys, interaction loops, state traps, and backend contract leakage.
-2. **The UI/UX Master Craftsman (`agents/ui_craftsman.md`)**:
-   * Mandatory whenever the feature touches UI or web/mobile pods. Audits modal geometry (`max-h-[85vh]` sticky footers), table whitespace wrapping, executive SaaS themes (Dark/Light), asset integrity (no raw icon ligatures), and mobile platform fidelity.
+2. **The UI/UX Master Craftsman (`agents/ui_craftsman.md` / `/biome-ui-craftsman`)**:
+   * Mandatory whenever the feature touches UI or web/mobile pods. Audits modal geometry (`max-h-[85vh]` sticky footers), table whitespace wrapping, executive SaaS themes (Dark/Light), asset integrity (no raw icon ligatures), and platform context fidelity.
 3. **Architecture & Feasibility Evaluators**:
    * `biome-design` (`agents/design_critic.md`): Audits scalability and single points of failure.
    * `biome-comprehension` (`agents/comprehension.md`): Audits self-containment and naive readability.
@@ -121,11 +141,11 @@ Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sess
 2. **Critical Decision Checkpoint**: Present blocker trade-offs to the user for targeted resolution. Once satisfied, mark spec `Status: APPROVED`. Update `.biome/state.json`.
 
 ### Phase 5: Decoupled Cartography & Structural Indexing
-1. **Topology Cartography**: Check `.biome/codebase_topology.json`. If missing or stale, spawn **The Cartographer** (`agents/cartographer.md`) to map and cache repository topology.
-2. **Structural Indexer**: Spawn **The Indexer** (`agents/indexer.md`) to parse the approved spec and output `.biome/project_index.json` with domain-partitioned `target_mutation_plan`. Update `.biome/state.json`.
+1. **Topology Cartography**: Check `.biome/codebase_topology.json`. If missing or stale, spawn **The Cartographer** using `/biome-cartographer` (`agents/cartographer.md`) to map and cache repository topology.
+2. **Structural Indexer**: Spawn **The Indexer** (`agents/indexer.md` / `/biome-index`) to parse the approved spec and output `.biome/project_index.json` with domain-partitioned `target_mutation_plan`. Update `.biome/state.json`.
 
 ### Phase 6: The Beaver - Domain-Partitioned Surgical Build
-1. Invoke **The Beaver** (`agents/beaver.md` / `skills/biome-build`) inside an isolated, ephemeral execution session using the Subagent Preamble Contract.
+1. Invoke **The Beaver** using `/biome-build` (`agents/beaver.md`) inside an isolated, ephemeral execution session using the Subagent Inline Contract.
 2. **Multi-Domain Pod Swarm**:
    * For multi-tier changes (Database, Backend, Web, Mobile), execute domain pods in dependency order (DB -> Backend -> Web/Mobile -> E2E).
    * Each Beaver pod receives only its domain slice.
@@ -134,15 +154,13 @@ Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sess
 4. **Frontend Craftsmanship Mandate**:
    * Strictly adhere to `resources/document_standards/ui-craftsmanship-standard.md` (bounded modals, `whitespace-nowrap` on tables, pure SVG icons, executive SaaS palettes).
 5. **Anti-Slop & Human-Grade Craftsmanship**:
-   * Idiomatic naming: Ban robotic suffixes (`*Helper`, `*Manager`, `*ProcessorHandler`).
-   * Human UI copy: Ban AI marketing buzzwords (`seamless`, `empower`, `revolutionary`, `cutting-edge`).
-   * Clean comments: Document non-obvious business invariants only.
+   * Purge slop via `/biome-chameleon` standards: idiomatic naming, clean UI copy, no AI marketing buzzwords.
 6. **Latest Dependency & Modern API Mandate**:
    * Query registries for latest semver and inspect changelogs to avoid deprecated patterns.
 7. **Self-Healing Test Loop**: Run project test suite, auto-correcting up to 3 cycles. Update `.biome/state.json`.
 
 ### Phase 7: The Woodpecker - Zero-Context Code Diff & Security Audit
-1. Spawn **The Woodpecker** (`agents/woodpecker.md` / `skills/biome-woodpecker`) in a fresh, isolated session.
+1. Spawn **The Woodpecker** using `/biome-woodpecker` (`agents/woodpecker.md`) in a fresh, isolated session.
 2. Inspect `git diff` across the **Six Pecking Vectors**:
    * Vector 1: Spec & Boundary Fidelity & Anti-Amnesia Ledger Verification
    * Vector 2: Security & Defensive Hardening

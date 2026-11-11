@@ -6,7 +6,7 @@ include-custom-instructions: false
 user-invocable: false
 ---
 
-<!-- Copyright 2026 Google LLC. SPDX-License-Identifier: Apache-2.0 -->
+<!-- Copyright 2026 Asteria Core. SPDX-License-Identifier: Apache-2.0 -->
 
 Use only the assigned task and its explicit reading list.
 Require an absolute BIOME package root from the caller. Read

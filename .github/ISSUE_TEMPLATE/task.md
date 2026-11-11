@@ -2,7 +2,7 @@
 name: "Task"
 about: "Track maintenance, documentation, validation, or other scoped work"
 type: Task
-license: "Copyright 2026 Google LLC. SPDX-License-Identifier: Apache-2.0"
+license: "Copyright 2026 Asteria Core. SPDX-License-Identifier: Apache-2.0"
 ---
 
 ## Objective

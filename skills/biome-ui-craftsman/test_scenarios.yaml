@@ -1,0 +1,18 @@
+# Copyright 2026 Asteria Core.
+# SPDX-License-Identifier: Apache-2.0
+
+skill: "biome-ui-craftsman"
+description: "Behavioral evaluation scenario suite for BIOME UI Craftsman visual auditor."
+
+scenarios:
+  - scenario_id: "biome_ui_craftsman_audit"
+    description: "Verifies /biome-ui-craftsman inspects UI components for visual defects."
+    eval_type: "deterministic"
+    system_prompt:
+      skill_file: "skills/biome-ui-craftsman/SKILL.md"
+    turns:
+      - user_input: "Run /biome-ui-craftsman src/components/Modal.tsx"
+        assertions:
+          - type: "required_pattern"
+            pattern: "(Craftsman|UI|modal|viewport|table|Report)"
+            message: "BIOME UI Craftsman must return an aesthetic audit report."

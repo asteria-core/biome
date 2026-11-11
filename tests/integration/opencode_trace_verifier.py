@@ -1,4 +1,4 @@
-# Copyright 2026 Google LLC.
+# Copyright 2026 Asteria Core.
 # SPDX-License-Identifier: Apache-2.0
 
 """Check required reads in an exported OpenCode 1.18.29 child session.

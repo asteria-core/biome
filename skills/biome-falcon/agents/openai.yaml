@@ -1,0 +1,6 @@
+interface:
+  display_name: "BIOME Falcon"
+  short_description: "Rapid low-token codebase reconnaissance scout"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#1B6EF3"

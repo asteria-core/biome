@@ -1,0 +1,18 @@
+# Copyright 2026 Asteria Core.
+# SPDX-License-Identifier: Apache-2.0
+
+skill: "biome-chameleon"
+description: "Behavioral evaluation scenario suite for BIOME Chameleon anti-slop auditor."
+
+scenarios:
+  - scenario_id: "biome_chameleon_audit"
+    description: "Verifies /biome-chameleon inspects code for AI slop and robotic naming."
+    eval_type: "deterministic"
+    system_prompt:
+      skill_file: "skills/biome-chameleon/SKILL.md"
+    turns:
+      - user_input: "Run /biome-chameleon src/auth/service.py"
+        assertions:
+          - type: "required_pattern"
+            pattern: "(Chameleon|Anti-Slop|Naming|Craftsmanship|Report)"
+            message: "BIOME Chameleon must return a craftsmanship audit report."

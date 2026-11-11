@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright 2026 Google LLC.
+# Copyright 2026 Asteria Core.
 # SPDX-License-Identifier: Apache-2.0
 
 """Correlate native Cursor ReadFile calls and successes in one child store."""

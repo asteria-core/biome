@@ -1,5 +1,5 @@
 <!--
-Copyright 2026 Google LLC.
+Copyright 2026 Asteria Core.
 SPDX-License-Identifier: Apache-2.0
 -->
 

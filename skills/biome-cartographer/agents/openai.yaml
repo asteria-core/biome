@@ -1,0 +1,6 @@
+interface:
+  display_name: "BIOME Cartographer"
+  short_description: "Maps codebase topology into cached manifest"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#1B6EF3"

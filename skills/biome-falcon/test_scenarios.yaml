@@ -1,0 +1,18 @@
+# Copyright 2026 Asteria Core.
+# SPDX-License-Identifier: Apache-2.0
+
+skill: "biome-falcon"
+description: "Behavioral evaluation scenario suite for BIOME Falcon reconnaissance scout."
+
+scenarios:
+  - scenario_id: "biome_falcon_reconnaissance"
+    description: "Verifies /biome-falcon extracts signatures without code dumps."
+    eval_type: "deterministic"
+    system_prompt:
+      skill_file: "skills/biome-falcon/SKILL.md"
+    turns:
+      - user_input: "Run /biome-falcon src/auth/login.ts"
+        assertions:
+          - type: "required_pattern"
+            pattern: "(Falcon|Reconnaissance|Signatures|Contracts|Briefing)"
+            message: "BIOME Falcon must return a reconnaissance briefing."

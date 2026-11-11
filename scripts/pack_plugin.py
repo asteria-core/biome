@@ -1,4 +1,4 @@
-# Copyright 2026 Google LLC.
+# Copyright 2026 Asteria Core.
 # SPDX-License-Identifier: Apache-2.0
 
 """Build runtime folders and reproducible ZIPs without development files."""
@@ -26,8 +26,9 @@ HOST = {
 }
 SKILLS = (
     "biome", "biome-bootstrap", "biome-brainstorm", "biome-build",
-    "biome-critic", "biome-draft", "biome-drift-report", "biome-index",
-    "biome-resolve", "biome-review", "biome-review-loop", "biome-woodpecker",
+    "biome-cartographer", "biome-chameleon", "biome-critic", "biome-draft",
+    "biome-drift-report", "biome-falcon", "biome-index", "biome-resolve",
+    "biome-review", "biome-review-loop", "biome-ui-craftsman", "biome-woodpecker",
 )
 REQUIRED_SHARED = (
     "plugin.json", "LICENSE", "LICENSE-APACHE", "README.md", "assets/icon.svg",
@@ -43,14 +44,15 @@ REQUIRED_SHARED = (
     for name in ("SKILL.md", "agents/openai.yaml", "assets/icon.svg")
 ) + tuple(
     f"agents/{name}.md" for name in (
-        "bootstrap_orchestrator", "codebase_details", "comprehension", "critic",
-        "design_critic", "implementation_readiness", "indexer", "inventive_catalyst",
-        "structural", "style", "synthesizer", "woodpecker", "zoom_out",
+        "beaver", "bootstrap_orchestrator", "cartographer", "chameleon", "codebase_details",
+        "comprehension", "critic", "design_critic", "falcon", "implementation_readiness",
+        "indexer", "inventive_catalyst", "structural", "style", "synthesizer",
+        "ui_craftsman", "woodpecker", "zoom_out",
     )
 ) + tuple(
     f"resources/document_standards/{name}-standard.md" for name in (
         "feature-spec", "heilmeier", "implementation-readiness",
-        "re-implementation", "zoom-out",
+        "re-implementation", "ui-craftsmanship", "zoom-out",
     )
 )
 

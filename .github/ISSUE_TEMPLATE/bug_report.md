@@ -2,7 +2,7 @@
 name: "Bug report"
 about: "Report incorrect behavior with steps to reproduce it"
 type: Bug
-license: "Copyright 2026 Google LLC. SPDX-License-Identifier: Apache-2.0"
+license: "Copyright 2026 Asteria Core. SPDX-License-Identifier: Apache-2.0"
 ---
 
 ## Expected Behavior

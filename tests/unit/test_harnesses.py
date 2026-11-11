@@ -1,4 +1,4 @@
-# Copyright 2026 Google LLC.
+# Copyright 2026 Asteria Core.
 # SPDX-License-Identifier: Apache-2.0
 
 """Offline packaging and isolation contracts for shared and host manifests."""
@@ -23,9 +23,10 @@ MARKETPLACES = (
     ".claude-plugin/marketplace.json",
 )
 EXPECTED_SKILLS = {
-    "biome", "biome-bootstrap", "biome-brainstorm", "biome-build", "biome-critic",
-    "biome-draft", "biome-drift-report", "biome-index", "biome-resolve",
-    "biome-review", "biome-review-loop", "biome-woodpecker",
+    "biome", "biome-bootstrap", "biome-brainstorm", "biome-build",
+    "biome-cartographer", "biome-chameleon", "biome-critic", "biome-draft",
+    "biome-drift-report", "biome-falcon", "biome-index", "biome-resolve",
+    "biome-review", "biome-review-loop", "biome-ui-craftsman", "biome-woodpecker",
 }
 REVIEWERS = (
     "codebase_details", "comprehension", "design_critic",

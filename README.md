@@ -166,7 +166,39 @@ The Beaver executes phase-isolated, surgical code modifications according to `.b
 /biome-woodpecker docs/designs/<feature>.md
 ```
 
-The Woodpecker audits the raw git diff line-by-line for security vulnerabilities, spec fidelity, and pathological edge cases before committing.
+The Woodpecker audits the raw git diff line-by-line across 6 vectors (spec fidelity, security, edge cases, micro-architecture, anti-slop, and UI/UX craftsmanship) before committing.
+
+<img src="skills/biome-falcon/assets/icon.svg" width="20" height="20" alt=""> **Reconnaissance with Falcon**
+
+```text
+/biome-falcon src/models/
+```
+
+The Falcon probes codebase directories, interfaces, and types to return compact signatures without dumping raw code files.
+
+<img src="skills/biome-cartographer/assets/icon.svg" width="20" height="20" alt=""> **Map Topology with Cartographer**
+
+```text
+/biome-cartographer
+```
+
+The Cartographer audits project dependencies and directory structures, caching repository topology in `.biome/codebase_topology.json`.
+
+<img src="skills/biome-ui-craftsman/assets/icon.svg" width="20" height="20" alt=""> **Audit UI with Master Craftsman**
+
+```text
+/biome-ui-craftsman src/components/Dashboard.tsx
+```
+
+The UI Craftsman audits web and mobile frontends against bounded modal geometry, defensive table layouts, and executive SaaS aesthetics.
+
+<img src="skills/biome-chameleon/assets/icon.svg" width="20" height="20" alt=""> **Anti-Slop Audit with Chameleon**
+
+```text
+/biome-chameleon src/services/auth.py
+```
+
+The Chameleon audits code and copy to eradicate robotic AI naming, marketing puffery, and chatty obvious commentary.
 
 See the [workflow guide](docs/getting_started.md) for the full process.
 
@@ -249,4 +281,4 @@ Read [contributing](https://github.com/asteria-core/biome/blob/main/CONTRIBUTING
 
 This project is licensed under a dual-licensing structure:
 * **[BIOME License v1.0 (Source-Available)](LICENSE)**: Copyright &copy; 2026 Asteria Studio. All Rights Reserved. Governs the BIOME multi-agent software engineering ecosystem, agent architectures (Elephant, Goldfish, Beaver, Woodpecker, Falcon, Chameleon), prompts, and orchestration state-machines for personal, academic, and internal non-commercial development. Commercial hosting, SaaS, managed execution, and AI model distillation require a separate commercial license from Asteria Studio.
-* **[Apache License 2.0](LICENSE-APACHE)**: Upstream base portions Copyright &copy; Google LLC, licensed under the Apache License, Version 2.0.
+* **[Apache License 2.0](LICENSE-APACHE)**: Upstream base portions Copyright &copy; Asteria Core, licensed under the Apache License, Version 2.0.
