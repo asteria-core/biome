@@ -37,7 +37,7 @@ def test_install_preserves_resources_and_native_contract(tmp_path: Path) -> None
     assert config["default_agent"] in ("biome", "egm")
     assert config["autoupdate"] is False
     assert "model" not in config
-    assert len(config["command"]) in (7, 12, 16)
+    assert len(config["command"]) in (7, 12, 15)
     for skill in (ROOT / "skills").glob("*/SKILL.md"):
         key = ADAPTER["name"](skill)
         alias = Path(config["skills"]["paths"][0]) / key

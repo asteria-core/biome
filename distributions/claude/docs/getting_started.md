@@ -87,17 +87,13 @@ The "core" workflow looks like:
     > testing strategies, etc. EGM is not opinionated here. Add your skills to
     > your implementation plan!
 
-## Drift Detection
+## Auditing & Craftsmanship Verification
 
-To ensure that your design specifications and active codebase remain
-synchronized over time, EGM provides a drift detection skill:
+To ensure that your implementation adheres to strict security, UI/UX craftsmanship, and human-grade coding standards, BIOME provides specialized zero-context auditors:
 
-*   **`/biome-drift-report`**: Scan your design directory and referenced code for
-    drift. Any detected divergence should be reconciled. Either update the doc,
-    or the code. Human picks which.
-
-We recommend running this once per week. If you have a regular maintenance
-rotation, incorporating this as a weekly ritual is useful.
+*   **`/biome-woodpecker`**: Peck relentlessly at git diffs to detect security vulnerabilities, spec divergence, and edge-case regressions before commit.
+*   **`/biome-ui-craftsman`**: Audit frontend layouts against bounded modal viewports, defensive data tables, and modern executive SaaS design standards.
+*   **`/biome-chameleon`**: Audit naming conventions and UI microcopy to eradicate robotic AI naming, marketing puffery, and chatty obvious commentary.
 
 ## Bootstrapping Existing Codebases
 

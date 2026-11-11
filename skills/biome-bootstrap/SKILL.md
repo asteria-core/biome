@@ -399,21 +399,10 @@ If your harness has no subagent tool, run the scout steps inline.
         configuration and use valid target syntax (for Bazel, `/...` or
         `:all`, never `:...`).
 
-5.  **Optional Drift Review (CRITICAL)**: After verification, ask the user (using
-    a structured question tool, if your harness has one, or plain chat) to offer running a drift report
-    on the generated documentation updates:
-
-    *   `question`: "Do you want to run the EGM Drift Report on the generated
-        contract updates to check for consistency with the codebase?"
-    *   `options`: `["(Recommended) Yes, run drift report on modified contracts",
-        "No, skip drift review"]`
-    *   If the user selects "Yes", run the `biome-drift-report` skill targeting
-        the modified contracts to verify both missing code coverage and
-        doc-to-code hallucinations (verifying every documented method, route,
-        enum, database table, and invariant against local source files and
-        recording discrepancies in the drift report for human triage). (Note:
-        While `biome-drift-report` is often used for design documents, it can be
-        applied to EGM-compliant contracts as a variant).
+5.  **Audit & Verification**: After documentation generation, verify that all
+    generated contract files accurately reflect the local source files with zero
+    hallucinations. Optionally invoke `biome-codebase-details` or `biome-woodpecker`
+    to ensure exhaustive alignment between contracts and live implementation.
 
 6.  Terminate execution successfully.
 

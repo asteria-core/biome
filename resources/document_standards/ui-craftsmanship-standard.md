@@ -1,17 +1,78 @@
 # UI/UX Craftsmanship & Dashboard Standard
+<!-- BIOME Master Specification: Apple HIG & Executive SaaS Quality Contract -->
 
 ## Overview
 
-This standard defines the mandatory visual design, interaction patterns, and layout engineering rules for all web, mobile, and administrative dashboard interfaces within the **BIOME Ecosystem**.
+This standard defines the mandatory visual design, interaction patterns, layout architecture, and theme engineering rules for all web, mobile, and administrative dashboard interfaces within the **BIOME Ecosystem**.
 
-AI models frequently default to fragile, unstyled, or broken user interfaces—manifesting in wrapping table cells, cut-off modal buttons, raw unrendered icon ligatures, cryptic unexplained inputs, and missing theme systems. This standard establishes concrete, enforceable invariants to guarantee production-grade craftsmanship matching modern executive SaaS platforms.
+AI models frequently produce fragile, amateurish, or broken user interfaces:
+- Duplicate controls scattered redundantly between headers and sidebars.
+- Abhorrent "half-dark modes" where headers turn dark while the page body and cards remain blinding white `#FFFFFF`.
+- Redundant stacked page titles repeating the exact same title 2-3 times in 100 vertical pixels.
+- Awkwardly wrapping table cells breaking codes across multiple lines.
+- Modals with confirmation buttons pushed off-screen.
+- Raw unrendered icon ligatures (`content_copy`) instead of clean SVGs.
+
+This standard establishes concrete, enforceable laws derived from the **Apple Human Interface Guidelines (HIG)** and modern executive SaaS design engineering (Linear, Vercel, Stripe, Raycast).
 
 ---
 
-## 1. The Modal Containment Invariant
+## 1. The Navigational Singularity Law (Anti-Redundancy Invariant)
 
 ### The Failure Mode
-Modals without strict viewport height constraints grow unbounded. On common laptop or tablet displays, primary confirmation buttons (تأكيد / تفعيل) are pushed below the browser viewport, rendering the dialog un-clickable and trapping the user.
+AI models habitually duplicate global utility controls across multiple regions of the same viewport. In amateur dashboards, the Theme Toggle (Light/Dark), Language Switcher (EN/AR), User Profile Avatar, and Logout button appear simultaneously in the top navbar **AND** in the sidebar footer. Furthermore, page titles are repeated both in the top bar and immediately in a massive banner below it. This creates sensory clutter, confusion over canonical state, and an amateurish appearance.
+
+### Mandatory Navigational Architecture
+1. **Single Canonical Utility Home**:
+   Every global application control (Account/Profile, Organization/Tenant Switcher, Theme Toggle, Language Switcher, System Status, Sign Out) MUST reside in **exactly one** unambiguous location:
+   - **Pattern A: Sidebar-First Layout (Executive SaaS Standard)**:
+     - Primary navigation links live in the sidebar body.
+     - All account utilities (User Avatar, Name, Role, Theme Toggle, Language Switcher, Logout) MUST be consolidated into a **single unified User Menu card or popover pinned to the bottom of the sidebar**.
+     - When using Pattern A, the top navbar MUST NOT duplicate the theme switch, language switch, or logout button. The top bar is reserved exclusively for Global Search (`Cmd+K`), Breadcrumbs, and page-specific contextual action buttons.
+   - **Pattern B: Header-First Layout**:
+     - Global utilities are clustered cleanly on the trailing edge (top-right in LTR, top-left in RTL) inside a **single unified dropdown menu** under the user avatar.
+2. **Page Title Singularity**:
+   - A viewport must display the page title in **exactly one** visual location.
+   - If the top navbar contains the title or breadcrumb (`Dashboard / Overview`), the main content view must NOT render an identical redundant title banner directly underneath.
+   - Avoid stacked subtitle noise (`لوحة المؤشرات العامة` repeated 3 times). Use a single elegant `<h1>` with contextual micro-metadata.
+
+---
+
+## 2. Apple HIG Semantic Theme & True Dark Mode Standard
+
+### The Failure Mode ("Half-Dark Mode" Abomination)
+The AI turns the top navbar and sidebar dark (`#0B0F19`) but leaves the main content canvas and data cards with hardcoded white backgrounds (`#FFFFFF`, `bg-white`) and black text. This creates a blinding optical mismatch that is unusable in low-light environments.
+
+### Mandatory Semantic Color & Elevation Model
+Apple HIG and modern CSS frameworks require **semantic intent tokens**, strictly banning hardcoded `#FFFFFF` or `#000000` for surface containers.
+
+#### Elevation Hierarchy (Layering Depth Model)
+In Dark Mode, drop shadows are optically ineffective against dark backgrounds. Elevation and depth MUST be communicated through **perceptual surface lightening**:
+
+| Elevation Layer | Light Mode Surface | Dark Mode Surface | Semantic Role |
+| :--- | :--- | :--- | :--- |
+| **Layer 0 (Canvas Base)** | `#F8FAFC` (`slate-50`) | `#090D16` / `#0B0F19` (`slate-950`) | Deepest root window background |
+| **Layer 1 (Cards & Tables)** | `#FFFFFF` (`white`) | `#131B2E` / `#1E293B` (`slate-900`) | Main content containers & panels |
+| **Layer 2 (Popovers & Modals)** | `#FFFFFF` (`white`) | `#1E293B` / `#334155` (`slate-800`) | Elevated dialogs, tooltips, flyouts |
+| **Layer 3 (Inputs & Wells)** | `#F1F5F9` (`slate-100`) | `#0B0F19` (`slate-950/60`) | Inset form inputs, search bars, code blocks |
+
+#### Strict Theming Rules
+1. **Zero Blinding Surfaces in Dark Mode**:
+   - It is strictly prohibited for any card, modal, container, or background to render as `#FFFFFF` or `bg-white` when dark mode is active.
+   - Every surface MUST declare dual-theme classes (e.g. `bg-white dark:bg-slate-900`) or use CSS variable tokens (`var(--surface-card)`).
+2. **Text Contrast & Optical Hierarchy**:
+   - **Primary Text**: High-contrast readable (`text-slate-900 dark:text-slate-100`).
+   - **Secondary / Metadata Text**: Calibrated muted tone (`text-slate-500 dark:text-slate-400`).
+   - **Borders & Separators**: Subtle, semi-transparent hairline borders (`border-slate-200 dark:border-slate-800` or `dark:border-white/10`). Never use heavy solid black or bright white borders.
+3. **Accent Vibrancy**:
+   - Accent buttons (Indigo `#6366F1`, Emerald `#10B981`, Amber `#F59E0B`) must maintain WCAG AAA contrast ratio ($\ge 7:1$) against dark card surfaces.
+
+---
+
+## 3. The Modal Containment Invariant
+
+### The Failure Mode
+Modals without strict viewport height constraints grow unbounded. On laptop or tablet screens, primary confirmation buttons (تأكيد / حفظ / تفعيل) are pushed below the browser viewport, trapping the user in an un-closable state.
 
 ### Mandatory Geometry
 Every modal, drawer, or dialog component MUST enforce:
@@ -22,7 +83,7 @@ Every modal, drawer, or dialog component MUST enforce:
 
 ---
 
-## 2. The Defensive Table Invariant
+## 4. The Defensive Table Invariant
 
 ### The Failure Mode
 Table cells containing alphanumeric activation codes (e.g. `TK-ES4H-9VQW-XYEV`), plan durations (e.g. `Pro Studio (5 يوماً)`), or dates wrap awkwardly onto 3 to 4 vertical lines. Furthermore, action buttons on table edges are clipped by parent containers.
@@ -34,24 +95,15 @@ Table cells containing alphanumeric activation codes (e.g. `TK-ES4H-9VQW-XYEV`),
 
 ---
 
-## 3. Executive SaaS Dashboard & Visual Analytics Blueprint
-
-### Visual Palette & Theming
-* **Dark Mode Standard**:
-  - App Background: Obsidian Slate (`#0B0F19` / `#0F172A`).
-  - Card Surfaces: Deep Slate (`#1E293B` / `#131B2E`) with subtle borders in `#334155` (`slate-700/50`).
-  - Brand & Active Accents: Warm Amber/Gold (`#FBBF24`), Royal Indigo (`#6366F1`), Emerald (`#10B981`).
-* **Light Mode Standard**:
-  - Crisp clean white background with neutral slate borders (`#E2E8F0`).
-* **Dual Theme Architecture**: All components must support seamless theme switching via CSS variables or Tailwind dark mode classes.
+## 5. Executive SaaS Dashboard & Visual Analytics Blueprint
 
 ### Core Dashboard Components
 1. **Executive Greeting Banner**:
    - Time-aware personalized greeting ("مساء الخير 👋" / "Good evening 👋").
    - System operational status and active date range selector.
 2. **Metric KPI Cards (Stat Grid)**:
-   - 4-column layout for key health indicators (Total Licenses, Active Licenses, Expiring Soon, Trial Licenses).
-   - Each card displays: Icon with soft tinted circular background, metric value, visual progress bar, and period delta indicator (`↑ 0% vs last month`).
+   - 4-column responsive grid for key health indicators (Total Licenses, Active Licenses, Expiring Soon, Revenue).
+   - Each card displays: Icon with soft tinted circular background, metric value, visual progress bar, and period delta indicator (`↑ 12% vs last month`).
 3. **Visual Donut Chart**:
    - Donut chart displaying license and user status breakdown (Active, Expiring, Expired, Trial) with center total count.
 4. **System Health & Reliability Card**:
@@ -60,7 +112,7 @@ Table cells containing alphanumeric activation codes (e.g. `TK-ES4H-9VQW-XYEV`),
 
 ---
 
-## 4. Smart Customer Lookup & Entity Intelligence
+## 6. Smart Customer Lookup & Entity Intelligence
 
 ### The Failure Mode
 Prompting users or administrators for cryptic "معرف الجهاز / كود الحساب" without context or validation creates severe confusion and support friction.
@@ -77,7 +129,7 @@ Prompting users or administrators for cryptic "معرف الجهاز / كود ا
 
 ---
 
-## 5. Asset & Icon Rendering Integrity
+## 7. Asset & Icon Rendering Integrity
 
 ### Mandatory Asset Standards
 1. **Strict Prohibition of Raw Ligature Text**:
@@ -87,7 +139,7 @@ Prompting users or administrators for cryptic "معرف الجهاز / كود ا
 
 ---
 
-## 6. Platform Context Fidelity & Bilingual Settings
+## 8. Platform Context Fidelity & Bilingual Settings
 
 ### Platform Context
 * UI copy and interactions must strictly match the declared target platform (e.g. native mobile, responsive web, desktop, or browser extension).
@@ -98,5 +150,7 @@ Prompting users or administrators for cryptic "معرف الجهاز / كود ا
 * Required capabilities:
   - Administrator Name and Email.
   - Password management and reset.
+  - Platform / Company branding (Logo upload, platform display title).
+  - Language switcher (Arabic RTL / English LTR) with complete bidirectional layout flipping.
   - Organization and support channel configuration (WhatsApp, Support Email).
   - Language switcher between Arabic (العربية RTL) and English (LTR) with native text direction flipping.

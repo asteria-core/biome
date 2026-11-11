@@ -56,8 +56,10 @@ You are assisting development in the BIOME repository.
 * Cumulative client requirements and historical features are tracked and locked in `.biome/requirements_ledger.json`.
 * Subagents and builders MUST NEVER regress, omit, or forget previously established client requirements across versions.
 
-### 6. Frontend Craftsmanship & SaaS Design System
+### 6. Frontend Craftsmanship & SaaS Design System (Apple HIG & Executive Polish)
 * All UI and frontend modifications must adhere to `resources/document_standards/ui-craftsmanship-standard.md`:
+  - **Navigational Singularity & Anti-Redundancy**: Global utility controls (theme switch, language switch, user profile, logout) must reside in exactly ONE canonical location (pinned in sidebar footer OR header dropdown, never duplicated across both). Eliminate duplicate stacked page titles.
+  - **Apple HIG Elevation & True Dark Mode**: Strictly ban "half-dark" interfaces with dark headers but blinding white cards. Enforce layered dark surface elevation (`slate-950` canvas, `slate-900` cards, `slate-800` modals) and semantic dual-theme tokens.
   - Strictly bound modal dialogs (`max-h-[85vh]` + sticky action footers) to prevent cut-off buttons.
   - Enforce `whitespace-nowrap` and responsive containers on data tables to eliminate broken text wraps.
   - Mandate pure SVG / Lucide icons and strictly ban raw font ligatures (`content_copy`).

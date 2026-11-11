@@ -25,7 +25,7 @@ MARKETPLACES = (
 EXPECTED_SKILLS = {
     "biome", "biome-bootstrap", "biome-brainstorm", "biome-build",
     "biome-cartographer", "biome-chameleon", "biome-critic", "biome-draft",
-    "biome-drift-report", "biome-falcon", "biome-index", "biome-resolve",
+    "biome-falcon", "biome-index", "biome-resolve",
     "biome-review", "biome-review-loop", "biome-ui-craftsman", "biome-woodpecker",
 }
 REVIEWERS = (

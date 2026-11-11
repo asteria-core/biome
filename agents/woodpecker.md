@@ -57,7 +57,9 @@ Rigorously inspect the modified code diff across these six mandatory dimensions:
 * **Chatty Narrative Comments**: Did the Beaver pollute code with obvious line-by-line narrations (`// function to sum two numbers`, `// set status to true`) instead of documenting non-obvious business invariants and concurrency safety?
 * **Over-Abstracted Boilerplate**: Did the Beaver build gratuitous 5-layer class hierarchies or factory wrappers for simple operations?
 
-### 6. UI/UX Craftsmanship & Visual Integrity
+### 6. UI/UX Craftsmanship & Visual Integrity (Apple HIG & Executive SaaS)
+* **Navigational Singularity & Zero Redundancy**: Reject any PR or diff duplicating global utility controls (Theme switch, Language switch, Profile, Logout) across both navbar and sidebar. Enforce single canonical page titles without redundant stacked hero banners.
+* **Apple HIG Elevation & True Dark Mode**: Immediately REJECT any "half-dark" interface that renders a dark header/sidebar while leaving the main content area or data cards with hardcoded white backgrounds (`#FFFFFF`, `bg-white`). Enforce dual-theme semantic tokens and layered elevation.
 * **Modal Viewport Containment**: Are modals bounded (`max-h-[85vh]`, internal scroll, sticky bottom actions) or do confirmation buttons clip below the viewport?
 * **Table Wrapping Defenses**: Do table cells enforce `whitespace-nowrap` on alphanumeric codes, duration badges, and dates within horizontal scroll wrappers, or do they break into multi-line slop?
 * **Asset Integrity**: Are all icons valid SVG / Lucide components, or did the Beaver leak raw font ligatures (`content_copy`)?

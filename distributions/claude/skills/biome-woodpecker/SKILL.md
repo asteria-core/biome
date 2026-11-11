@@ -76,6 +76,8 @@ The Woodpecker inspects the git diff line-by-line across six mandatory dimension
    * Rejects artificial 5-layer boilerplate abstractions.
 6. **UI/UX Craftsmanship & Visual Integrity**:
    * Validates against `resources/document_standards/ui-craftsmanship-standard.md`:
+   * **Navigational Singularity & Zero Redundancy**: Banish duplicate utility controls (theme toggle, language switcher, profile, logout) between headers and sidebars. Eliminate stacked duplicate page titles.
+   * **Apple HIG Elevation & True Dark Mode**: Strictly reject "half-dark" interfaces (dark header with blinding white cards). Enforce layered surface elevation and dual-theme tokens.
    * Eliminates table text wrapping via `whitespace-nowrap` on alphanumeric codes, durations, and dates.
    * Verifies modal geometry: `max-h-[85vh]`, internal scrolling, and permanently visible sticky action footers.
    * Eliminates raw font ligatures (`content_copy`) by enforcing pure SVG/Lucide icon components.

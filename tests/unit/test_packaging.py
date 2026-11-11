@@ -51,7 +51,7 @@ def test_runtime_bundle_is_complete_and_reproducible(
   with zipfile.ZipFile(archive) as bundle:
     assert bundle.testzip() is None
     names = set(bundle.namelist())
-    assert len([p for p in names if p.endswith("/SKILL.md")]) == 16
+    assert len([p for p in names if p.endswith("/SKILL.md")]) == 15
     for skill in source.glob("skills/*/SKILL.md"):
       prefix = skill.parent.relative_to(source)
       metadata = yaml.safe_load(bundle.read((prefix / "agents/openai.yaml").as_posix()))
@@ -109,7 +109,7 @@ def test_runtime_bundle_is_complete_and_reproducible(
     ("build", "#1b6ef3", "#7cacf8"),
     ("draft", "#1b6ef3", "#7cacf8"),
     ("resolve", "#1b6ef3", "#7cacf8"),
-    ("drift_report", "#e86e00", "#ff8d41"),
+    ("falcon", "#1b6ef3", "#7cacf8"),
     ("review", "#e86e00", "#ff8d41"),
     ("review_loop", "#e86e00", "#ff8d41"),
 ])
@@ -305,7 +305,7 @@ def test_refuses_unbundled_services(source: Path, tmp_path: Path, field: str) ->
     "skills/biome-bootstrap/SKILL.md",
     "skills/biome-brainstorm/SKILL.md",
     "skills/biome-draft/SKILL.md",
-    "skills/biome-drift-report/SKILL.md",
+    "skills/biome-falcon/SKILL.md",
     "skills/biome-resolve/SKILL.md",
     "skills/biome-review/SKILL.md",
     "skills/biome-review-loop/SKILL.md",
