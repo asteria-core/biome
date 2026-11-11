@@ -1,7 +1,6 @@
 ---
 name: biome-cartographer
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Repository Topology Cartographer. Maps modules, dependencies, and entrypoints into .biome/codebase_topology.json.
 ---

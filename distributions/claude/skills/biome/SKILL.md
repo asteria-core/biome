@@ -1,7 +1,6 @@
 ---
 name: biome
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   BIOME: Unified autonomous end-to-end software delivery ecosystem. Orchestrates
   concept brainstorming, Elephant spec drafting, hardened Critic Goldfish swarm audits,

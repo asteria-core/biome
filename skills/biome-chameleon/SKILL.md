@@ -1,7 +1,6 @@
 ---
 name: biome-chameleon
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Anti-Slop & Human-Grade Craftsmanship Auditor. Scans code, UI copy, and comments to purge robotic AI naming and corporate marketing buzzwords.
 ---

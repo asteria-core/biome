@@ -1,7 +1,6 @@
 ---
 name: biome-bootstrap
 license: Apache-2.0
-disable-model-invocation: true
 description: Bootstrap directory README.md files across a repository subtree.
 ---
 

@@ -1,7 +1,6 @@
 ---
 name: biome-falcon
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Rapid Codebase Reconnaissance Scout. Probes files, directories, interfaces, and types
   to return ultra-compact signature summaries without dumping thousands of tokens.

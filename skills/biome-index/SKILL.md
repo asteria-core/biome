@@ -1,7 +1,6 @@
 ---
 name: biome-index
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Runs the Deterministic Structural Indexer to scan repository topology, dependency
   manifests, and approved specs to emit or update .biome/project_index.json.

@@ -1,7 +1,6 @@
 ---
 name: biome-build
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   The standalone BIOME Beaver builder skill. Executes phase-isolated, surgical code
   modifications strictly against .biome/project_index.json and the approved Design Spec

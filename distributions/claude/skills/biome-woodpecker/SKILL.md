@@ -1,7 +1,6 @@
 ---
 name: biome-woodpecker
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Runs the unsparing Woodpecker (The Zero-Context Code Diff & Security Inspector)
   on any active git diff to expose vulnerabilities, spec drift, and edge-case bugs.

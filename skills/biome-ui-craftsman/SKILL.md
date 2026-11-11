@@ -1,7 +1,6 @@
 ---
 name: biome-ui-craftsman
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   UI/UX Master Craftsman & Aesthetic Auditor. Inspects frontend interfaces for Apple HIG standards, zero navigation redundancy, true dark mode elevation, bounded modals, and SaaS excellence.
 ---

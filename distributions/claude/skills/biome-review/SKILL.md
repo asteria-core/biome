@@ -1,7 +1,6 @@
 ---
 name: biome-review
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Orchestrates the EGM Goldfish Review Protocol. Used as part of the EGM
   process to perform design document reviews. Executes five review phases:

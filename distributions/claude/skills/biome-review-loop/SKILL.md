@@ -1,7 +1,6 @@
 ---
 name: biome-review-loop
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Executes the Antagonistic-Review process from the Elephant-Goldfish
   Model (EGM) via an automated multi-agent review loop to audit documents

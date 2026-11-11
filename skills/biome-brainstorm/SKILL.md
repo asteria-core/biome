@@ -1,7 +1,6 @@
 ---
 name: biome-brainstorm
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Interactive ideation and brainstorming skill for the Elephant &
   Goldfish Model (EGM). Helps turn half-baked concepts into structured

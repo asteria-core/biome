@@ -1,7 +1,6 @@
 ---
 name: biome-draft
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Drafts a design document section-by-section using the concepts brief from
   biome-brainstorm (or user notes). This is the second step in the Elephant-Goldfish (EGM)

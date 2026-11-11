@@ -1,7 +1,6 @@
 ---
 name: biome-resolve
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   The Elephant resolution skill. Ingests flat deficiency reports from
   concurrent Goldfish reviewers, applies automated fixes for PROPOSE FIX

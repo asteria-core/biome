@@ -1,7 +1,6 @@
 ---
 name: biome-critic
 license: Apache-2.0
-disable-model-invocation: true
 description: >-
   Runs the unsparing Critic Goldfish (The Cynical Lead Auditor & Adversarial User)
   on any design doc, concept, or feature to expose UI/UX friction and contract flaws.
