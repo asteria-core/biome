@@ -39,8 +39,11 @@ You are assisting development in the BIOME repository.
   2. Re-read `skills/biome/SKILL.md`.
   3. Strictly enforce **The Elephant Iron Rule**: NEVER write production code directly in the conversation pane. Resume strictly from `active_phase`.
 
-### 2. Subagent Preamble Contract
-* Every subagent invocation MUST include the standardized bootstrap preamble specifying the persona file (`agents/<name>.md`) and execution skill (`skills/biome-<name>/SKILL.md`). Ad-hoc, unstructured subagent prompts are strictly prohibited.
+### 2. Subagent Preamble Contract & Mandatory Tool Execution
+* Every subagent invocation MUST use the Dual-Guarantee Contract:
+  - **Step 1 Tool Directive**: The subagent prompt MUST mandate executing the `read_file` tool call on `skills/biome-<name>/SKILL.md` (and any referenced standard) on Turn 1 before writing code or modifying files.
+  - **Inline Invariant Injection**: Directly inject persona mandates (`agents/<name>.md`), skill rules, and `.biome/requirements_ledger.json` into the prompt.
+  - **Banish Raw Slash Command Assumptions**: Never assume typing `/<skill_name>` in a programmatic API prompt triggers macro expansion; enforce explicit tool calls.
 
 ### 3. Anti-Slop & Human-Grade Craftsmanship
 * All generated code, UI titles, and microcopy must adhere to natural human engineering standards:

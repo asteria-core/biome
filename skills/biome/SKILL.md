@@ -35,19 +35,25 @@ A living, phased software architecture where ideas are explored, the Elephant sp
 
 ---
 
-## Subagent Preamble Contract (MANDATORY INLINE INJECTION)
+## Subagent Preamble Contract (MANDATORY DUAL-GUARANTEE INJECTION)
 
-Whenever the Elephant spawns any subagent (Falcon, Cartographer, Reviewer, Indexer, Beaver, Woodpecker, Chameleon, UI Craftsman), it is **STRICTLY PROHIBITED** from generating an informal prompt or relying on the subagent to read files on disk.
+In programmatic subagent invocations (`invoke_subagent`), slash commands (`/<skill_name>`) are delivered as raw text strings and **DO NOT** trigger UI-level macro expansions or automatic skill file loading. Furthermore, subagents instructed solely via conversational text often hallucinate that they know the workflow without reading the canonical files on disk.
 
-Subagents frequently fail to execute `read_file` on persona files. Therefore, the Elephant MUST format the subagent prompt using this standardized bootstrap contract, which begins with the explicit slash command and directly injects all persona rules, skill invariants, and ledger requirements inline:
+Therefore, the Elephant MUST format every subagent invocation using the **Dual-Guarantee Contract**:
+1. **Tool-Call Directive**: Explicitly mandates that the subagent's very first action MUST be a `read_file` tool call to load the canonical `skills/<skill_folder>/SKILL.md` (and any referenced standards).
+2. **Inline Invariant & Ledger Injection**: Directly inlines the persona mandates, execution rules, and locked requirements ledger into the prompt payload so context is preserved even before disk reads.
+
+### The Canonical Subagent Prompt Template
 
 ```text
-/<skill_name> <target_parameters>
-
 [MANDATORY SUBAGENT INLINE CONTRACT]
 Role: <Subagent Name>
 Persona: agents/<persona_file>.md
-Execution Skill: /<skill_name> (skills/<skill_folder>/SKILL.md)
+Execution Skill: skills/<skill_folder>/SKILL.md
+
+=== STEP 1: MANDATORY TOOL DIRECTIVE (SKILL VERIFICATION) ===
+You MUST execute the `read_file` tool call on `skills/<skill_folder>/SKILL.md` (and any referenced standard like `resources/document_standards/ui-craftsmanship-standard.md`) on your very first turn.
+DO NOT attempt to modify code, edit files, or output conversational justifications until you have executed this tool call and loaded the full runbook into active memory.
 
 === INJECTED PERSONA INVARIANTS ===
 <Inlined verbatim core mandates from the target agent persona>
@@ -58,14 +64,11 @@ Execution Skill: /<skill_name> (skills/<skill_folder>/SKILL.md)
 === ACTIVE REQUIREMENTS LEDGER ===
 <Summary of all active LOCKED_IN_PRODUCTION requirements from .biome/requirements_ledger.json>
 
-=== TURN 1 COMPLIANCE ASSERTION ===
-Before running any tool or writing code/reports, your very first response MUST state:
-"Confirmed: Active as [<Subagent Name>] under [/<skill_name>]. Injected invariants and requirements ledger locked."
-
 === TASK DIRECTIVE ===
 - Target File/Path: <path>
 - Domain / Scope: <domain>
-- Exact Objective: <detailed instruction>
+- Exact Objective: <detailed, unambiguous instruction>
+- On Turn 1: Call `read_file` on `skills/<skill_folder>/SKILL.md`. Confirm skill rules loaded, then execute the objective.
 ```
 
 ---

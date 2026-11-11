@@ -110,7 +110,7 @@ def build(root: Path, target: str, output: Path) -> tuple[Path, Path]:
       raise ValueError(f"Unbundled manifest reference: {reference}")
   output.mkdir(parents=True, exist_ok=True)
   folder.mkdir()
-  with tempfile.TemporaryDirectory(prefix=".egm-", dir=output) as temporary:
+  with tempfile.TemporaryDirectory(prefix=".egm-", dir=output, ignore_cleanup_errors=True) as temporary:
     staged = Path(temporary) / archive.name
     with zipfile.ZipFile(staged, "x", zipfile.ZIP_DEFLATED) as bundle:
       for relative in sorted(files):
