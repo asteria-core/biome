@@ -2,63 +2,66 @@
   <a href="https://github.com/asteria-core/biome"><img src="docs/assets/readme-header.svg" width="480" height="126" alt="BIOME Ecosystem"></a>
 </p>
 
-<p align="center"><strong>BIOME: Design with an elephant. Scout with a falcon. Review with a goldfish. Map with a cartographer. Build with a beaver. Blend with a chameleon. Inspect with a woodpecker. Clean with the reaper.</strong></p>
+<p align="center"><strong>BIOME: Design with an elephant. Scout with a falcon. Review with a goldfish. Map with a cartographer. Build with a beaver. Blend with a chameleon. Polish with a craftsman. Inspect with a woodpecker. Clean with the reaper.</strong></p>
 
 <p align="center">
   <a href="#install">Install</a> &ensp;·&ensp;
-  <a href="#try-your-first-design">Quickstart</a> &ensp;·&ensp;
+  <a href="#the-autonomous-pipeline">Autonomous Pipeline</a> &ensp;·&ensp;
+  <a href="#the-agents-of-biome">Agent Roster & Superpowers</a> &ensp;·&ensp;
+  <a href="#the-15-standalone-skills">Skill Reference</a> &ensp;·&ensp;
   <a href="docs/getting_started.md">Documentation</a> &ensp;·&ensp;
   <a href="https://github.com/asteria-core/biome">GitHub</a>
 </p>
 
 <br>
 
-**BIOME** is an autonomous, production-grade software delivery ecosystem for AI coding assistants. Derived from Google's Elephant-Goldfish Model (EGM) and evolved into a multi-agent engineering platform:
+**BIOME** is an autonomous, production-grade software delivery ecosystem engineered for AI coding assistants. Born from Google's foundational Elephant-Goldfish Model (EGM) and evolved into a multi-agent engineering platform, BIOME eliminates the fatal flaws of autonomous AI development: **contextual amnesia**, **hallucinated package APIs**, **robotic slop**, **broken half-dark UIs**, and **uncontrolled zombie processes**.
 
-* **The Elephant** holds deep architectural memory, explores trade-offs, and drafts specifications. *(Strictly barred from writing production code — The Elephant Iron Rule)*.
-* **The Falcon** performs high-speed, low-token reconnaissance of codebase types and signatures so the Elephant never bloats its context.
-* **The Goldfish** reviewer swarm red-teams the specification with zero conversation bias.
-* **The Cartographer** maps codebase topology and caches dependencies in `.biome/codebase_topology.json`.
-* **The Beaver** builds phase-isolated code modifications partitioned across domain pods (Database, Backend, Web, Mobile) with human-grade craftsmanship.
-* **The Chameleon** eliminates robotic AI naming, marketing buzzwords in UI, and chatty comments.
-* **The UI Craftsman** audits web and mobile frontends against bounded modal geometry, defensive table layouts, and executive SaaS aesthetics.
-* **The Woodpecker** audits the raw git diff line-by-line across 6 pecking vectors before commit.
-* **The Memory Vault** locks cumulative client requirements in `.biome/requirements_ledger.json` to guarantee zero requirement amnesia across iterations.
-* **The Reaper Protocol** terminates and purges completed workers immediately to enforce the Zero-Zombie Invariant.
-* **You** make the architectural trade-offs, approve specifications, and review execution receipts.
+---
+
+## The Paradigm Shift: Standard AI vs. BIOME
+
+| Failure Vector in Standard AI | The BIOME Engineering Guarantee | Primary BIOME Agent / Invariant |
+| :--- | :--- | :--- |
+| **Model Amnesia**: Forgets earlier client requirements across iterations. | **The Memory Vault**: Cumulative client features are permanently locked in `.biome/requirements_ledger.json`. | 🏛️ `.biome/requirements_ledger.json` |
+| **Token Bloat & Context Exhaustion**: Reading entire codebases into conversation context. | **Falcon Reconnaissance & Cartography**: Probes AST signatures and caches module topology in `.biome/codebase_topology.json`. | 🦅 The Falcon & 🗺️ The Cartographer |
+| **The "God Agent" Spaghetti**: Single conversational LLM edits files blindly while debating in chat. | **The Elephant Iron Rule**: The conversational orchestrator is **strictly prohibited from writing code**. All code is built by isolated, ephemeral builder pods. | 🐘 The Elephant & 🦫 The Beaver |
+| **Hallucinated Package APIs**: Importing deprecated methods or non-existent library flags. | **Live Registry Verification**: The builder queries live npm/PyPI/crates.io releases to pin real APIs before writing imports. | 🦫 The Beaver Builder |
+| **Robotic AI Code & Copy Slop**: Clumsy compound names (`*Helper`, `*Manager`), chatty comments, and corporate buzzwords (`seamless`). | **Human-Grade Craftsmanship**: Enforces clean idiomatic verbs/nouns and purges AI marketing puffery. | 🦎 The Chameleon Stylist |
+| **Broken & "Half-Dark" UIs**: Duplicate controls scattered between navbars and sidebars; dark headers with blinding white cards (`#FFFFFF`). | **Apple HIG & Executive SaaS Laws**: Enforces Navigational Singularity, 4-tier dark elevation, bounded modals, and defensive tables. | 🎨 The UI/UX Master Craftsman |
+| **Blind Unchecked Commits**: Trusting shallow unit tests that test only happy paths. | **Zero-Context Diff Pecking**: Relentless inspection of raw `git diff` across 6 security and spec vectors before commit. | 🪵 The Woodpecker Inspector |
+| **Zombie Subagents**: Background agents lingering in memory, conflicting over shared files. | **The Reaper Protocol**: Single-use ephemeral workers destroyed immediately upon task delivery (Zero-Zombie Rule). | ⚡ The Reaper Protocol |
 
 ---
 
 ## Install
 
-Choose your coding agent. Install the complete plugin so its skills and agents can run seamlessly across all environments directly from GitHub:
+BIOME is packaged as a universal plugin compatible with **Antigravity**, **Claude Code**, **OpenAI Codex**, and **Cursor / Windsurf**.
 
-### Antigravity CLI
+### Antigravity CLI & IDE Extension
 
 ```sh
 agy plugin install https://github.com/asteria-core/biome
 ```
 
-For the **Antigravity App** and **Antigravity for IDEs** (Visual Studio Code extension), run `/plugin` or see the [installation instructions](docs/harnesses.md#antigravity-app-and-antigravity-for-ides).
+For the **Antigravity App** and **VS Code Extension**, trigger `/plugin` in chat or follow the [Harness Setup Guide](docs/harnesses.md).
 
 ### Claude Code
 
-Install directly from GitHub via Claude Code CLI:
+Install directly from GitHub via the Claude Code CLI:
 
 ```sh
 claude plugin marketplace add asteria-core/biome
 claude plugin install biome@biome
 ```
 
-Or inside an active Claude Code session:
+Or invoke within an active session:
 
 ```text
 /plugin install biome --marketplace asteria-core/biome
 ```
 
-### Codex CLI
-
-Install directly from GitHub via Codex CLI:
+### OpenAI Codex CLI
 
 ```sh
 codex plugin marketplace add asteria-core/biome
@@ -73,215 +76,296 @@ Install directly into your workspace:
 npx skills add asteria-core/biome --agent cursor
 ```
 
-Start a new session after installation. For other harnesses, see the [setup guide](docs/harnesses.md).
+---
+
+## The Autonomous Pipeline
+
+Run the entire engineering lifecycle end-to-end automatically with a single command:
+
+<img src="skills/biome/assets/icon.svg" width="20" height="20" align="top" alt=""> **Autonomous End-to-End Delivery**
+
+```text
+/biome Build multi-tenant voucher management with WhatsApp activation logs and executive dark mode.
+```
+
+### End-to-End Architectural Dataflow
+
+```
+[User Strategic Request]
+           │
+           ▼
+┌──────────────────────────────┐
+│       🐘 THE ELEPHANT        │ ◄─── State Anchor (.biome/state.json) & Anti-Amnesia Ledger
+└──────────────┬───────────────┘
+               │ (1. Scout codebase AST signatures without context bloat)
+               ▼
+┌──────────────────────────────┐
+│        🦅 THE FALCON         │ ───► Probes routes, interfaces, types & schemas
+└──────────────┬───────────────┘
+               │ (2. Returns compact signatures)
+               ▼
+┌──────────────────────────────┐
+│       🐘 THE ELEPHANT        │ ───► Drafts specification (docs/designs/<feature>.md)
+└──────────────┬───────────────┘      [Strictly zero production code]
+               │ (3. Fan-out to adversarial zero-context reviewers)
+               ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       🐠 THE GOLDFISH SWARM                                 │
+│  ┌────────────────────────┐  ┌────────────────────────┐  ┌────────────────┐ │
+│  │  🥊 The Critic         │  │  💡 Inventive Catalyst │  │ 👓 Naive Reader│ │
+│  │  (Adversarial UX/State)│  │  (Soviet TRIZ Solver)  │  │ (No Assumptions│ │
+│  └────────────────────────┘  └────────────────────────┘  └────────────────┘ │
+│  ┌────────────────────────┐  ┌────────────────────────┐  ┌────────────────┐ │
+│  │  🏗️ Design Critic      │  │  🔭 Zoom-Out Architect │  │ 📋 Tech Lead   │ │
+│  │  (Infra & Scalability) │  │  (Simplicity & YAGNI)  │  │ (Readiness Gate│ │
+│  └────────────────────────┘  └────────────────────────┘  └────────────────┘ │
+│  ┌────────────────────────┐  ┌────────────────────────┐  ┌────────────────┐ │
+│  │  🔬 Codebase Details   │  │  📐 Structural Auditor │  │ ✍️ Style Editor │ │
+│  │  (Anti-Hallucination)  │  │  (Symmetry & Hierarchy)│  │ (Brevity/Clarity│ │
+│  └────────────────────────┘  └────────────────────────┘  └────────────────┘ │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │ (4. Synthesizer aggregates findings)
+                                       ▼
+┌──────────────────────────────┐
+│       🐘 AUTO-RESOLVE        │ ───► Settles trade-offs, locks spec as APPROVED
+└──────────────┬───────────────┘
+               │ (5. Maps topology and partitions mutation plan)
+               ▼
+┌──────────────────────────────┐
+│      🗺️ CARTOGRAPHER        │ ───► Reads/Caches .biome/codebase_topology.json
+└──────────────┬───────────────┘
+               │ (6. Generates deterministic target mutation plan)
+               ▼
+┌──────────────────────────────┐
+│         🎯 INDEXER           │ ───► Emits .biome/project_index.json
+└──────────────┬───────────────┘
+               │ (7. Phase-Isolated Ephemeral Build across Domain Pods)
+               ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          🦫 THE BEAVER BUILDER                              │
+│  ┌───────────────────────────────────────────────────────────────────────┐  │
+│  │ Domain Pods: [Database] ──► [Backend API] ──► [Web/Mobile] ──► [E2E]  │  │
+│  │ Invariants: Real Package Verification · Micro-Architecture · Tests    │  │
+│  └───────────────────────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │ (8. Active working git diff)
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       🪵 THE WOODPECKER AUDITOR                             │
+│  Pecks at git diff across 6 vectors:                                        │
+│  [Spec Fidelity] · [Security/Taint] · [Edge Cases] · [Micro-Architecture]   │
+│  [Anti-Slop (Chameleon)] · [UI/UX Craftsmanship (Apple HIG Laws)]           │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │
+                      ┌────────────────┴────────────────┐
+                 [REJECTED]                        [APPROVED]
+                      │                                 │
+                      ▼                                 ▼
+         [Beaver Self-Healing Loop]            [Atomic Git Commit]
+                                                        │
+                                                        ▼
+                                               [⚡ THE REAPER]
+                                       (Kills all ephemeral sessions)
+```
 
 ---
 
-## Try your first feature
+## The Agents of BIOME
 
-Open your project in your coding agent and run the unified autonomous command `/biome`. You can run the entire pipeline end-to-end automatically:
+### 1. 🐘 The Elephant (Context Orchestrator & Living Spec Engine)
+* **Orchestrator**: [`skills/biome/SKILL.md`](skills/biome/SKILL.md) (The Elephant Orchestrator Engine)
+* **Context Mode**: Deep conversational memory and architectural steward.
+* **The Elephant Iron Rule**: The Elephant is **strictly prohibited from writing, generating, or modifying production source code**. Its sole responsibility is strategic discovery, specifications, and coordination.
+* **State Anchor**: Durable phase checkpoints are written to `.biome/state.json`. If context compaction occurs in the host harness, the Elephant automatically recovers state and resumes from `active_phase`.
 
-<img src="skills/biome/assets/icon.svg" width="20" height="20" align="top" alt=""> **Autonomous End-to-End Pipeline**
+### 2. 🦅 The Falcon (Rapid Reconnaissance Scout)
+* **Skill**: `/biome-falcon <path>` | **Persona**: [`agents/falcon.md`](agents/falcon.md)
+* **Context Mode**: Ultra-fast, low-token reconnaissance.
+* **Superpower**: Probes deep project directories, AST signatures, interfaces, and database models to extract compact contracts without dumping massive raw code into conversational context.
 
-```text
-/biome Add webhook delivery with retry backoff to this project.
-```
+### 3. 🗺️ The Cartographer (Repository Topology Engine)
+* **Skill**: `/biome-cartographer` | **Persona**: [`agents/cartographer.md`](agents/cartographer.md)
+* **Context Mode**: Cached codebase knowledge engine.
+* **Superpower**: Analyzes module boundaries, entrypoints, and internal dependency graphs, writing an immutable topology cache to `.biome/codebase_topology.json`. Prevents redundant filesystem scans across subagents.
 
-`/biome` orchestrates the complete flow automatically:
-1. **State Anchor**: Initializes `.biome/state.json` to survive context compaction.
-2. **Concept Exploration & Falcon Reconnaissance**: Explores requirements and probes existing interfaces without code dumps.
-3. **Elephant Spec Drafting**: The Elephant drafts publication-grade specification under `docs/designs/` (*strictly zero production code*).
-4. **Hardened Critic & Goldfish Swarm**: Parallel zero-context audit with `agents/critic.md` attacking UI/UX friction and contracts.
-5. **Auto-Resolve Gate**: Closes trivial findings, settles critical trade-offs with user, and marks spec `APPROVED`.
-6. **Decoupled Cartography & Indexing**: Reuses `.biome/codebase_topology.json` and emits `.biome/project_index.json` partitioned by domain pods.
-7. **Beaver Ephemeral Build**: Executes domain-partitioned mutations (DB -> Backend -> Web/Mobile) with anti-slop human-grade craft.
-8. **Woodpecker Code Diff Audit**: Pecks at the raw `git diff` across 5 vectors (spec fidelity, security, edge cases, micro-architecture, anti-slop).
-9. **The Reaper Teardown**: Destroys completed worker sessions to ensure unpolluted fresh starts.
+### 4. 🐠 The Goldfish Reviewer Swarm (10 Specialized Personas)
+Zero-context, stateless review subagents that evaluate specifications cold with zero conversational memory or developer justifications:
+1. **🥊 The Critic ([`agents/critic.md`](agents/critic.md))**: Cynical Lead Auditor attacking state transitions, latency traps, unhandled failures, and contract flaws.
+2. **💡 The Inventive Catalyst ([`agents/inventive_catalyst.md`](agents/inventive_catalyst.md))**: Applies Soviet TRIZ principles to identify and eliminate false architectural compromises without quality trade-offs.
+3. **👓 The Naive Reader ([`agents/comprehension.md`](agents/comprehension.md))**: Audits with zero assumed institutional knowledge, flagging undefined acronyms and ambiguous logic.
+4. **✍️ The Technical Style Editor ([`agents/style.md`](agents/style.md))**: Technical copy editor enforcing clarity, precision, brevity, and objective framing.
+5. **🏗️ The Hostile Design Critic ([`agents/design_critic.md`](agents/design_critic.md))**: Attacks system architecture, horizontal scaling bottlenecks, infrastructure economics, and single points of failure.
+6. **🔭 The Skeptical Minimalist ([`agents/zoom_out.md`](agents/zoom_out.md))**: Relentlessly eliminates unnecessary complexity using YAGNI and maximizes existing library reuse.
+7. **📋 The Pragmatic Tech Lead ([`agents/implementation_readiness.md`](agents/implementation_readiness.md))**: Verifies that execution instructions are 100% unambiguous with zero unresolved design decisions.
+8. **🔬 The Codebase Quality Auditor ([`agents/codebase_details.md`](agents/codebase_details.md))**: Verifies that documentation strictly reflects live code without doc-to-code hallucinations.
+9. **📐 The Structural Layout Architect ([`agents/structural.md`](agents/structural.md))**: Validates markdown heading hierarchy, table formatting, and template compliance.
+10. **Intermediate Synthesizer ([`agents/synthesizer.md`](agents/synthesizer.md))**: Aggregates parallel reviews, eliminates duplicate feedback, and standardizes citations.
 
----
+### 5. 🦫 The Beaver (Phase-Isolated Ephemeral Surgical Builder)
+* **Skill**: `/biome-build` | **Persona**: [`agents/beaver.md`](agents/beaver.md)
+* **Context Mode**: Ephemeral builder isolated from conversation history.
+* **Multi-Domain Pod Swarm**: Partitions complex cross-stack mutations into isolated domain pods executed in strict order:
+  $$\text{Database Pod} \longrightarrow \text{Backend API Pod} \longrightarrow \text{Web/Mobile Pod} \longrightarrow \text{E2E Pod}$$
+* **Superpower Invariants**:
+  - **Live Dependency Verification**: Checks actual npm/PyPI registry APIs before importing packages to prevent hallucinated functions.
+  - **Micro-Architecture**: Decomposes sprawling logic into modular single-responsibility files.
+  - **Self-Healing Test Loops**: Runs local test suites autonomously up to 3 times to repair runtime breaks.
 
-## Standalone Granular Commands
+### 6. 🦎 The Chameleon (Anti-Slop & Human-Grade Stylist)
+* **Skill**: `/biome-chameleon <path>` | **Persona**: [`agents/chameleon.md`](agents/chameleon.md)
+* **Context Mode**: Anti-slop craftsmanship auditor.
+* **Superpower**: Inspects code and UI copy to purge all AI fingerprints:
+  - Banish robotic compound naming: No `*Helper`, `*Manager`, `*ProcessorActionHandler`. Mandates clean verbs and nouns (`login()`, `getUser()`).
+  - Banish AI marketing puffery in UI: No `seamless`, `empower`, `revolutionary`, `cutting-edge`. Mandates clear, human terminology.
+  - Banish chatty obvious comments: Strips `// function to calculate sum`.
 
-You can also run individual steps using standalone granular commands whenever you want fine-grained control:
+### 7. 🎨 The UI/UX Master Craftsman (Apple HIG & Executive SaaS)
+* **Skill**: `/biome-ui-craftsman <path>` | **Persona**: [`agents/ui_craftsman.md`](agents/ui_craftsman.md)
+* **Standard**: [`resources/document_standards/ui-craftsmanship-standard.md`](resources/document_standards/ui-craftsmanship-standard.md)
+* **Superpower**: Relentlessly audits web, mobile, and dashboard interfaces against **The Eight Frontend Laws**:
+  1. **Navigational Singularity & Zero Redundancy**: Global controls (Theme, Language, Profile, Logout) MUST reside in exactly ONE canonical location (pinned to sidebar footer OR header dropdown, never duplicated across both). Banish duplicate stacked page titles.
+  2. **Apple HIG 4-Tier Elevation & True Dark Mode**: Strictly bans "half-dark" interfaces with dark headers but blinding white cards (`#FFFFFF`). Enforces layered dark elevation (`slate-950` canvas, `slate-900` cards, `slate-800` modals) and dual-theme semantic tokens.
+  3. **Modal Viewport Containment**: Enforces `max-h-[85vh]`, internal scrollable body, and permanently visible sticky action footers.
+  4. **Defensive Table Layout**: Enforces `whitespace-nowrap` on codes, dates, and badges within responsive horizontal scroll containers (`overflow-x-auto min-w-[...]`).
+  5. **Smart Customer Lookup**: Instant reactive lookup rendering rich customer preview cards (Avatar, Device, Subscription Tier, WhatsApp direct link).
+  6. **Asset & Icon Integrity**: Pure SVG / Lucide components with explicit dimensions. Strictly bans raw unrendered font ligatures (`content_copy`).
+  7. **Platform Context Fidelity**: UI copy strictly matches the target platform (no web extension references inside native mobile apps).
+  8. **Bilingual RTL/LTR Architecture**: Full bidirectional mirroring with dedicated Admin & Company Settings tab.
 
-<img src="skills/biome-brainstorm/assets/icon.svg" width="20" height="20" align="top" alt=""> **Explore the idea**
+### 8. 🪵 The Woodpecker (Zero-Context Code Diff & Security Inspector)
+* **Skill**: `/biome-woodpecker [spec.md]` | **Persona**: [`agents/woodpecker.md`](agents/woodpecker.md)
+* **Context Mode**: Stateless pre-commit auditor.
+* **Superpower**: Pecks relentlessly at the raw `git diff` across 6 dimensions:
+  1. *Spec & Boundary Fidelity & Anti-Amnesia*: Guarantees all locked features in `.biome/requirements_ledger.json` remain preserved.
+  2. *Security Hardening*: Taint analysis, injection checks (SQLi, command injection, path traversal), and secrets leakage.
+  3. *Pathological Edge Cases*: Null/nil dereferences, unhandled async Promise rejections, resource leaks, and race conditions.
+  4. *Micro-Architecture*: Modular files, type-safety rigor (bans `any`), and rejection of vanity tests.
+  5. *Anti-Slop Craftsmanship*: Validates Chameleon standards across modified files.
+  6. *UI/UX Craftsmanship*: Validates adherence to the Eight Frontend Laws before allowing commits.
 
-```text
-/biome-brainstorm Add webhook delivery to this project.
-```
+### 9. 🏛️ The Memory Vault & Requirements Ledger
+* **Anchor**: `.biome/requirements_ledger.json` | **Template**: [`resources/requirements_ledger.template.json`](resources/requirements_ledger.template.json)
+* **Superpower**: Protects against AI requirement amnesia. Every cumulative feature requested by the client is logged, categorized, and permanently locked. The Woodpecker automatically blocks any build that drops or regresses locked requirements.
 
-Discuss requirements and trade-offs with the agent. Fresh reviewers challenge the proposal, and the agent saves the agreed direction in `concepts_brief.md`.
-
-<img src="skills/biome-draft/assets/icon.svg" width="20" height="20" align="top" alt=""> **Draft the specification**
-
-```text
-/biome-draft
-```
-
-The Elephant turns the brief into `docs/designs/<feature>.md`, pausing after each section for your feedback in chat.
-
-<img src="skills/biome-critic/assets/icon.svg" width="20" height="20" align="top" alt=""> **Ruthless Critic Review**
-
-```text
-/biome-critic docs/designs/<feature>.md
-```
-
-The Cynical Lead Auditor & Adversarial User traces UI/UX states, latency, and edge cases to surface contract flaws.
-
-<img src="skills/biome-review/assets/icon.svg" width="20" height="20" alt=""> **Review the draft**
-
-```text
-/biome-review docs/designs/<feature>.md
-```
-
-Fresh reviewers check the design across 5 stages (comprehension, style, design critique, zoom-out, readiness).
-
-<img src="skills/biome-resolve/assets/icon.svg" width="20" height="20" alt=""> **Resolve findings**
-
-```text
-/biome-resolve docs/designs/<feature>.md
-```
-
-Negotiate and apply fixes, resolve trade-offs, and secure formal `APPROVED` status.
-
-<img src="skills/biome-index/assets/icon.svg" width="20" height="20" alt=""> **Deterministic Indexing**
-
-```text
-/biome-index docs/designs/<feature>.md
-```
-
-The Indexer checks topology cache and emits `.biome/project_index.json` with domain-partitioned mutation plans.
-
-<img src="skills/biome-build/assets/icon.svg" width="20" height="20" alt=""> **Build with Beaver**
-
-```text
-/biome-build
-```
-
-The Beaver executes phase-isolated, surgical code modifications according to `.biome/project_index.json`, checks latest package releases, enforces modular micro-architecture, runs local tests, and performs self-healing.
-
-<img src="skills/biome-woodpecker/assets/icon.svg" width="20" height="20" alt=""> **Audit Diff with Woodpecker**
-
-```text
-/biome-woodpecker docs/designs/<feature>.md
-```
-
-The Woodpecker audits the raw git diff line-by-line across 6 vectors (spec fidelity, security, edge cases, micro-architecture, anti-slop, and UI/UX craftsmanship) before committing.
-
-<img src="skills/biome-falcon/assets/icon.svg" width="20" height="20" alt=""> **Reconnaissance with Falcon**
-
-```text
-/biome-falcon src/models/
-```
-
-The Falcon probes codebase directories, interfaces, and types to return compact signatures without dumping raw code files.
-
-<img src="skills/biome-cartographer/assets/icon.svg" width="20" height="20" alt=""> **Map Topology with Cartographer**
-
-```text
-/biome-cartographer
-```
-
-The Cartographer audits project dependencies and directory structures, caching repository topology in `.biome/codebase_topology.json`.
-
-<img src="skills/biome-ui-craftsman/assets/icon.svg" width="20" height="20" alt=""> **Audit UI with Master Craftsman**
-
-```text
-/biome-ui-craftsman src/components/Dashboard.tsx
-```
-
-The UI Craftsman audits web and mobile frontends against bounded modal geometry, defensive table layouts, and executive SaaS aesthetics.
-
-<img src="skills/biome-chameleon/assets/icon.svg" width="20" height="20" alt=""> **Anti-Slop Audit with Chameleon**
-
-```text
-/biome-chameleon src/services/auth.py
-```
-
-The Chameleon audits code and copy to eradicate robotic AI naming, marketing puffery, and chatty obvious commentary.
-
-See the [workflow guide](docs/getting_started.md) for the full process.
+### 10. ⚡ The Reaper Protocol (Zero-Zombie Lifecycle Invariant)
+* All worker subagents are strictly ephemeral single-use instances.
+* Immediately upon completing an audit, build, or review task, worker sessions are terminated and destroyed, preventing orphaned background processes from corrupting subsequent turns.
 
 ---
 
-## The Animals of BIOME
+## The 15 Standalone Skills
 
-### The Four Pillar Animals (Emblem Core)
-
-The four primary animals form the balanced equilibrium of the BIOME emblem:
+Every capability in BIOME can be invoked individually as a standalone granular command:
 
 <table>
-  <thead><tr><th align="left">Pillar Animal</th><th align="left">Context Mode</th><th align="left">Responsibility</th></tr></thead>
+  <thead><tr><th align="left">Skill Command</th><th align="left">Purpose & Responsibility</th><th align="left">Primary Output Artifact</th></tr></thead>
   <tbody>
-    <tr valign="top"><td><strong>🐘 The Elephant</strong></td><td>Project context & conversational memory</td><td>Explore the problem, draft specifications, and coordinate delivery. <em>Strictly prohibited from writing or editing source code.</em></td></tr>
-    <tr valign="top"><td><strong>🐠 The Goldfish</strong></td><td>Zero-context stateless inspection</td><td>Stress-test assumptions with fresh eyes and expose edge-case blind spots in specifications.</td></tr>
-    <tr valign="top"><td><img src="skills/biome-build/assets/icon.svg" width="16" height="16" align="top" alt=""> <strong>The Beaver</strong></td><td>Isolated ephemeral builder</td><td>Execute surgical code modifications across domain pods (DB, Backend, Web, Mobile) with latest dependencies and tests.</td></tr>
-    <tr valign="top"><td><img src="skills/biome-woodpecker/assets/icon.svg" width="16" height="16" align="top" alt=""> <strong>The Woodpecker</strong></td><td>Zero-context code diff inspector</td><td>Peck relentlessly at the raw git diff across 5 vectors (security, fidelity, edge cases, micro-architecture, anti-slop).</td></tr>
+    <tr valign="top">
+      <td><img src="skills/biome/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome</code></td>
+      <td>Orchestrate the complete autonomous end-to-end delivery pipeline.</td>
+      <td>Full feature branch, tests, and atomic commit.</td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-brainstorm/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-brainstorm</code></td>
+      <td>Clarify a raw concept and stress-test trade-offs with fresh reviewers.</td>
+      <td><code>concepts_brief.md</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-draft/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-draft</code></td>
+      <td>Draft living architectural design specifications section-by-section.</td>
+      <td><code>docs/designs/&lt;feature&gt;.md</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-critic/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-critic</code></td>
+      <td>Run the unsparing Critic Goldfish to expose state and contract flaws.</td>
+      <td><code>critic_audit_report.md</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-review/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-review</code></td>
+      <td>Execute a multi-stage review with 10 zero-context Goldfish specialists.</td>
+      <td><code>review_findings.md</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-resolve/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-resolve</code></td>
+      <td>Negotiate trade-offs, apply spec fixes, and secure APPROVED status.</td>
+      <td>Formal spec sign-off (<code>APPROVED</code>).</td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-falcon/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-falcon</code></td>
+      <td>Rapid low-token reconnaissance of codebase types, schemas, and routes.</td>
+      <td>Signature summaries in chat.</td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-cartographer/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-cartographer</code></td>
+      <td>Map repository modules, dependencies, and external entrypoints.</td>
+      <td><code>.biome/codebase_topology.json</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-index/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-index</code></td>
+      <td>Parse approved spec and topology to emit partitioned mutation plans.</td>
+      <td><code>.biome/project_index.json</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-build/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-build</code></td>
+      <td>Execute surgical, phase-isolated code modifications with self-healing tests.</td>
+      <td>Mutated source code & test receipts.</td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-ui-craftsman/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-ui-craftsman</code></td>
+      <td>Audit frontends against Apple HIG, true dark mode, and SaaS standards.</td>
+      <td><code>ui_audit_report.md</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-chameleon/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-chameleon</code></td>
+      <td>Audit code and UI copy to eliminate robotic AI naming and marketing puffery.</td>
+      <td><code>chameleon_audit_report.md</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-woodpecker/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-woodpecker</code></td>
+      <td>Audit the raw working git diff across 6 pecking vectors before commit.</td>
+      <td><code>woodpecker_audit_report.md</code></td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-bootstrap/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-bootstrap</code></td>
+      <td>Generate, format, and verify documentation across an existing codebase.</td>
+      <td>Hierarchical README contract trees.</td>
+    </tr>
+    <tr valign="top">
+      <td><img src="skills/biome-review-loop/assets/icon.svg" width="18" height="18" align="top" alt=""> <code>/biome-review-loop</code></td>
+      <td>Run a configured group of specialized reviewers for custom tasks.</td>
+      <td>Synthesized feedback report.</td>
+    </tr>
   </tbody>
 </table>
 
-### Specialized Auxiliary Operatives & Lifecycle
+---
 
-<table>
-  <thead><tr><th align="left">Operative</th><th align="left">Context Mode</th><th align="left">Specialized Responsibility</th></tr></thead>
-  <tbody>
-    <tr valign="top"><td><strong>🦅 The Falcon</strong></td><td>Rapid reconnaissance scout</td><td>Probe codebase entrypoints, signatures, and schemas without polluting the Elephant's context.</td></tr>
-    <tr valign="top"><td><strong>🗺️ The Cartographer</strong></td><td>Cached repository topology engine</td><td>Map codebase modules and dependencies once into <code>.biome/codebase_topology.json</code>, eliminating redundant scans.</td></tr>
-    <tr valign="top"><td><strong>🦎 The Chameleon</strong></td><td>Anti-slop & craftsmanship stylist</td><td>Enforce natural human naming, clean UI microcopy, and purge robotic AI boilerplate.</td></tr>
-    <tr valign="top"><td><strong>⚡ The Reaper</strong></td><td>Lifecycle execution protocol</td><td>Terminate and purge all worker subagent sessions immediately upon task completion (Zero Zombie Invariant).</td></tr>
-    <tr valign="top"><td><strong>👤 You</strong></td><td>Human goals & strategic constraints</td><td>Resolve architectural trade-offs, approve the design, and review execution receipts.</td></tr>
-  </tbody>
-</table>
+## Architectural Invariants & State Files
 
-> **Core Architectural Invariants**:
-> * **Elephant State Anchor**: Durable phase checkpoints are written to `.biome/state.json`. If context compaction occurs, the Elephant immediately re-anchors itself and strictly adheres to the Iron Rule.
-> * **Subagent Preamble Contract**: Subagents are never called with ad-hoc prompts; each receives its official persona (`agents/*.md`) and execution skill (`skills/*/SKILL.md`) cold.
-> * **Anti-Slop & Human-Grade Craftsmanship**: Robotic naming (`*Helper`, `*Manager`), AI buzzwords in UI (`seamless`, `empower`), and chatty obvious comments are strictly banned and rejected by the Woodpecker.
-> * **Multi-Domain Pod Swarm**: Complex cross-stack tasks are partitioned into isolated domain pods (Database -> Backend -> Web/Mobile -> E2E), preventing token blowout.
-> * **The Reaper Protocol (Zero-Zombie Rule)**: All worker sessions are strictly ephemeral single-use instances. They are terminated and destroyed immediately upon task completion.
+All execution state is managed transparently inside the project's root `.biome/` directory:
+
+```text
+.biome/
+├── state.json                 # Durable phase checkpointing for post-compaction recovery
+├── requirements_ledger.json   # Immutable client requirements vault (Anti-Amnesia)
+├── codebase_topology.json     # Cached repository module and dependency map
+└── project_index.json         # Partitioned target mutation plan for domain pods
+```
 
 ---
 
-## Choose a skill
+## Learn More
 
-You can use each skill when you need it. You do not have to follow the full sequence.
-
-<table>
-  <thead><tr><th align="left">Skill</th><th align="left">Use it to…</th></tr></thead>
-  <tbody>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome/SKILL.md">BIOME</a></td><td>Run the autonomous end-to-end delivery ecosystem (/biome).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-brainstorm/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-brainstorm/SKILL.md">Brainstorm</a></td><td>Test an idea and write a concept brief (/biome-brainstorm).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-draft/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-draft/SKILL.md">Draft</a></td><td>Turn a brief or existing notes into a design document (/biome-draft).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-critic/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-critic/SKILL.md">Critic</a></td><td>Run the unsparing Critic Goldfish on any spec or feature (/biome-critic).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-review/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-review/SKILL.md">Review</a></td><td>Review a design with fresh agents across five stages (/biome-review).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-resolve/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-resolve/SKILL.md">Resolve</a></td><td>Work through review findings and agree on changes (/biome-resolve).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-index/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-index/SKILL.md">Indexer</a></td><td>Emit deterministic .biome/project_index.json from spec and code (/biome-index).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-build/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-build/SKILL.md">Build</a></td><td>Run standalone Beaver isolated code modifications with tests (/biome-build).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-woodpecker/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-woodpecker/SKILL.md">Woodpecker</a></td><td>Audit code diff and security vulnerabilities before commit (/biome-woodpecker).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-bootstrap/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-bootstrap/SKILL.md">Bootstrap</a></td><td>Create or update documentation for an existing codebase (/biome-bootstrap).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-falcon/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-falcon/SKILL.md">Falcon</a></td><td>Rapid codebase signature and schema scout (/biome-falcon).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-cartographer/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-cartographer/SKILL.md">Cartographer</a></td><td>Map codebase topology and module dependencies (/biome-cartographer).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-ui-craftsman/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-ui-craftsman/SKILL.md">UI&nbsp;Craftsman</a></td><td>Audit frontend interfaces against SaaS executive standards (/biome-ui-craftsman).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-chameleon/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-chameleon/SKILL.md">Chameleon</a></td><td>Anti-slop auditor for human-grade naming and UI microcopy (/biome-chameleon).</td></tr>
-    <tr valign="top"><td width="160" valign="top"><img src="skills/biome-review-loop/assets/icon.svg" width="20" height="20" alt="" align="top">&nbsp;<a href="skills/biome-review-loop/SKILL.md">Review&nbsp;loop</a></td><td>Run a configured group of reviewers for a specific review task (/biome-review-loop).</td></tr>
-  </tbody>
-</table>
+- [Setup & Harness Integration](docs/harnesses.md): Installation and capabilities across Antigravity, Claude Code, Codex, and Cursor.
+- [Getting Started Guide](docs/getting_started.md): The comprehensive workflow and operational rules.
+- [UI/UX Craftsmanship Standard](resources/document_standards/ui-craftsmanship-standard.md): The Eight Frontend Laws for modern executive SaaS design.
+- [System Architecture](https://github.com/asteria-core/biome/blob/main/docs/designs/architecture.md): Deep-dive into agent lifecycles, schemas, and state machines.
+- [Testing & Quality Verification](https://github.com/asteria-core/biome/blob/main/TESTING.md): Verification limits, harness matrix, and test suite execution.
 
 ---
-
-## Learn more
-
-- [Getting started](docs/getting_started.md): the workflow and project layout.
-- [Setup](docs/harnesses.md): installation, agent capabilities, and known limits.
-- [Architecture](https://github.com/asteria-core/biome/blob/main/docs/designs/architecture.md): how skills and reviewers fit together.
-- [Testing](https://github.com/asteria-core/biome/blob/main/TESTING.md): checks, execution records, and verification limits.
-
-## Contribute
-
-Read [contributing](https://github.com/asteria-core/biome/blob/main/CONTRIBUTING.md) for PRs, [issues](https://github.com/asteria-core/biome/issues) for bugs, and [discussions](https://github.com/asteria-core/biome/discussions) for questions.
 
 ## License
 
 This project is licensed under a dual-licensing structure:
-* **[BIOME License v1.0 (Source-Available)](LICENSE)**: Copyright &copy; 2026 Asteria Studio. All Rights Reserved. Governs the BIOME multi-agent software engineering ecosystem, agent architectures (Elephant, Goldfish, Beaver, Woodpecker, Falcon, Chameleon), prompts, and orchestration state-machines for personal, academic, and internal non-commercial development. Commercial hosting, SaaS, managed execution, and AI model distillation require a separate commercial license from Asteria Studio.
-* **[Apache License 2.0](LICENSE-APACHE)**: Upstream base portions Copyright &copy; Asteria Core, licensed under the Apache License, Version 2.0.
+* **[BIOME License v1.0 (Source-Available)](LICENSE)**: Copyright &copy; 2026 Asteria Studio. All Rights Reserved. Governs the BIOME multi-agent software engineering ecosystem, agent architectures (Elephant, Goldfish, Beaver, Woodpecker, Falcon, Chameleon, UI Craftsman), prompts, and orchestration state machines for personal, academic, and internal non-commercial development. Commercial hosting, SaaS, managed execution, and AI model distillation require a separate commercial license from Asteria Studio.
+* **[Apache License 2.0](LICENSE-APACHE)**: Upstream base portions Copyright &copy; 2026 Asteria Core, licensed under the Apache License, Version 2.0.
