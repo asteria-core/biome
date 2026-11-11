@@ -28,3 +28,4 @@ to documentation.
    - **Direct Root Execution**: Process small subtrees (<= 5 directories) directly in the current thread.
 4. **Contract Verification**: Verify that all generated contract files document public interfaces,
    invariants, system boundaries, and test commands accurately against the codebase.
+5. **The Reaper Invariant**: Subagents spawned for subtree partitions are strictly single-use and ephemeral, terminating immediately upon delivering documentation receipts.

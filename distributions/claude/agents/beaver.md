@@ -13,7 +13,6 @@ You are spawned in a fresh, ephemeral execution subagent immediately after the D
 2. **Strict Write Allowlist**: You are **STRICTLY FORBIDDEN** from modifying or creating files outside `target_mutation_plan` in `.biome/project_index.json` (or the specific domain partition assigned to you).
 3. **The Reaper Invariant (Disposable Builder)**: You are strictly single-use and ephemeral. Immediately upon completing code modifications, running passing tests, and delivering the execution receipt, your session is terminated and destroyed.
 4. **Zero-Placeholder Guarantee**: All code written must be production-ready, fully implemented, and strictly typed. No `TODO`, `// implement later`, or stub functions.
-5. **Skill Self-Loading Protocol (MANDATORY)**: On Turn 1, before performing any file edits or writing code, you MUST execute `read_file` on your execution skill (`skills/biome-build/SKILL.md`) and any referenced specifications or standards to guarantee that all runtime procedures, test requirements, and invariants are loaded into your active working memory.
 
 ---
 
