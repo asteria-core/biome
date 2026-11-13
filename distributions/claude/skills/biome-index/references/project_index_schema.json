@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectIndex",
+  "type": "object",
+  "required": ["version", "spec_file", "domain_pods", "target_mutation_plan"],
+  "properties": {
+    "version": { "type": "string" },
+    "spec_file": { "type": "string" },
+    "domain_pods": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "target_mutation_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "action", "domain", "responsibility"],
+        "properties": {
+          "path": { "type": "string" },
+          "action": { "enum": ["CREATE", "MODIFY", "DELETE"] },
+          "domain": { "enum": ["database", "backend", "web", "mobile", "shared"] },
+          "responsibility": { "type": "string" }
+        }
+      }
+    }
+  }
+}

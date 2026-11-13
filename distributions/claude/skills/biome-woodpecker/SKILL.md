@@ -3,7 +3,12 @@ name: biome-woodpecker
 license: Apache-2.0
 description: >-
   Runs the unsparing Woodpecker (The Zero-Context Code Diff & Security Inspector)
-  on any active git diff to expose vulnerabilities, spec drift, and edge-case bugs.
+  on active git diffs, pull request branches, or design docs. Pecks relentlessly
+  across 6 vectors: Spec Fidelity, Security Taint, Pathological Edge Cases,
+  Micro-Architecture, Anti-Slop (Chameleon), and UI Craftsmanship (Apple HIG).
+  Also audits specification-to-code drift with --drift. Use when asked to review
+  code diffs, inspect git diffs before commit, run security checks, verify pull requests,
+  or detect documentation drift against live code.
 ---
 
 # BIOME Woodpecker: Zero-Context Code Diff & Security Inspector
@@ -13,19 +18,19 @@ In Claude Code or Cowork, read `${CLAUDE_PLUGIN_ROOT}/docs/claude.md` first.
 
 ## Overview
 
-`/biome-woodpecker` is the standalone command to invoke **The Woodpecker** (`agents/woodpecker.md`), the 4th pillar animal in the **BIOME Ecosystem**.
+`/biome-woodpecker` is the standalone command to invoke **The Woodpecker** (`agents/woodpecker.md`), the pre-commit diff auditor of the **BIOME Ecosystem**.
 
-While the Goldfish swarm audits the text specification *before* code is written, **The Woodpecker audits the actual source code diff *after* The Beaver builds it**.
+While the Goldfish swarm stress-tests specifications *before* code is written, **The Woodpecker inspects the raw `git diff` *after* The Beaver builds it**. It evaluates modifications with zero conversational memory, uncompromising security rigor, and strict anti-amnesia enforcement against the cumulative client requirements ledger.
 
 ```
 [The Beaver Builds Code & Tests]
                │
                ▼
-   [Active Git Working Diff]
+    [Active Git Working Diff]
                │
                ▼
 ┌──────────────────────────────┐
-│       The Woodpecker         │ ◄─── Zero-context inspection across 5 Pecking Vectors
+│       The Woodpecker         │ ◄─── Zero-context inspection across 6 Pecking Vectors
 └──────────────┬───────────────┘
                │
       ┌────────┴────────┐
@@ -40,56 +45,81 @@ While the Goldfish swarm audits the text specification *before* code is written,
 ## Invocation
 
 ```text
-/biome-woodpecker [DesignDocPath]
+/biome-woodpecker [DesignDocPath] [--drift]
 ```
-* If `[DesignDocPath]` is specified (e.g. `docs/designs/auth.md`), the Woodpecker compares the active `git diff` directly against that specification.
-* If omitted, the Woodpecker inspects the current workspace diff (`git diff HEAD`) for general security vulnerabilities, memory safety, and unhandled edge cases.
+
+* `[DesignDocPath]`: Optional path to the approved Design Spec (e.g. `docs/designs/auth.md`).
+* `--drift`: Executes Google EGM Drift Detection across `docs/designs/` vs. live codebase, emitting `{YYYY-MM-DD}_DRIFT_REPORT.md` (see [references/drift_detection_guide.md](references/drift_detection_guide.md)).
 
 ---
 
 ## The Six Pecking Vectors
 
-The Woodpecker inspects the git diff line-by-line across six mandatory dimensions:
+The Woodpecker inspects the raw git diff line-by-line across six mandatory dimensions:
 
-1. **Spec & Boundary Fidelity & Anti-Amnesia**:
-   * Ensures modifications are strictly confined to `target_mutation_plan`.
-   * Verifies all API endpoints, models, and contracts match the approved Design Spec verbatim.
-   * **Requirements Ledger Verification**: Guarantees that no pre-existing locked requirements from `.biome/requirements_ledger.json` (such as established features, operational logs, or administrative interfaces) were omitted, overwritten, or forgotten.
-   * Catches any unapproved scope creep or skipped error handling loops.
-2. **Security & Defensive Hardening**:
-   * Evaluates injection risks (SQLi, command injection, path traversal, XSS).
-   * Verifies secrets, credentials, and tokens are never leaked in source or logs.
-   * Confirms authentication and authorization gates are strictly enforced.
-3. **Pathological Edge Cases & Failure Modes**:
-   * Detects null/nil dereferences and unhandled Promise rejections.
-   * Identifies race conditions, deadlock hazards, and unmanaged shared state.
-   * Ensures database connections, files, and sockets are guaranteed to close.
-4. **Micro-Architecture & Clean Code Sanity**:
-   * Enforces single-responsibility, modular files rather than monolithic blobs.
-   * Eliminates untyped `any`, unsafe type casts, or disabled linter warnings.
-   * Rejects vanity tests that only test trivial happy paths.
-5. **Anti-Slop & Human-Grade Craftsmanship**:
-   * Purges robotic variable/function names (`*Helper`, `*Manager`, `*ProcessorActionHandler`).
-   * Eliminates corporate AI buzzwords in UI labels and microcopy (`seamless`, `empower`, `revolutionary`, `cutting-edge`).
-   * Strips chatty obvious comments (`// function to do X`).
-   * Rejects artificial 5-layer boilerplate abstractions.
-6. **UI/UX Craftsmanship & Visual Integrity**:
-   * Validates against `resources/document_standards/ui-craftsmanship-standard.md`:
-   * **Navigational Singularity & Zero Redundancy**: Banish duplicate utility controls (theme toggle, language switcher, profile, logout) between headers and sidebars. Eliminate stacked duplicate page titles.
-   * **Apple HIG Elevation & True Dark Mode**: Strictly reject "half-dark" interfaces (dark header with blinding white cards). Enforce layered surface elevation and dual-theme tokens.
-   * Eliminates table text wrapping via `whitespace-nowrap` on alphanumeric codes, durations, and dates.
-   * Verifies modal geometry: `max-h-[85vh]`, internal scrolling, and permanently visible sticky action footers.
-   * Eliminates raw font ligatures (`content_copy`) by enforcing pure SVG/Lucide icon components.
-   * Confirms platform context fidelity (strictly mobile app copy, zero web extension references for mobile products).
-   * Confirms Dark/Light theme consistency and proper RTL/LTR layout symmetry.
+### 1. Spec & Boundary Fidelity & Anti-Amnesia
+* **Scope Allowlist**: All modified files MUST match `target_mutation_plan` in `.biome/project_index.json`. Reject unauthorized file modifications.
+* **Requirements Ledger Lock**: Check `.biome/requirements_ledger.json`. Guarantees that zero previously approved customer requirements or established features are regressed or deleted.
+* **Contract Verification**: Exported APIs, HTTP routes, parameters, and error types must match the approved Design Spec verbatim.
+
+### 2. Security Hardening & Taint Analysis
+* **Injection Vulnerabilities**: SQL injection, command execution, path traversal (`../`), and template injections. Ensure parameterized queries everywhere.
+* **Auth & Tenant Isolation**: Verify session authorization, JWT verification, and strict tenant ID scoping on all database queries.
+* **Secrets Leakage**: Scan for hardcoded API keys, private keys, bearer tokens, or sensitive credentials.
+
+### 3. Pathological Edge Cases & Concurrency
+* **Null / Nil Safety**: Flag unhandled optional property lookups and potential panic / null-pointer triggers.
+* **Async & Resource Management**: Unhandled async Promise rejections, missing try/catch blocks, unclosed database transactions, and file handle leaks.
+* **Race Conditions**: Flag non-atomic read-modify-write sequences across concurrent goroutines or async threads.
+
+### 4. Micro-Architecture & Type Rigor
+* **Modularity**: Flag monolithic files exceeding 300 lines of complex logic. Decompose into focused services, handlers, and repositories.
+* **Strict Typing**: Ban `any` in TypeScript, untyped `dict` escapes in Python, and empty interface abuses in Go.
+* **Anti-Vanity Tests**: Reject shallow tests that cover only happy paths or getters/setters while ignoring failure branches.
+
+### 5. Anti-Slop Craftsmanship (The Chameleon)
+* Purge robotic compound naming: No `*Helper`, `*Manager`, `*ProcessorHandler`.
+* Purge corporate AI marketing buzzwords (`seamless`, `empower`, `revolutionary`, `cutting-edge`) from UI copy.
+* Strip line-by-line conversational comments. Consult [references/pecking_checklists.md](references/pecking_checklists.md).
+
+### 6. UI/UX Craftsmanship & Visual Integrity (The Craftsman)
+* **Modal Containment Law**: Modals must declare `max-h-[85vh]`, internal scroll, and a sticky action footer.
+* **Defensive Table Law**: Data tables must enforce `whitespace-nowrap` on codes and badges within responsive horizontal scroll wrappers.
+* **Navigational Singularity**: Ban duplicate theme/profile controls across navbars and sidebars.
+* Enforce Apple HIG 4-tier dark elevation and valid SVG components (no font ligatures).
 
 ---
 
-## Self-Healing Interaction Loop
+## Triage Thresholds: REJECTED vs. APPROVED
 
-1. **Step 1: Inspect Diff**: Run `git diff HEAD` (or staged diff) across the affected files.
-2. **Step 2: Generate Audit Report**: Write `woodpecker_audit_report.md`.
-3. **Step 3: Evaluate Verdict**:
-   * **If `APPROVED`**: Authorize The Beaver or developer to proceed immediately with the atomic git commit.
-   * **If `REJECTED`**: Pass the exact list of `BLOCKER` defects to The Beaver to perform targeted code repairs. Up to 2 self-healing cycles are permitted.
-4. **Step 4: The Reaper Protocol**: Immediately upon delivering the report, the Woodpecker subagent session terminates and is destroyed.
+* **REJECTED**: Any Blocker or Major finding (security vulnerability, missing tenant check, ledger regression, unbounded modal, unhandled crash). Emits actionable defect citations and returns diff to The Beaver for self-healing repair (up to 2 cycles).
+* **APPROVED**: Zero Blocker and Major findings. Permits minor nits. Authorizes semantic git commit (`feat(<scope>): ...`).
+
+---
+
+## Output Artifact Format
+
+Generates `woodpecker_audit_report.md` structured as follows:
+
+```markdown
+# Woodpecker Code Diff Audit Report
+
+## Verdict: [APPROVED | REJECTED]
+
+### Execution Summary
+* **Commit Target**: `feat(auth): implement session-based authentication`
+* **Diff Lines Inspected**: `+142 / -18` across 4 files
+* **Requirements Ledger Status**: Verified (100% features preserved)
+
+### Vector Evaluation
+1. **Spec & Boundary Fidelity**: [Pass | Fail]
+2. **Security & Defensive Hardening**: [Pass | Fail]
+3. **Pathological Edge Cases**: [Pass | Fail]
+4. **Micro-Architecture & Type Rigor**: [Pass | Fail]
+5. **Anti-Slop Craftsmanship**: [Pass | Fail]
+6. **UI/UX Craftsmanship**: [Pass | Fail]
+
+### Findings & Actionable Citations
+* **[Blocker] internal/auth/service.go:44**: Unparameterized SQL query introduces injection risk.
+* **[Major] web/src/components/CreateModal.tsx:18**: Missing `max-h-[85vh]` clips buttons on small viewports.
+```

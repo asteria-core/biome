@@ -18,7 +18,7 @@ import pathlib
 import re
 
 # Vendored trees whose markdown is not ours to validate.
-IGNORED_DIRS = ("node_modules",)
+IGNORED_DIRS = ("node_modules", "مهارات", "vendor")
 
 FENCE_PATTERN = re.compile(r"```[\s\S]*?```")
 # A g3doc multi-line table continues a row on lines framed by ':'.

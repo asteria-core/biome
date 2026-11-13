@@ -2,10 +2,11 @@
 name: biome-resolve
 license: Apache-2.0
 description: >-
-  The Elephant resolution skill. Ingests flat deficiency reports from
-  concurrent Goldfish reviewers, applies automated fixes for PROPOSE FIX
-  items via UI multiple-choice gates, and presents interactive
-  negotiation/re-sync checkpoints.
+  The Elephant resolution skill. Ingests flat deficiency reports from concurrent
+  Goldfish reviewers, auto-applies uncontested text fixes to design specifications,
+  presents interactive decision gates for trade-offs, and secures formal APPROVED sign-off.
+  Use whenever the user asks to resolve review feedback, apply spec fixes, settle design
+  trade-offs, or approve a specification for implementation.
 ---
 
 # Goldfish Review: Resolve

@@ -2,12 +2,10 @@
 name: biome-review-loop
 license: Apache-2.0
 description: >-
-  Executes the Antagonistic-Review process from the Elephant-Goldfish
-  Model (EGM) via an automated multi-agent review loop to audit documents
-  against qualitative standards and structural templates, and automatically
-  apply approved fixes. Use when reviewing design docs, READMEs, feature
-  specifications, implementation plans, or verifying document completeness
-  and tone.
+  Executes an automated, multi-agent review loop for custom documents, design specs,
+  READMEs, or pull requests against configured personas and qualitative standards.
+  Audits documents in parallel and applies approved fixes. Use when the user asks to run
+  a customized review loop, audit document completeness, or evaluate text against specific guidelines.
 ---
 
 # Goldfish Review: Loop (Orchestration Driver)

@@ -4,7 +4,11 @@ license: Apache-2.0
 description: >-
   BIOME: Unified autonomous end-to-end software delivery ecosystem. Orchestrates
   concept brainstorming, Elephant spec drafting, hardened Critic Goldfish swarm audits,
-  feedback resolution, deterministic indexing, and isolated Beaver surgical builds.
+  feedback auto-resolution, codebase cartography, deterministic indexing, isolated Beaver
+  surgical builds with live dependency checks, and Woodpecker pre-commit diff inspections.
+  Use whenever the user asks to build a new feature end-to-end, implement a complex
+  multi-stack system, run the autonomous pipeline, transform an idea into production code,
+  or deliver tested, reviewed, anti-slop software autonomously.
 ---
 
 # BIOME: Autonomous End-to-End Delivery Ecosystem

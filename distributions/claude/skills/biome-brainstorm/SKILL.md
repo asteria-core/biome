@@ -2,11 +2,12 @@
 name: biome-brainstorm
 license: Apache-2.0
 description: >-
-  Interactive ideation and brainstorming skill for the Elephant &
-  Goldfish Model (EGM). Helps turn half-baked concepts into structured
-  hypotheses via clarifying questions, review, and iterative refinement.
-  Produces an RFC summary for human review or more detailed design with
-  biome-draft.
+  Interactive ideation and brainstorming skill for the Elephant-Goldfish Model (EGM).
+  Transforms raw concepts into structured RFC hypotheses through multi-turn clarifying
+  questions, parallel Goldfish reviews (YAGNI, cost/tokens, UX ergonomics, rollout,
+  inventive TRIZ), and iterative stress-testing. Emits concepts_brief.md. Use whenever
+  the user asks to brainstorm a new feature, explore architectural options, flesh out
+  an idea, clarify requirements, stress-test a concept, or prepare an RFC before drafting.
 ---
 
 # EGM Brainstorm: Interactive Multi-Lens Ideation & Refinement

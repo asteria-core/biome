@@ -2,10 +2,11 @@
 name: biome-review
 license: Apache-2.0
 description: >-
-  Orchestrates the EGM Goldfish Review Protocol. Used as part of the EGM
-  process to perform design document reviews. Executes five review phases:
-  Initial Zoom Out Review, Comprehension Review, Design Critique, Intermediate
-  Zoom Out Review, and Implementation Readiness.
+  Orchestrates the 5-stage EGM Goldfish Review Protocol across specialized, zero-context
+  subagents. Executes Initial Zoom-Out, Comprehension (Naive Reader), Design Critique
+  (The Critic), Intermediate Zoom-Out, and Implementation Readiness audits. Synthesizes
+  deficiencies into review_findings.md. Use whenever the user asks to review a design doc,
+  audit a technical specification, red-team an architecture plan, or verify implementation readiness.
 ---
 
 # Review, Validation & Automated Remediation

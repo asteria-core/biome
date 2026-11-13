@@ -2,8 +2,11 @@
 name: biome-index
 license: Apache-2.0
 description: >-
-  Runs the Deterministic Structural Indexer to scan repository topology, dependency
-  manifests, and approved specs to emit or update .biome/project_index.json.
+  Runs the Deterministic Structural Indexer to parse approved Design Specs and
+  codebase topology, emitting the partitioned target mutation plan in .biome/project_index.json.
+  Assigns files to domain pods (database, backend, web, mobile) with explicit operations
+  (CREATE, MODIFY, DELETE) to restrict builder scope. Use when the user asks to index an
+  approved spec, generate a build plan, partition domain pods, or prepare for Beaver builds.
 ---
 
 # BIOME Indexer: Standalone Deterministic Structural Indexing
@@ -13,8 +16,9 @@ In Claude Code or Cowork, read `${CLAUDE_PLUGIN_ROOT}/docs/claude.md` first.
 
 ## Overview
 
-`/biome-index` is the standalone command to invoke the **Deterministic Structural Indexer** (`agents/indexer.md`).
-Use this when you have an approved or drafted Design Spec and need to generate or refresh `.biome/project_index.json` (and `.egm/project_index.json`) before executing code modifications with the Beaver.
+`/biome-index` is the standalone command to invoke the **Deterministic Structural Indexer** (`agents/indexer.md`), the mutation planner of the **BIOME Ecosystem**.
+
+Before any code is generated or modified, The Indexer bridges the gap between text specifications and file mutations: it translates the approved design doc into a strict, machine-readable `target_mutation_plan` saved in `.biome/project_index.json`.
 
 ---
 
@@ -23,23 +27,59 @@ Use this when you have an approved or drafted Design Spec and need to generate o
 ```text
 /biome-index [DesignDocPath]
 ```
-* If `[DesignDocPath]` is provided (e.g. `docs/designs/auth.md`), the Indexer reads that specification.
-* If omitted, the Indexer scans the most recently updated design doc under `docs/designs/` or prompts for the target file.
+
+* `[DesignDocPath]`: Path to the approved Design Spec (e.g. `docs/designs/auth.md`). If omitted, scans the most recently updated design doc.
 
 ---
 
-## Decoupled Indexing Protocol (Cartographer vs. Mutation Planner)
+## The Indexing Protocol
 
-To avoid burning tokens re-scanning hundreds of files on every feature:
-1. **Topology Cartography (`.biome/codebase_topology.json`)**:
-   * If `.biome/codebase_topology.json` exists, the Indexer reuses the cached repository topology and dependency definitions.
-   * If missing or outdated, **The Cartographer** (`agents/cartographer.md`) scans the repository tree and caches the topology.
-2. **Surgical Mutation Planning (`.biome/project_index.json`)**:
-   * Parses the target Design Specification.
-   * Computes the exact `target_mutation_plan` mapping target files to explicit actions (`CREATE`, `MODIFY`, or `DELETE`).
-   * **Domain Pod Partitioning**: Classifies every target file under its appropriate domain (`db`, `backend`, `web`, `mobile`, `shared`).
-3. **Schema & Zero Code Invariant**:
-   * Emits the normalized index manifest at `.biome/project_index.json` (and mirrors to `.egm/project_index.json`).
-   * Never include function bodies, multi-line logic, or raw source dumps in the JSON.
-4. **The Reaper Invariant**:
-   * Upon writing the index file and returning the completion summary, the Indexer subagent immediately terminates and is destroyed.
+1. **Topology Cartography Grounding**:
+   - Reads `.biome/codebase_topology.json` to understand existing module boundaries.
+   - If missing, spawns The Cartographer (`/biome-cartographer`) to map the codebase first.
+2. **Spec Decomposition**:
+   - Extracts all target components, API contracts, database tables, and UI views from the spec.
+   - Identifies exact target paths and assigns them to domain pods: `database`, `backend`, `web`, `mobile`, `shared`.
+3. **Deterministic Mutation Planning**:
+   - For each target file, specifies the explicit operation:
+     - `CREATE`: New file to be introduced.
+     - `MODIFY`: Existing file with declared changes.
+     - `DELETE`: Obsolete file to be removed.
+   - Summarizes the single core responsibility for each file.
+4. **Emit Validated Manifest**:
+   - Conforms to schema in [references/project_index_schema.json](references/project_index_schema.json).
+   - Writes `.biome/project_index.json` (and mirrors to `.egm/project_index.json` for backward compatibility).
+5. **The Reaper Invariant**:
+   - Immediately upon delivering the index file, the session terminates and is destroyed.
+
+---
+
+## Output Manifest Structure
+
+```json
+{
+  "version": "1.0.0",
+  "spec_file": "docs/designs/auth.md",
+  "domain_pods": ["database", "backend", "web"],
+  "target_mutation_plan": [
+    {
+      "path": "internal/db/migrations/001_sessions.sql",
+      "action": "CREATE",
+      "domain": "database",
+      "responsibility": "PostgreSQL schema for active user sessions"
+    },
+    {
+      "path": "internal/services/auth.go",
+      "action": "MODIFY",
+      "domain": "backend",
+      "responsibility": "Add session creation and token validation methods"
+    },
+    {
+      "path": "web/src/components/LoginModal.tsx",
+      "action": "CREATE",
+      "domain": "web",
+      "responsibility": "Bounded modal with responsive form controls"
+    }
+  ]
+}
+```

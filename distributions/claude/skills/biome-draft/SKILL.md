@@ -2,10 +2,12 @@
 name: biome-draft
 license: Apache-2.0
 description: >-
-  Drafts a design document section-by-section using the concepts brief from
-  biome-brainstorm (or user notes). This is the second step in the Elephant-Goldfish (EGM)
-  feature flow. Use when you are ready to write a design doc after aligning on
-  requirements + solution.
+  Drafts comprehensive, publication-grade architectural design specifications
+  section-by-section using the concepts brief from biome-brainstorm or user notes.
+  Enforces strict goals, non-goals, data models, API contracts, target mutation
+  boundaries, and error states under docs/designs/<feature>.md. The Elephant writes
+  zero production code. Use whenever the user asks to draft a design document, write
+  a technical specification, create a system architecture doc, or prepare a spec for review.
 ---
 
 # Design Drafting (Document Construction)

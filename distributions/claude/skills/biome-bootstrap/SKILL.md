@@ -1,7 +1,12 @@
 ---
 name: biome-bootstrap
 license: Apache-2.0
-description: Bootstrap directory README.md files across a repository subtree.
+description: >-
+  EGM Peanuts and Hay Documentation Bootstrapper. Automatically creates, verifies,
+  and formats hierarchical README.md contract trees across a repository subtree,
+  establishing leaf-level component contracts (Peanuts) and parent architecture
+  blueprints (Hay). Use when the user asks to document a codebase, bootstrap READMEs,
+  generate architecture blueprints, or establish component interface contracts.
 ---
 
 # EGM Peanuts and Hay Bootstrap (`biome-bootstrap`)

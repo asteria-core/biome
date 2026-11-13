@@ -19,7 +19,7 @@ import re
 from typing import Set
 
 # Vendored trees whose markdown is not ours to validate.
-IGNORED_DIRS = ("node_modules",)
+IGNORED_DIRS = ("node_modules", "مهارات", "vendor")
 
 IGNORED_SCHEMES = (
     "http://",
