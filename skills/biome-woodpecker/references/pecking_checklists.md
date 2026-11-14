@@ -4,10 +4,12 @@ This reference provides line-by-line inspection algorithms for each of the Woodp
 
 ---
 
-## Vector 1: Spec & Boundary Fidelity & Anti-Amnesia
+## Vector 1: Spec & Boundary Fidelity, Pod Completeness & Anti-Amnesia
 * [ ] **Mutation Boundary Allowlist**: Verify every file in the diff is declared in `target_mutation_plan` (`.biome/project_index.json`). Reject unapproved file sprawl.
 * [ ] **Requirements Ledger Verification**: Compare `.biome/requirements_ledger.json` against the diff. Verify zero deletions or regressions of previously approved customer requirements.
 * [ ] **Contract Fidelity**: Ensure exported routes, HTTP methods, status codes, and JSON schemas match the approved Design Spec verbatim.
+* [ ] **Anti-Trivial-Bump Enforcement**: Verify that each assigned domain pod contains substantial, verified functional code modifications. Reject diffs where a domain pod contains only version bumps or config edits.
+* [ ] **Zero Mock / Disconnected UI Check**: Verify that UI screens are directly connected to real backend endpoints and that data schemas/auth methods match across platforms (1:1 parity).
 
 ---
 
@@ -18,6 +20,7 @@ This reference provides line-by-line inspection algorithms for each of the Woodp
   - Path Traversal: Verify all file paths resolve against safe root directories using `path.resolve` and strict prefix checks.
 * [ ] **Authentication & Authorization**: Verify protected routes enforce session/token authentication and tenant isolation checks.
 * [ ] **Secrets & Taint**: Verify no API keys, private certificates, or credentials are hardcoded into diff lines.
+* [ ] **Deployment Verification**: Confirm that remote server deployment artifacts and runtime restarts succeeded if mandated by the design doc.
 
 ---
 

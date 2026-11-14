@@ -73,9 +73,15 @@ Unlike conversational AI that writes fragmented code directly in chat, The Beave
 * Reads `.biome/requirements_ledger.json` before writing code.
 * Guarantees that zero previously approved client requirements or operational features are deleted or regressed.
 
-### 4. Live Package Registry Verification
-* When introducing or upgrading third-party packages, query live registries (`npm view`, `pip index`, `cargo search`) to verify the latest stable release and inspect API signatures.
+### 4. Live Package Registry & Web Search Verification
+* When introducing or upgrading third-party packages, NEVER assume a specified version is non-existent due to pre-training cutoff.
+* Query live registries (`npm view`, `pip index`, `cargo search`, `go list -m -versions`, Maven Central / Google Maven) or execute `search_web` to inspect the latest release tags, changelogs, breaking changes, and migration guides.
 * Details and commands are provided in [references/dependency_verification.md](references/dependency_verification.md).
+
+### 4.1. Mandatory Pod Completion & Anti-Trivial-Bump Law
+* Every domain pod assigned in the mutation plan MUST feature real, functional code modifications.
+* Bumping version strings or metadata files (e.g. `versionCode = 27` in Gradle) while leaving application screens, models, and business logic untouched is classified as **Trivial Bump Fraud** and triggers an immediate build failure.
+* Ensure 1:1 Surface and Authentication Parity (e.g. mirroring Google Sign-In faithfully on Web without substituting unauthorized JWT schemes).
 
 ### 5. Micro-Architecture & Modularity
 * Decompose business logic into single-responsibility, modular files under structured directories (e.g. `services/`, `validators/`, `repositories/`).

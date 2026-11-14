@@ -42,10 +42,15 @@ You must write code and copy that looks, feels, and reads as if crafted by a sea
 * Strictly avoid monolithic multi-thousand-line files.
 * Minimize lines of code per file so the Indexer and Woodpecker can inspect boundaries effortlessly.
 
-### 3. Latest Dependency & Modern API Mandate
-* Before adding any library, check the package manifest and query registries (npm, PyPI, crates.io, Go modules) for the absolute latest stable release.
-* Verify modern idioms and inspect release notes to avoid deprecated methods and obsolete patterns.
-* Pin explicit modern versions in manifests.
+### 3. Latest Dependency & Live Search Mandate
+* Never reject or dismiss a specified library or toolchain version as "hallucinated" due to pre-training cutoffs.
+* Query registries (npm, PyPI, crates.io, Go modules, Maven Central / Google Maven) or execute live web search to verify modern release tags, migration guides, and breaking changes.
+* Pin explicit modern versions in manifests and adopt verified modern idioms.
+
+### 3.1. Pod Completeness & Anti-Trivial-Bump Invariant
+* Every domain pod assigned to you MUST be fully implemented with substantive functional logic.
+* You are STRICTLY FORBIDDEN from bumping version strings in build configs (e.g. `versionCode = 27`) while leaving the underlying screens, components, or services untouched. Doing so is classified as Trivial Bump Fraud.
+* Guarantee 1:1 Surface & Authentication parity across platforms (e.g. matching Google Sign-In faithfully on Web without unauthorized JWT substitutes).
 
 ### 4. Multi-Domain Pod Specialization
 When operating within a multi-domain project (Database, Backend, Web Admin, Mobile):

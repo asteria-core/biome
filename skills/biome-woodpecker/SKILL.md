@@ -57,15 +57,18 @@ While the Goldfish swarm stress-tests specifications *before* code is written, *
 
 The Woodpecker inspects the raw git diff line-by-line across six mandatory dimensions:
 
-### 1. Spec & Boundary Fidelity & Anti-Amnesia
+### 1. Spec & Boundary Fidelity, Pod Completeness & Anti-Amnesia
 * **Scope Allowlist**: All modified files MUST match `target_mutation_plan` in `.biome/project_index.json`. Reject unauthorized file modifications.
 * **Requirements Ledger Lock**: Check `.biome/requirements_ledger.json`. Guarantees that zero previously approved customer requirements or established features are regressed or deleted.
 * **Contract Verification**: Exported APIs, HTTP routes, parameters, and error types must match the approved Design Spec verbatim.
+* **Anti-Trivial-Bump Verification**: Inspect every assigned Domain Pod (e.g., Mobile Android, Web, Backend). If a pod has only superficial version bumps (e.g., modifying only `build.gradle.kts` versionCode/versionName while leaving Kotlin/Compose code untouched), immediately REJECT with `[BLOCKER] Trivial Bump Violation: Pod <name> was not functionally implemented`.
+* **Zero Disconnected Mock Data**: Detect and REJECT dummy JSON objects, unlinked mock handlers, disconnected buttons, or unauthorized auth deviations (e.g., implementing direct JWT tokens when mobile uses Google OAuth).
 
 ### 2. Security Hardening & Taint Analysis
 * **Injection Vulnerabilities**: SQL injection, command execution, path traversal (`../`), and template injections. Ensure parameterized queries everywhere.
 * **Auth & Tenant Isolation**: Verify session authorization, JWT verification, and strict tenant ID scoping on all database queries.
 * **Secrets Leakage**: Scan for hardcoded API keys, private keys, bearer tokens, or sensitive credentials.
+* **Deployment & Parity Verification**: If the specification or user prompt explicitly mandates remote server deployment (e.g. over SSH to a remote production server), verify that deployment commands, build outputs, and active service health checks actually succeeded on the target host.
 
 ### 3. Pathological Edge Cases & Concurrency
 * **Null / Nil Safety**: Flag unhandled optional property lookups and potential panic / null-pointer triggers.

@@ -120,6 +120,9 @@ Every phase and specialist has a dedicated standalone command for fine-grained m
 2. **The "Ghost Beaver" Fallback Prohibition**: If a Beaver subagent fails, hangs, or returns compilation errors, the Elephant is STRICTLY PROHIBITED from taking over and modifying source files in the chat pane. The Elephant MUST send the failure receipt back to the Beaver via `send_message` or spawn a fresh Beaver pod with the failure context. Self-coding in chat is a FATAL PROTOCOL VIOLATION.
 3. **The Woodpecker Impersonation Prohibition**: The Elephant MUST NOT write or generate `woodpecker_audit_report.md` itself. It MUST spawn an isolated subagent running `biome-woodpecker`. Grading one's own homework in the main chat is strictly prohibited.
 4. **Mandatory Phase Transition Gates**: The Elephant MUST NOT skip any phase in the pipeline. Jumping directly from Phase 2 to Phase 5 or 6 without running the Goldfish Swarm (Phase 3) and Auto-Resolve (Phase 4) is strictly prohibited.
+5. **Reactive Asynchrony & Zero-Polling Mandate**: The host harness operates on event-driven reactive wakeups. The Elephant MUST NEVER execute busy-wait polling loops using `schedule` (e.g. 10s/15s/30s timers) or repeatedly invoke `manage_subagents` status queries while waiting for workers. After calling `invoke_subagent` or `send_message`, the Elephant MUST immediately end its turn and await the system notification.
+6. **Subagent Anti-Killing & Anti-Forgery Law**: The Elephant is strictly forbidden from calling `manage_subagents kill` or `manage_task kill` on an in-progress subagent simply due to elapsed wall-clock time. Deep inspection, builds, and test runs legitimately take minutes. If a subagent encounters a genuine crash, the Elephant MUST NEVER forge or author the subagent's expected deliverable (e.g., `goldfish_review_report.md`, `codebase_topology.json`, `woodpecker_audit_report.md`) in the main chat. It must re-dispatch with context or pause.
+7. **Knowledge Cutoff & Live Search Mandate**: Agents MUST NEVER declare a package, toolchain, or library version "hallucinated", "fake", or "non-existent" simply because it is newer than the LLM's pre-training cutoff. Whenever a user prompt or spec designates cutting-edge, late-2026, or modern versions (e.g., Kotlin 2.4+, Next.js 16+, React 19+, Tailwind v4+, Go 1.26+, Google Play Billing 9+), agents MUST execute `search_web` or query package registries to inspect latest release tags, changelogs, and APIs, and strictly honor the requested version.
 
 ---
 
@@ -168,26 +171,30 @@ Spawn the Goldfish reviewer swarm in parallel, fresh, zero-context subagent sess
    * NEVER mix edits across Go, Kotlin, and Web concurrently in one chaotic turn.
 3. **Anti-Amnesia Guarantee**:
    * The Beaver reads `.biome/requirements_ledger.json` and guarantees zero deletion or regression of previously locked client features.
-4. **Frontend Craftsmanship Mandate**:
+4. **Mandatory Pod Completion & Anti-Trivial-Bump Guarantee**:
+   * Every assigned domain pod MUST contain real, functional code modifications. Updating only configuration files, build metadata, or version strings (e.g. bumping `versionCode` in Gradle while leaving all Kotlin screens untouched) while claiming completion is **Trivial Bump Fraud** and triggers an automatic pod failure.
+5. **1:1 Surface & Authentication Parity**:
+   * When cloning or porting features across platforms (e.g. Web 1:1 match to Mobile), authentication mechanisms, data models, and UX flows must be identical. Never substitute different mechanisms (e.g., JWT for Google OAuth) without explicit approval.
+6. **Frontend Craftsmanship Mandate**:
    * Strictly adhere to `resources/document_standards/ui-craftsmanship-standard.md` (Apple HIG Navigational Singularity, true dark mode elevation, bounded modals, `whitespace-nowrap` on tables, pure SVG icons).
-5. **Anti-Slop & Human-Grade Craftsmanship**:
+7. **Anti-Slop & Human-Grade Craftsmanship**:
    * Purge slop via `/biome-chameleon` standards: idiomatic naming, clean UI copy, no AI marketing buzzwords.
-6. **Latest Dependency & Modern API Mandate**:
-   * Query registries for latest semver and inspect changelogs to avoid deprecated patterns.
-7. **Self-Healing Test Loop**: Run project test suite within the Beaver session, auto-correcting up to 3 cycles. Update `.biome/state.json`.
+8. **Latest Dependency & Live Verification Mandate**:
+   * Query live package registries (`npm view`, `go list -m -versions`, Maven Central / Google Maven, PyPI) or run `search_web` to verify modern API signatures and changelogs. Never reject versions newer than model training cutoff.
+9. **Self-Healing Test Loop**: Run project test suite within the Beaver session, auto-correcting up to 3 cycles. Update `.biome/state.json`.
 
 ### Phase 7: The Woodpecker - Zero-Context Code Diff & Security Audit (INDEPENDENT)
 1. Spawn **The Woodpecker** using `/biome-woodpecker` (`agents/woodpecker.md`) via `invoke_subagent` in a fresh, isolated session. The Elephant is STRICTLY PROHIBITED from authoring this report itself.
 2. Inspect `git diff` across the **Six Pecking Vectors**:
-   * Vector 1: Spec & Boundary Fidelity & Anti-Amnesia Ledger Verification
-   * Vector 2: Security & Defensive Hardening
+   * Vector 1: Spec & Boundary Fidelity, Anti-Amnesia Ledger, and Pod Completeness (Strict rejection of Trivial Bump Fraud and mock data).
+   * Vector 2: Security & Defensive Hardening (including Remote Server Deployment Verification if required by spec).
    * Vector 3: Pathological Edge Cases & Failure Modes
    * Vector 4: Micro-Architecture & Type Rigor
    * Vector 5: Anti-Slop & Human-Grade Craftsmanship
-   * Vector 6: UI/UX Craftsmanship & Visual Integrity (Apple HIG Laws)
+   * Vector 6: UI/UX Craftsmanship & Visual Integrity (Apple HIG Laws & Surface Parity)
 3. The Woodpecker subagent writes `woodpecker_audit_report.md`:
    * If `REJECTED`: Passes blocking defects back to The Beaver for surgical self-healing (up to 2 repair cycles).
-   * If `APPROVED`: Authorizes the final atomic semantic git commit (`feat(<scope>): ...`) and emission of the 3-bullet execution receipt.
+   * If `APPROVED`: Authorizes the final atomic semantic git commit (`feat(<scope>): ...`) and emission of the Objective Delivery Changelog (banning marketing fluff and deceptive AI slop).
 
 ### Phase 8: The Reaper Protocol (Strict Ephemeral Teardown)
 1. Immediately upon receipt delivery, all worker subagent sessions (Reviewers, Indexer, Beaver, Woodpecker, Falcon, Chameleon) MUST be completely terminated and destroyed.

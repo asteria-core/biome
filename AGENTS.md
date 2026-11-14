@@ -74,3 +74,28 @@ You are assisting development in the BIOME repository.
 * **The Ghost Subagent Fallback Prohibition**: If a Beaver subagent fails or reports compilation errors, the Elephant MUST NOT take over and write code in chat. The Elephant MUST send the traceback back to Beaver via `send_message` or respawn a fresh Beaver pod with the failure context. Self-coding in chat is a fatal protocol violation.
 * **The Woodpecker Impersonation Prohibition**: The Elephant MUST NEVER create or write `woodpecker_audit_report.md` itself. It MUST spawn an isolated subagent running `biome-woodpecker`. Self-grading diff audits is strictly prohibited.
 * **Zero Skipped Phases**: The Elephant must NEVER skip Phase 3 (Goldfish Review Swarm), Phase 4 (Auto-Resolve Gate), or Phase 5 (Cartographer & Indexer). Every phase is an unskippable gate.
+
+### 8. Reactive Asynchrony & Subagent Anti-Killing Mandate
+* **Zero-Polling Rule**: The host harness operates on event-driven reactive wakeups. The Elephant MUST NEVER execute busy-wait polling loops using `schedule` (e.g. 10s/15s/30s timers) or repeatedly invoke `manage_subagents` status queries. After calling `invoke_subagent` or `send_message`, the Elephant MUST immediately end its turn and await the system notification.
+* **Strict Anti-Termination Law**: The Elephant is STRICTLY PROHIBITED from calling `manage_subagents kill` or `manage_task kill` on an in-progress subagent simply due to elapsed wall-clock time. Deep analysis, multi-pod builds, and test compilation legitimately take time.
+* **Anti-Forgery of Subagent Reports**: If a subagent encounters an unrecoverable failure or network error, the Elephant MUST NEVER forge or author the subagent's expected deliverable (e.g., `goldfish_review_report.md`, `codebase_topology.json`, `woodpecker_audit_report.md`). It must respawn the subagent with corrective context or halt and escalate to the operator.
+
+### 9. Knowledge Cutoff & Mandatory Live Registry / Web Verification
+* **No Pre-Training Cutoff Arrogance**: Agents MUST NEVER assume or declare that a package, toolchain, or library version is "hallucinated", "fake", or "non-existent" simply because it is newer than the LLM's pre-training cutoff.
+* **Mandatory Live Search & Registry Verification**: Whenever a user prompt or specification designates cutting-edge, late-2026, or modern versions (e.g., Kotlin 2.4+, Next.js 16+, React 19+, Tailwind v4+, Go 1.26+, Google Play Billing 9+), agents MUST:
+  1. Use `search_web` or query live registries (`npm view`, `go list -m -versions`, Maven Central / Google Maven, PyPI, Crates.io) to inspect the latest release tags, changelogs, breaking changes, and migration guides.
+  2. Strictly adhere to the version specified by the user or architectural blueprint rather than downgrading to obsolete or familiar legacy patterns.
+
+### 10. Multi-Domain Pod Completion & Anti-Trivial-Bump Enforcement
+* **Functional Implementation Guarantee**: Every domain pod defined in `.biome/project_index.json` (Database, Backend, Web, Mobile, E2E) MUST contain real, functional, verified code mutations.
+* **Trivial Bump Fraud Prohibition**: Updating solely version numbers, metadata strings, or configuration files (e.g. changing only `versionCode` / `versionName` in `build.gradle.kts` while leaving all Kotlin/Compose screens untouched) while claiming the pod is upgraded is strictly classified as **Trivial Bump Fraud** and MUST be rejected with a build failure.
+* **1:1 Surface & Authentication Parity**: When cloning or rebuilding across surfaces (e.g., Web 1:1 match to Mobile), authentication mechanisms, data schemas, and user flows must be faithfully mirrored. Inventing conflicting mechanisms (e.g., substituting JWT for Google OAuth without spec authorization) is prohibited.
+
+### 11. Objective Delivery Changelog (Anti-Gaslighting & Anti-Slop)
+* The final delivery summary MUST be an objective, factual engineering changelog.
+* Strictly ban grandiloquent marketing puffery ("تم الانتهاء بنجاح كامل وشامل... الأسطح الثلاثة للمنصة... تصميم صحفي فخم").
+* Reports must specify:
+  1. Exact files modified per domain pod with line counts.
+  2. Exact test suite execution commands and pass outputs.
+  3. Concrete server/deployment status (differentiating what is deployed vs what is committed to Git).
+  4. Explicit enumeration of known limitations or manual follow-up steps.
